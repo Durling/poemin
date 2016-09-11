@@ -1,0 +1,45 @@
+
+<style>
+	.data-poems-list{
+		width: 200px;
+	}
+</style>
+<!-- <h5><%= rows %></h5> -->
+
+
+<div class="data-poems-list">
+	<% if(rows.length>0 && act_status==0){ 
+		rows.forEach(function(el){ %>
+		<p><%=el.title%></p>
+		<p><%=el.authorName%></p>
+		<p><%=el.content%></p>
+		<p><%=el.dynasty%></p>
+		<p><%=el.translateText%></p>
+		<p><%=el.reference%></p>
+	<% })
+	 } %>
+	
+	<% if (act_status==2) { %>
+		<p>
+			<input type="text" placeholder="给你的诗起一个名字">
+		</p>
+		<p>
+			<input type="text" placeholder="作者笔名">
+		</p>
+		<p>
+			<textarea placeholder="诗的正文"></textarea>
+		</p>
+		<button>提交</button>
+	<% } %>
+	<p>
+		<a href="poems">正文</a>
+		<a href="poems?act=edit">编辑</a>
+		<a href="poems?act=add">增加</a>
+	</p>
+</div>
+
+<script>
+	var rows = <%-JSON.stringify(rows)%>;
+	var act_status = <%-JSON.stringify(act_status)%>;
+	console.log(rows,act_status);
+</script>
