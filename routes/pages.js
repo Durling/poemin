@@ -27,16 +27,13 @@ router.get('/poems',function (req,res,next){
 	var act_status;
 	if (req.query.id>0) {
 		connection.query('select * from poems where id = '+req.query.id+';',function(error,rows,fields){
-			// res.writeHead(200,{'Content-Type':'text/html;charset=utf8'});
-			// res.write('<h3>查询数据库：</h3><br/>');
-			// res.end(JSON.stringify(rows));
 
 			if(act=='edit'){
-				act_status = 1;
+				act_status = 1; //编辑
 				title = '编辑';
 			}else{
-				act_status = 0;
-				title = '诗的知音';
+				act_status = 0; //详情
+				title = '诗印象'; 
 			}
 			var renderData = {
 				title:title,
@@ -49,11 +46,14 @@ router.get('/poems',function (req,res,next){
 	}else{
 		connection.query('select id,title,authorId,authorName,collection from poems;',function(error,rows,fields){
 			if(act=='add'){
-				act_status = 2;
+				act_status = 2; //新建 
 				title = '写一首诗';
+			}else if(act=='correction'){
+				act_status = 3;
+				title = '纠错'; //纠错
 			}else{
 				act_status = -1;
-				title = '诗的列表';
+				title = '诗的列表'; // 列表
 			}
 			var renderData = {
 				title:title,

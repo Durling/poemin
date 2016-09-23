@@ -1,5 +1,6 @@
 <%- include global/header.ejs %>
 
+<%- include global/top.ejs %>
 <style>
 	.data-poems-list{
 		font-size: 1.4rem;
@@ -8,7 +9,7 @@
 		background: #f6f6f1;
 	}
 </style>
-<%- include global/top.ejs %>
+<link rel="stylesheet" href="">
 
 <div class="data-poems-list col-sm-12">
 
@@ -72,6 +73,8 @@
 		</ul>
 
 		<a href="poems?id=<%=el.id%>&act=edit">编辑</a>
+		<a href="poems?id=<%=el.id%>&act=handwrite">手抄稿</a>
+		<a href="poems?id=<%=el.id%>&act=voice">诗之音</a>
 
 		<% })
 	 } %>
@@ -90,7 +93,7 @@
 			<p>
 				<textarea class="form-control poem-content text-capitalize" rows="8" placeholder="诗的正文"><%-el.content%></textarea>
 			</p>
-			<button class="btn btn-success btn-sm" poemId="<%=el.id%>" onclick="submit_poem_content(this)">提交修改</button>
+			<button class="btn btn-success btn-sm" poemId="<%=el.id%>" act-status="1" onclick="submit_poem_content(this)">提交编辑</button>
 		</div>
 		<% })
 	 } %>
@@ -108,7 +111,26 @@
 		<p>
 			<textarea class="form-control poem-content text-capitalize" rows="8" placeholder="诗的正文"></textarea>
 		</p>
-		<button class="btn btn-success btn-sm" onclick="submit_poem_content(this)">提交新增</button>
+		<button class="btn btn-success btn-sm" act-status="2" onclick="submit_poem_content(this)">提交新增</button>
+	</div>
+	<% } %>
+
+	<!--  纠错 -->
+	<% if (act_status==3) { %>
+	<div class="add-new-poem-div">
+		<p>
+			<input type="text" class="form-control" placeholder="错误内容地址">
+		</p>
+		<p>
+			<textarea type="text" class="form-control" rows="3"  placeholder="错误内容部分"></textarea>
+		</p>
+		<p>
+			<textarea type="text" class="form-control" rows="3"  placeholder="应改正为"></textarea>
+		</p>
+		<p>
+			<input type="text" class="form-control" placeholder="参考地址">
+		</p>
+		<button class="btn btn-success btn-sm" act-status="3" onclick="submit_poem_content(this)">提交纠错</button>
 	</div>
 	<% } %>
 
@@ -117,6 +139,7 @@
 	<p class="bg-info text-center">
 		<a href="poems">列表</a>		
 		<a href="poems?act=add">增加</a>
+		<a href="poems?act=correction">纠错</a>
 	</p>
 	<p class="bg-success text-center">
 		<abbr title="attribute">attr</abbr>
@@ -133,5 +156,8 @@
 	var rows = <%-JSON.stringify(rows)%>;
 	var act_status = <%-JSON.stringify(act_status)%>;
 </script>
+
+<%- include global/bottom.ejs %>
+<script src="js/poems/poem-edit-or-add.js"></script>
 
 <%- include global/footer.ejs %>
