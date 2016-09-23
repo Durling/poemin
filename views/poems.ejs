@@ -1,45 +1,137 @@
+<%- include global/header.ejs %>
 
 <style>
 	.data-poems-list{
-		width: 200px;
+		font-size: 1.4rem;
+		width: 100%;
+		color: #614e3c;
+		background: #f6f6f1;
 	}
 </style>
-<!-- <h5><%= rows %></h5> -->
+<%- include global/top.ejs %>
 
+<div class="data-poems-list col-sm-12">
 
-<div class="data-poems-list">
-	<% if(rows.length>0 && act_status==0){ 
+	<!-- 列表 -->
+	<% if(act_status==-1 && rows.length>0){ 
 		rows.forEach(function(el){ %>
-		<p><%=el.title%></p>
-		<p><%=el.authorName%></p>
-		<p><%=el.content%></p>
-		<p><%=el.dynasty%></p>
-		<p><%=el.translateText%></p>
-		<p><%=el.reference%></p>
-	<% })
+		<h4 class="text-left">
+			<a href="poems?id=<%=el.id%>"><%=el.title%></a>
+			<span>/<%=el.authorName%></span>
+			<span>/<%=el.collection%></span>
+		</h4>
+		<% })
+	}%>
+
+	<!-- 详情 -->
+	<% if(act_status==0 && rows.length>0){ 
+		rows.forEach(function(el){ %>
+		
+		<blockquote>
+			<h4 class="text-left"><%=el.title%></h4>
+			<p class="lead">
+				<%-el.content.replace(/\r/ig,'<br/>').replace(/\n/ig,'<br/>')%>
+			</p>
+			<%if (el.authorName!=''&&el.authorName!=null) {%>
+			<footer>
+				<a href="javascript:;" authorId="<%=el.authorId%>"><%=el.authorName%></a>
+				<cite title="Source Title"> /<a href="javascript:;" dynastyId="<%=el.dynastyId%>"><%=el.dynasty%></a></cite>
+				<cite title="Source Title"> /公元<% if(el.ad_year<0){ el.ad_year = -el.ad_year %><span>前</span><%}%><%=el.ad_year%>年</cite>
+			</footer>
+			<%}%>
+		</blockquote>
+		<ul class="list-unstyled">
+			
+			<%if (el.translateText!=''&&el.translateText!=null) {%>
+			<li data-toggle="collapse" data-target="#translateText" aria-expanded="true" aria-controls="translateText">
+				<span class="btn btn-link btn-sm">译文</span>
+				<div id="translateText" class="collapse col-sm-12">
+					<small><%-el.translateText.replace(/\r/ig,'<br/>').replace(/\n/ig,'<br/>')%></small>
+				</div>
+			</li>
+			<%}%>
+
+			<%if (el.annotation!=''&&el.annotation!=null) {%>
+			<li data-toggle="collapse" data-target="#annotation" aria-expanded="true" aria-controls="annotation">
+				<span class="btn btn-link btn-sm">注释</span>
+				<div id="annotation" class="collapse col-sm-12">
+					<small><%-el.annotation.replace(/\r/ig,'<br/>').replace(/\n/ig,'<br/>')%></small>
+				</div>
+			</li>
+			<%}%>
+
+			<%if (el.reference!=''&&el.reference!=null) {%>
+			<li data-toggle="collapse" data-target="#reference" aria-expanded="true" aria-controls="reference">
+				<span class="btn btn-link btn-sm">参考</span>
+				<div id="reference" class="collapse col-sm-12">
+					<small><%-el.reference.replace(/\r/ig,'<br/>').replace(/\n/ig,'<br/>')%></small>
+				</div>
+			</li>
+			<%}%>
+
+		</ul>
+
+		<a href="poems?id=<%=el.id%>&act=edit">编辑</a>
+
+		<% })
 	 } %>
-	
+
+
+	<!-- 编辑 -->
+	<% if(act_status==1 && rows.length>0){ 
+		rows.forEach(function(el){ %>
+		<div class="add-new-poem-div">
+			<p>
+				<input type="text" class="form-control poem-title text-capitalize" placeholder="给你的诗起一个名字" value="<%=el.title%>">
+			</p>
+			<p>
+				<input type="text" class="form-control poem-penName text-capitalize"  placeholder="作者笔名" value="<%=el.authorName%>">
+			</p>
+			<p>
+				<textarea class="form-control poem-content text-capitalize" rows="8" placeholder="诗的正文"><%-el.content%></textarea>
+			</p>
+			<button class="btn btn-success btn-sm" poemId="<%=el.id%>" onclick="submit_poem_content(this)">提交修改</button>
+		</div>
+		<% })
+	 } %>
+
+
+	<!-- 新增 -->
 	<% if (act_status==2) { %>
+	<div class="add-new-poem-div">
 		<p>
-			<input type="text" placeholder="给你的诗起一个名字">
+			<input type="text" class="form-control poem-title text-capitalize" placeholder="给你的诗起一个名字">
 		</p>
 		<p>
-			<input type="text" placeholder="作者笔名">
+			<input type="text" class="form-control poem-penName text-capitalize"  placeholder="作者笔名">
 		</p>
 		<p>
-			<textarea placeholder="诗的正文"></textarea>
+			<textarea class="form-control poem-content text-capitalize" rows="8" placeholder="诗的正文"></textarea>
 		</p>
-		<button>提交</button>
+		<button class="btn btn-success btn-sm" onclick="submit_poem_content(this)">提交新增</button>
+	</div>
 	<% } %>
-	<p>
-		<a href="poems">正文</a>
-		<a href="poems?act=edit">编辑</a>
+
+
+	<!-- 全局 -->
+	<p class="bg-info text-center">
+		<a href="poems">列表</a>		
 		<a href="poems?act=add">增加</a>
 	</p>
+	<p class="bg-success text-center">
+		<abbr title="attribute">attr</abbr>
+		<abbr title="HyperText Markup Language" class="initialism">HTML</abbr>
+
+		<blockquote>
+		  <p>poemin CopyRight</p>
+		</blockquote>
+	</p>
+	
 </div>
 
 <script>
 	var rows = <%-JSON.stringify(rows)%>;
 	var act_status = <%-JSON.stringify(act_status)%>;
-	console.log(rows,act_status);
 </script>
+
+<%- include global/footer.ejs %>
