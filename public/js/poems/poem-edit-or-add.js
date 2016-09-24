@@ -16,8 +16,9 @@ function submit_poem_content(obj) {
 			content:content
 		}
 	if (form.title=='') {
+		var placeholder = $a.find('.poem-title').attr('placeholder');
 		// layer.msg('诗的名字不能为空');
-		$(obj).attr('disabled','disabled').text('诗的名字不能为空');
+		$(obj).attr('disabled','disabled').text(placeholder+'不能为空');
 		setTimeout(function(){
 			$(obj).removeAttr('disabled').text(msg_tips[4]);
 		},2000);
@@ -63,7 +64,11 @@ function submit_poem_content(obj) {
 			},2000);
 		}
 	}else if(act_status==3){ // alert('提交纠错')
-		layer.msg(msg_tips[3]);
+		// layer.msg(msg_tips[3]);
+		$(obj).attr('disabled','disabled').text(msg_tips[3]);
+		setTimeout(function(){
+			$(obj).removeAttr('disabled').text(msg_tips[4]);
+		},2000);
 	}	
 };
 
