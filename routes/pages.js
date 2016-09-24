@@ -44,7 +44,7 @@ router.get('/poems',function (req,res,next){
 			res.render('poems',renderData);
 		})
 	}else{
-		connection.query('select id,title,authorId,authorName,collection from poems;',function(error,rows,fields){
+		connection.query('select id,title,authorId,authorName from poems;',function(error,rows,fields){
 			if(act=='add'){
 				act_status = 2; //新建 
 				title = '写一首诗';

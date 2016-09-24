@@ -18,8 +18,7 @@
 		rows.forEach(function(el){ %>
 		<h4 class="text-left">
 			<a href="poems?id=<%=el.id%>"><%=el.title%></a>
-			<span>/<%=el.authorName%></span>
-			<span>/<%=el.collection%></span>
+			<small><%=el.authorName%></small>
 		</h4>
 		<% })
 	}%>
@@ -35,9 +34,17 @@
 			</p>
 			<%if (el.authorName!=''&&el.authorName!=null) {%>
 			<footer>
+				<%if(el.dynasty!=''&&el.dynasty!=null){%>
+				<a href="javascript:;" dynastyId="<%=el.dynastyId%>"><%=el.dynasty%></a>
+				<%}%>
+				<%if(el.country!=''&&el.country!=null){%>
+				<a href="javascript:;" dynastyId="<%=el.dynastyId%>"><%=el.country%></a>
+				<%}%>
 				<a href="javascript:;" authorId="<%=el.authorId%>"><%=el.authorName%></a>
-				<cite title="Source Title"> /<a href="javascript:;" dynastyId="<%=el.dynastyId%>"><%=el.dynasty%></a></cite>
-				<cite title="Source Title"> /公元<% if(el.ad_year<0){ el.ad_year = -el.ad_year %><span>前</span><%}%><%=el.ad_year%>年</cite>
+				
+				<cite title="Source Title">
+					<%=el.time_place%>
+				</cite>
 			</footer>
 			<%}%>
 		</blockquote>
@@ -73,7 +80,8 @@
 		</ul>
 
 		<a href="poems?id=<%=el.id%>&act=edit">编辑</a>
-		<a href="poems?id=<%=el.id%>&act=handwrite">手抄稿</a>
+		<a href="poems?id=<%=el.id%>&act=comments">评论</a>
+		<a href="poems?id=<%=el.id%>&act=handwrite">手写稿</a>
 		<a href="poems?id=<%=el.id%>&act=voice">诗之音</a>
 
 		<% })
@@ -103,10 +111,10 @@
 	<% if (act_status==2) { %>
 	<div class="add-new-poem-div">
 		<p>
-			<input type="text" class="form-control poem-title text-capitalize" placeholder="给你的诗起一个名字">
+			<input type="text" class="form-control poem-title text-capitalize" placeholder="诗的名字">
 		</p>
 		<p>
-			<input type="text" class="form-control poem-penName text-capitalize"  placeholder="作者笔名">
+			<input type="text" class="form-control poem-penName text-capitalize"  placeholder="作者">
 		</p>
 		<p>
 			<textarea class="form-control poem-content text-capitalize" rows="8" placeholder="诗的正文"></textarea>
@@ -119,16 +127,13 @@
 	<% if (act_status==3) { %>
 	<div class="add-new-poem-div">
 		<p>
-			<input type="text" class="form-control" placeholder="错误内容地址">
+			<textarea type="text" class="form-control" rows="5"  placeholder="错误内容描述"></textarea>
 		</p>
 		<p>
-			<textarea type="text" class="form-control" rows="3"  placeholder="错误内容部分"></textarea>
+			<textarea type="text" class="form-control" rows="5"  placeholder="纠错意见"></textarea>
 		</p>
 		<p>
-			<textarea type="text" class="form-control" rows="3"  placeholder="应改正为"></textarea>
-		</p>
-		<p>
-			<input type="text" class="form-control" placeholder="参考地址">
+			<input type="text" class="form-control" placeholder="参考文献/地址">
 		</p>
 		<button class="btn btn-success btn-sm" act-status="3" onclick="submit_poem_content(this)">提交纠错</button>
 	</div>

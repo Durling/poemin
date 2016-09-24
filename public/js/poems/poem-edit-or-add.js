@@ -14,8 +14,11 @@ function submit_poem_content(obj) {
 			authorName:authorName,
 			content:content
 		}
+	if (form.title=='') {
+		layer.msg('诗的名字不能为空');
+		return false;
+	}
 		// console.log(form);
-	
 	if (poemId>0 && act_status==1) { // alert('提交编辑');
 		var type = 'put',
 			url = 'admin/poems/'+poemId,
@@ -23,9 +26,11 @@ function submit_poem_content(obj) {
 			data = JSON.stringify(form);
 		var result = global_ajax(type,url,data);
 		console.log(result);
-		layer.msg(result.message);
 		if(result.message=='success'){
-			window.location.href='poems?id='+poemId;
+			layer.msg(tipsmsg[1]);
+			setTimeout(function(){
+				window.location.href='poems?id='+poemId;
+			},1000);
 		}
 	}else if(act_status==2){ // alert('提交新增');
 		var type = 'post',
@@ -33,12 +38,14 @@ function submit_poem_content(obj) {
 			data = JSON.stringify(form);
 		var result = global_ajax(type,url,data);
 		console.log(result);
-		layer.msg(result.message);
 		if(result.message=='success'){
-			window.location.href='poems?id='+result.resinsert.insertId;
+			layer.msg(tipsmsg[2]);
+			setTimeout(function(){
+				window.location.href='poems?id='+result.resinsert.insertId;
+			},1000);
 		}
 	}else if(act_status==3){ // alert('提交纠错')
-		layer.msg('提交纠错开发中');
+		layer.msg(tipsmsg[3]);
 	}	
 };
 
