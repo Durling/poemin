@@ -94,13 +94,13 @@
 		rows.forEach(function(el){ %>
 		<div class="add-new-poem-div">
 			<p>
-				<input type="text" class="form-control poem-title text-capitalize" placeholder="给你的诗起一个名字" value="<%=el.title%>">
+				<input type="text" class="form-control poem-title text-capitalize" placeholder="诗的名字" value="<%=el.title%>">
 			</p>
 			<p>
-				<input type="text" class="form-control poem-penName text-capitalize"  placeholder="作者笔名" value="<%=el.authorName%>">
+				<input type="text" class="form-control poem-penName text-capitalize"  placeholder="作者" value="<%=el.authorName%>">
 			</p>
 			<p>
-				<textarea class="form-control poem-content text-capitalize" rows="8" placeholder="诗的正文"><%-el.content%></textarea>
+				<textarea class="form-control poem-content text-capitalize" rows="12" placeholder="诗的正文"><%-el.content%></textarea>
 			</p>
 			<p class="text-center">
 				<button class="btn btn-success btn-sm" poemId="<%=el.id%>" act-status="1" onclick="submit_poem_content(this)">提交编辑</button>
@@ -121,7 +121,7 @@
 			<input type="text" class="form-control poem-penName text-capitalize"  placeholder="作者">
 		</p>
 		<p>
-			<textarea class="form-control poem-content text-capitalize" rows="8" placeholder="诗的正文"></textarea>
+			<textarea class="form-control poem-content text-capitalize" rows="12" placeholder="诗的正文"></textarea>
 		</p>
 		<p class="text-center">
 			<button class="btn btn-success btn-sm" act-status="2" onclick="submit_poem_content(this)">提交新增</button>
