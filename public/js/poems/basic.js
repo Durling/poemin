@@ -1,14 +1,18 @@
 
-var tipsmsg = ['未定义区域','你太棒了！编辑成功','恭喜你！新增成功','开发中！嫑期待'];
-			//    0              1               2             3
-			//  
+var tipsmsg  = 	[
+					'未定义区域',
+					'你太棒了！编辑成功',
+					'恭喜你！新增成功',
+					'开发中！嫑期待'
+				];
+
 /**
- * ajax 请求
+ * ajax 请求中间层
  */
 function global_ajax(type,url,data){
 	// console.log(type,url,data);
 	var list;
-	if (type=='get') {
+	if (type=='get') { //获取列表
 		$.ajax({
 		  url : url,
 		  dataType : 'json',
@@ -22,22 +26,7 @@ function global_ajax(type,url,data){
 		  	layer.msg(err);
 		  }
 		})
-	}else if(type=='post'){
-		$.ajax({
-		  url : url,
-		  dataType : 'json',
-		  type : type,
-		  data : data,
-		  async : false,
-		  contentType : "application/json",
-		  success : function(data) {
-		  	list = data;
-		  },
-		  error: function(err){
-		  	layer.msg(err);
-		  }
-		})
-	}else if(type=='put'){
+	}else if(type=='post'){  //新增
 		$.ajax({
 		  url : url,
 		  dataType : 'json',
@@ -52,11 +41,12 @@ function global_ajax(type,url,data){
 		  	layer.msg(err);
 		  }
 		})
-	}else if(type=='delete'){
+	}else if(type=='put'){ //编辑
 		$.ajax({
 		  url : url,
 		  dataType : 'json',
 		  type : type,
+		  data : data,
 		  async : false,
 		  contentType : "application/json",
 		  success : function(data) {
@@ -66,6 +56,20 @@ function global_ajax(type,url,data){
 		  	layer.msg(err);
 		  }
 		})
+	}else if(type=='delete'){  //删除 不做
+		// $.ajax({
+		//   url : url,
+		//   dataType : 'json',
+		//   type : type,
+		//   async : false,
+		//   contentType : "application/json",
+		//   success : function(data) {
+		//   	list = data;
+		//   },
+		//   error: function(err){
+		//   	layer.msg(err);
+		//   }
+		// })
 	}
 	return list;
 }
