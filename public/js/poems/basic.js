@@ -1,11 +1,15 @@
 
-var tipsmsg  = 	[
-					'未定义区域',
+var msg_tips = 	[
+					'提交失败！请重新提交',
 					'你太棒了！编辑成功',
 					'恭喜你！新增成功',
-					'开发中！嫑期待'
+					'开发中！嫑期待',
+					'重新提交'
+				],
+	msg_status= [
+					'success',
+					'error'
 				];
-
 /**
  * ajax 请求中间层
  */
@@ -56,7 +60,7 @@ function global_ajax(type,url,data){
 		  	layer.msg(err);
 		  }
 		})
-	}else if(type=='delete'){  //删除 不做
+	}else if(type=='delete'){  //删除 暂时不做
 		// $.ajax({
 		//   url : url,
 		//   dataType : 'json',
@@ -74,3 +78,10 @@ function global_ajax(type,url,data){
 	return list;
 }
 
+
+function showSearchDiv(obj){
+	$('.global-search-div').slideToggle();
+}
+function hideSearchDiv(obj){
+	$(obj).closest('.global-search-div').slideToggle();
+}

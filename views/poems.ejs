@@ -7,6 +7,7 @@
 		width: 100%;
 		color: #614e3c;
 		background: #f6f6f1;
+		padding:6.5rem 1.5rem;
 	}
 </style>
 <link rel="stylesheet" href="">
@@ -51,30 +52,30 @@
 		<ul class="list-unstyled">
 			
 			<%if (el.translateText!=''&&el.translateText!=null) {%>
-			<li data-toggle="collapse" data-target="#translateText" aria-expanded="true" aria-controls="translateText">
-				<span class="btn btn-link btn-sm">译文</span>
-				<div id="translateText" class="collapse col-sm-12">
-					<small><%-el.translateText.replace(/\r/ig,'<br/>').replace(/\n/ig,'<br/>')%></small>
-				</div>
-			</li>
+				<li data-toggle="collapse" data-target="#translateText" aria-expanded="true" aria-controls="translateText">
+					<span class="btn btn-link btn-sm">译文</span>
+					<div id="translateText" class="collapse col-sm-12">
+						<small><%-el.translateText.replace(/\r/ig,'<br/>').replace(/\n/ig,'<br/>')%></small>
+					</div>
+				</li>
 			<%}%>
 
 			<%if (el.annotation!=''&&el.annotation!=null) {%>
-			<li data-toggle="collapse" data-target="#annotation" aria-expanded="true" aria-controls="annotation">
-				<span class="btn btn-link btn-sm">注释</span>
-				<div id="annotation" class="collapse col-sm-12">
-					<small><%-el.annotation.replace(/\r/ig,'<br/>').replace(/\n/ig,'<br/>')%></small>
-				</div>
-			</li>
+				<li data-toggle="collapse" data-target="#annotation" aria-expanded="true" aria-controls="annotation">
+					<span class="btn btn-link btn-sm">注释</span>
+					<div id="annotation" class="collapse col-sm-12">
+						<small><%-el.annotation.replace(/\r/ig,'<br/>').replace(/\n/ig,'<br/>')%></small>
+					</div>
+				</li>
 			<%}%>
 
 			<%if (el.reference!=''&&el.reference!=null) {%>
-			<li data-toggle="collapse" data-target="#reference" aria-expanded="true" aria-controls="reference">
-				<span class="btn btn-link btn-sm">参考</span>
-				<div id="reference" class="collapse col-sm-12">
-					<small><%-el.reference.replace(/\r/ig,'<br/>').replace(/\n/ig,'<br/>')%></small>
-				</div>
-			</li>
+				<li data-toggle="collapse" data-target="#reference" aria-expanded="true" aria-controls="reference">
+					<span class="btn btn-link btn-sm">参考</span>
+					<div id="reference" class="collapse col-sm-12">
+						<small><%-el.reference.replace(/\r/ig,'<br/>').replace(/\n/ig,'<br/>')%></small>
+					</div>
+				</li>
 			<%}%>
 
 		</ul>
@@ -82,7 +83,7 @@
 		<a href="poems?id=<%=el.id%>&act=edit">编辑</a>
 		<a href="poems?id=<%=el.id%>&act=comments">评论</a>
 		<a href="poems?id=<%=el.id%>&act=handwrite">手写稿</a>
-		<a href="poems?id=<%=el.id%>&act=voice">诗之音</a>
+		<a href="poems?id=<%=el.id%>&act=voice">诗知音</a>
 
 		<% })
 	 } %>
@@ -101,7 +102,10 @@
 			<p>
 				<textarea class="form-control poem-content text-capitalize" rows="8" placeholder="诗的正文"><%-el.content%></textarea>
 			</p>
-			<button class="btn btn-success btn-sm" poemId="<%=el.id%>" act-status="1" onclick="submit_poem_content(this)">提交编辑</button>
+			<p class="text-center">
+				<button class="btn btn-success btn-sm" poemId="<%=el.id%>" act-status="1" onclick="submit_poem_content(this)">提交编辑</button>
+			</p>
+
 		</div>
 		<% })
 	 } %>
@@ -119,7 +123,10 @@
 		<p>
 			<textarea class="form-control poem-content text-capitalize" rows="8" placeholder="诗的正文"></textarea>
 		</p>
-		<button class="btn btn-success btn-sm" act-status="2" onclick="submit_poem_content(this)">提交新增</button>
+		<p class="text-center">
+			<button class="btn btn-success btn-sm" act-status="2" onclick="submit_poem_content(this)">提交新增</button>
+		</p>
+
 	</div>
 	<% } %>
 
@@ -135,7 +142,10 @@
 		<p>
 			<input type="text" class="form-control" placeholder="参考文献/地址">
 		</p>
-		<button class="btn btn-success btn-sm" act-status="3" onclick="submit_poem_content(this)">提交纠错</button>
+		<p class="text-center">
+			<button class="btn btn-success btn-sm" act-status="3" onclick="submit_poem_content(this)">提交纠错</button>
+		</p>
+
 	</div>
 	<% } %>
 
@@ -151,7 +161,7 @@
 		<abbr title="HyperText Markup Language" class="initialism">HTML</abbr>
 
 		<blockquote>
-		  <p>poemin CopyRight</p>
+		  <p>WePoem 微诗 CopyRight</p>
 		</blockquote>
 	</p>
 	

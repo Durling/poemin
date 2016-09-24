@@ -1,18 +1,133 @@
-<div class="col-sm-12 top-nav">
-	<div class="col-sm-4 text-left">
-		 <span>返回</span>
+<div class="nav-common nav-top navbar-fixed-top">
+	<ul class="col-sm-12 list-unstyled">
+		<a href="/">
+			<li class="text-left">
+				<span>
+					<i class="icon icon-angle-left"></i>
+					<span>首页</span>
+				</span>
+			</li>
+		</a>
+		<a href="javascript:;" onclick="showSearchDiv(this)">
+			<li class="text-center">
+				<span>
+					<i class="icon icon-search"></i>
+				</span>
+			</li>
+		</a>
+		<a href="javascript:;">
+			<li class="text-right">			 
+				<span>
+					<i class="icon icon-user"></i>
+					<span>Me</span>
+				</span>
+			</li>
+		</a>
+	</ul>
+</div>
+
+<div class="global-search-div" style="display:none;">
+	<p class="text-center" style="padding:0 0 1rem 0;">
+		<a href="javascript:;" onclick="hideSearchDiv(this)">
+			<span style="font-size:2rem;">
+				<i class="icon icon-remove-sign"></i>
+			</span>
+		</a>
+	</p>
+	
+	<div class="col-lg-12">
+		<div class="input-group">
+		  <input type="text" class="form-control" placeholder="输入诗的名字搜索">
+		  <span class="input-group-btn">
+		    <button class="btn btn-primary" type="button">搜索</button>
+		  </span>
+		</div><!-- /input-group -->
 	</div>
-	<div class="col-sm-4 text-center">
-		
+	<div class="col-lg-12" data-toggle="collapse" data-target="#search_more" aria-expanded="true" aria-controls="search_more">
+		<span class="btn btn-link btn-sm">More</span>
 	</div>
-	<div class="col-sm-4"></div>
+	<br>
+	<div id="search_more" class="collapse col-lg-12">
+		<ul class="list-unstyled list-inline col-lg-12">
+			<li>
+				<span>国家:</span>
+				<select name="" id="">
+					<option value="">中国</option>
+					<option value="">美国</option>
+					<option value="">印度</option>
+					<option value="">英国</option>
+				</select>
+			</li>
+			<li>
+				<span>朝代:</span>
+				<select name="" id="">
+					<option value="">唐</option>
+					<option value="">宋</option>
+					<option value="">元</option>
+					<option value="">明</option>
+				</select>
+			</li>
+		</ul>
+		<p class="col-lg-12 text-center">
+			<span class="btn btn-primary">选好了</span>
+		</p>
+	</div>
+	<br>
 </div>
 
 <style>
 
-	.top-nav{
+	.nav-common{
 		height: 5rem;
 		background-color: #5bc0de;
 	}
+	.nav-common ul{
+		height: 5rem;
+		line-height: 5rem;
+		font-size: 1.5rem;
+		color: #f6f6f1;
+	}
+	.nav-common ul li{
+		width: 30%;
+		display: inline-block;
+		position: absolute;
+		padding: 0 15px;
+	}
+	.nav-bottom ul li{
+		width: 100%;
+	}
+	
+	.nav-common ul li.text-left{
+		left:0;
+	}
+	.nav-common ul li.text-center{
+		margin: auto;
+		left: 0;
+		right: 0
+	}
+	.nav-common ul li.text-right{
+		right:0;
+	}
+
+	.global-search-div {
+	    position: absolute;
+	    width: 96%;
+	    margin: auto;
+	    top: 6rem;
+	    left: 0;
+	    right: 0;
+	    background: #f6f6f1;
+	    border: solid 1px #cccccc;
+	    border-radius: 3px;
+	    z-index: 10;
+	}
+	.global-search-div p{
+		margin: 0;
+		padding: 1.5rem;
+	}
+	.global-search-div p input{
+		width: 80%;
+	}
+
 </style>
 

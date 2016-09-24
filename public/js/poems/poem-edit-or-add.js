@@ -2,6 +2,7 @@ console.log(rows,act_status,999);
 
 
 function submit_poem_content(obj) {
+	$(obj).attr('disabled','disabled').text('提交中...');
 	var poemId = $(obj).attr('poemId')||'',
 		act_status = $(obj).attr('act-status'),
 		$a = $(obj).closest('.add-new-poem-div'),
@@ -15,22 +16,33 @@ function submit_poem_content(obj) {
 			content:content
 		}
 	if (form.title=='') {
-		layer.msg('诗的名字不能为空');
+		// layer.msg('诗的名字不能为空');
+		$(obj).attr('disabled','disabled').text('诗的名字不能为空');
+		setTimeout(function(){
+			$(obj).removeAttr('disabled').text(msg_tips[4]);
+		},2000);
+		
 		return false;
 	}
 		// console.log(form);
 	if (poemId>0 && act_status==1) { // alert('提交编辑');
 		var type = 'put',
-			url = 'admin/poems/'+poemId,
+			url = 'admin/poems',
 			data = form;
 			data = JSON.stringify(form);
 		var result = global_ajax(type,url,data);
 		console.log(result);
-		if(result.message=='success'){
-			layer.msg(tipsmsg[1]);
+		if(result.message==msg_status[0]){
+			// layer.msg(msg_tips[1]);
+			$(obj).text(msg_tips[1]);
 			setTimeout(function(){
 				window.location.href='poems?id='+poemId;
 			},1000);
+		}else{
+			$(obj).text(msg_tips[0]);
+			setTimeout(function(){
+				$(obj).removeAttr('disabled').text(msg_tips[4]);
+			},2000);
 		}
 	}else if(act_status==2){ // alert('提交新增');
 		var type = 'post',
@@ -38,14 +50,20 @@ function submit_poem_content(obj) {
 			data = JSON.stringify(form);
 		var result = global_ajax(type,url,data);
 		console.log(result);
-		if(result.message=='success'){
-			layer.msg(tipsmsg[2]);
+		if(result.message==msg_status[0]){
+			// layer.msg(msg_tips[2]);
+			$(obj).text(msg_tips[2]);
 			setTimeout(function(){
 				window.location.href='poems?id='+result.resinsert.insertId;
 			},1000);
+		}else{
+			$(obj).text(msg_tips[0]);
+			setTimeout(function(){
+				$(obj).removeAttr('disabled').text(msg_tips[4]);
+			},2000);
 		}
 	}else if(act_status==3){ // alert('提交纠错')
-		layer.msg(tipsmsg[3]);
+		layer.msg(msg_tips[3]);
 	}	
 };
 

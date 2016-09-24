@@ -53,7 +53,7 @@ router.get('/poems',function (req,res,next){
 				title = '纠错'; //纠错
 			}else{
 				act_status = -1;
-				title = '诗的列表'; // 列表
+				title = '诗列表'; // 列表
 			}
 			var renderData = {
 				title:title,
