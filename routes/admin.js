@@ -26,6 +26,28 @@ var connection = mysql.createConnection({
 	port: config.mysql.port
 })
 
+
+// 获取列表
+router.get('/poems', function (req,res) {
+	// console.log(req.url,req.body);
+	var query = 'select id,title,authorId,authorName from poems where title like "%'+req.query.title+'%" or authorName like "%'+req.query.title+'%";';
+	// console.log(query);
+	connection.query(query,function(error,rows,fields){
+		if (error) {
+			// console.log(errorupdate);
+			res.json(error);
+		}else{	
+			var data = {
+				message:'success',
+				rows:rows
+			}
+			res.json(data);
+			// res.jsonp(data);
+		}
+	})
+});
+
+
 // 编辑
 router.put('/poems', function (req,res) {
 	// console.log(req.url,req.body);

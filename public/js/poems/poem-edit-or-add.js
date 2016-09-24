@@ -29,7 +29,6 @@ function submit_poem_content(obj) {
 	if (poemId>0 && act_status==1) { // alert('提交编辑');
 		var type = 'put',
 			url = 'admin/poems',
-			data = form;
 			data = JSON.stringify(form);
 		var result = global_ajax(type,url,data);
 		console.log(result);

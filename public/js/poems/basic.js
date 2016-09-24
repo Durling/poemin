@@ -20,6 +20,7 @@ function global_ajax(type,url,data){
 		$.ajax({
 		  url : url,
 		  dataType : 'json',
+		  data: data,
 		  type : type,
 		  async : false,
 		  contentType : "application/json",

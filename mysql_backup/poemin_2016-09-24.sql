@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.10)
 # Database: poemin
-# Generation Time: 2016-09-24 00:51:35 +0000
+# Generation Time: 2016-09-24 13:45:48 +0000
 # ************************************************************
 
 
@@ -103,7 +103,32 @@ VALUES
 	(21,'世界上最遥远的距离',NULL,'泰戈尔',NULL,'世界上最遥远的距离',NULL,NULL,NULL,NULL,NULL,'印度',NULL,NULL,NULL,NULL,NULL,NULL),
 	(22,'一代人',NULL,'顾城',NULL,'黑夜给了我黑色的眼睛\n我却用它寻找光明',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
 	(23,'穿过大半个中国去睡你',NULL,'余秀华',NULL,'其实，睡你和被你睡是差不多的，无非是\n两具肉体碰撞的力，无非是这力催开的花朵\n无非是这花朵虚拟出的春天让我们误以为生命被重新打开\n大半个中国，什么都在发生：火山在喷，河流在枯\n一些不被关心的政治犯和流民\n一路在枪口的麋鹿和丹顶鹤\n我是穿过枪林弹雨去睡你\n我是把无数的黑夜摁进一个黎明去睡你\n我是无数个我奔跑成一个我去睡你\n当然我也会被一些蝴蝶带入歧途\n把一些赞美当成春天\n把一个和横店类似的村庄当成故乡\n而它们\n都是我去睡你必不可少的理由',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
-	(24,'对白云的赞美',NULL,'乌青',NULL,'天上的白云真白啊\n真的，很白很白\n非常白\n非常非常十分白\n极其白\n贼白\n简直白死了\n啊',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+	(24,'对白云的赞美',NULL,'乌青',NULL,'天上的白云真白啊\n真的，很白很白\n非常白\n非常非常十分白\n极其白\n贼白\n简直白死了\n啊',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+	(25,'西溪漫步',NULL,'木有枝',NULL,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+	(26,'螃蟹在剥我的壳',NULL,'小雨',NULL,'螃蟹在剥我的壳，笔记本在学我。\n漫天的我落在枫叶上雪花上。\n而你在想我。',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+	(27,'沁园春·雪',NULL,'毛泽东',NULL,'北国风光',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+	(28,'哈哈哈',NULL,'瓦巴蛋',NULL,'什么鬼',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+	(29,'初见',NULL,'木有枝',NULL,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+	(30,'在水一方',NULL,'佚名',NULL,'白露轻枕叶凝霜，\n蒹葭微雨意悠长，\n难赋深情隔岸烟润隐衣裳。',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+	(31,'私奔',NULL,'冯唐',NULL,'那是爱 \n那是癌 \n那是如来',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+	(32,'一起',NULL,'冯唐',NULL,'想和你在海边 \n一坐一夜 \n一日千年',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+	(33,'北京雨',NULL,'冯唐',NULL,'北京雨 \n深圳雨 \n昆明雨 \n不见你到处是雨',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+	(34,'春',NULL,'冯唐',NULL,'春水初生\n春林初盛\n春风十里，不如你',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+	(35,'印',NULL,'冯唐',NULL,'我把月亮戳到天上\n天就是我的\n我把脚踩入地里\n地就是我的\n我亲吻你\n你就是我的',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+	(36,'可遇不可求的事',NULL,'冯唐',NULL,'后海有树的院子　\n夏代有工的玉\n此时此刻的云\n二十来岁的你',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+	(37,'远和近',NULL,'顾城',NULL,'你， \n一会看我， \n一会看云。 \n我觉得， \n你看我时很远， \n你看云时很近。',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+	(38,'感觉',NULL,'顾城',NULL,'天是灰色的 \n路是灰色的 \n楼是灰色的 \n雨是灰色的 \n在一片死灰中 \n走过两个孩子 \n一个鲜红 \n一个淡绿',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+	(39,'回答',NULL,'北岛',NULL,'卑鄙是卑鄙者的通行证，\n高尚是高尚者的墓志铭，\n看吧，在那镀金的天空中，\n飘满了死者弯曲的倒影。\n\n冰川纪过去了，\n为什么到处都是冰凌？\n好望角发现了，\n为什么死海里千帆相竞？\n\n我来到这个世界上，\n只带着纸、绳索和身影，\n为了在审判前，\n宣读那些被判决的声音。\n\n告诉你吧，世界\n我--不--相--信！\n纵使你脚下有一千名挑战者，\n那就把我算作第一千零一名。\n\n我不相信天是蓝的，\n我不相信雷的回声，\n我不相信梦是假的，\n我不相信死无报应。\n\n如果海洋注定要决堤，\n就让所有的苦水都注入我心中，\n如果陆地注定要上升，\n就让人类重新选择生存的峰顶。\n\n新的转机和闪闪星斗，\n正在缀满没有遮拦的天空。\n那是五千年的象形文字，\n那是未来人们凝视的眼睛。',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+	(40,'致橡树',NULL,'舒婷',NULL,'我如果爱你——\n绝不学攀援的凌霄花，\n借你的高枝炫耀自己；\n我如果爱你——\n绝不学痴情的鸟儿，\n为绿荫重复单调的歌曲；\n也不止像泉源，\n常年送来清凉的慰藉；\n也不止像险峰，\n增加你的高度，衬托你的威仪。\n甚至日光，\n甚至春雨。\n不，这些都还不够！\n我必须是你近旁的一株木棉，\n作为树的形象和你站在一起。\n根，紧握在地下；\n叶，相触在云里。\n每一阵风过，\n我们都互相致意，\n但没有人，\n听懂我们的言语。\n你有你的铜枝铁干，\n像刀，像剑，\n也像戟；\n我有我红硕的花朵，\n像沉重的叹息，\n又像英勇的火炬。\n我们分担寒潮、风雷、霹雳；\n我们共享雾霭、流岚、虹霓。\n仿佛永远分离，\n却又终身相依。\n这才是伟大的爱情，\n坚贞就在这里：\n爱——\n不仅爱你伟岸的身躯，\n也爱你坚持的位置，\n足下的土地。',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+	(41,'爱情是人类的通病',NULL,'余幼幼',NULL,'有时候花整天的时间看电影\n从法国到英国再到美国\n每个故事都会碰到一对男女\n仅仅是碰到\n过后的情节任由他们自己去发展\n悲欢离合都是虚构\n但谁也不能拒绝爱情的真实',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+	(42,'法国电影',NULL,'余幼幼',NULL,'操我\n不是让你来真的\n这是一部法国电影的名字\n电影里的情景\n都是真的\n看完我就哑然了\n底层的人\n被上流人操\n同时也被自己的同胞操\n完事后\n自己收拾摊子\n绕开艺术的街道\n在黑巷里穿行\n法国这样的国家\n也有不浪漫的时候',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+	(43,'匆忙的一天',NULL,'乌青',NULL,'我匆忙的从床上起来\n匆匆忙忙地吃饭\n匆匆忙忙的上网\n然后匆忙出门\n在街上匆匆忙忙地转了一圈\n回到家\n这一天我什么也没干\n只是非常匆忙',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+	(44,'一把好乳',NULL,'沈浩波',NULL,'她一上车\n我就盯住她了\n胸脯高耸\n屁股隆起\n真是让人\n垂涎欲滴\n我盯住她的胸\n死死盯住\n那鼓胀的胸啊\n我要能把它看穿就好了\n她终于被我看得\n不自在了\n将身边的小女儿\n一把抱到胸前\n正好挡住我的视线\n嗨，\n我说女人\n你别以为这样\n我就会收回目光\n我仍然死死盯着\n这回盯住的\n是她女儿\n那张俏俏的小脸\n嗨，\n我说女人\n别看你的女儿\n现在一脸天真无邪\n长大之后\n肯定也是\n一把好乳',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+	(45,'绝望',NULL,'沈浩波',NULL,'公共汽车在结冰的路面上摇摇晃晃\n它八面透风，像一个破纸篓\n它发出很大声响\n像冬天咳嗽着吐不出痰来的糟老头\n\n而我正在呵出热气\n让它把窗玻璃搅得一团模糊\n我想这样，窗外的冰雪会离我远些\n\n这时我看到对面的女人正在朝我微笑\n她的头发很长，垂在脸庞上\n在光线暗淡的车厢里，我看不清她的模样\n她穿着红色的羽绒服，\n映照得车厢微微发亮\n\n我不禁有些轻狂\n朝玻璃吹气就像吹气球\n并且用手指在窗玻璃上写字\n我瞥见那个女人一直在朝我微笑\n她歪着脖子看我，我心里面暖和极了\n\n而当我抱以微笑，定睛看它\n我不禁被它的容貌惊得呆了——\n\n她不仅歪着脖子，而且还歪着嘴唇\n她哪里是在微笑啊\n你看她的嘴唇歪在一边\n向着上下左右伸展扭动\n仿佛是在说话，更像是在恶狠狠的诅咒\n\n她真的是在注视着我\n眼中充满诡异，仿佛在看冰雪\n我匆忙扭过头去，而窗外冰雪连天\n一下映入眼帘。\n\n2000/1/7',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+	(46,'早发白帝城',NULL,'李白',NULL,'朝辞白帝彩云间，千里江陵一日还。\n两岸猿声啼不住，轻舟已过万重山。',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+	(47,'将进酒·君不见黄河之水天上来',NULL,'李白',NULL,'君不见黄河之水天上来，奔流到海不复回。\n君不见高堂明镜悲白发，朝如青丝暮成雪。\n人生得意须尽欢，莫使金樽空对月。\n天生我材必有用，千金散尽还复来。\n烹羊宰牛且为乐，会须一饮三百杯。\n岑夫子，丹丘生，将进酒，杯莫停。\n与君歌一曲，请君为我侧耳听。\n钟鼓馔玉不足贵，但愿长醉不复醒。\n古来圣贤皆寂寞，惟有饮者留其名。\n陈王昔时宴平乐，斗酒十千恣欢谑。\n主人何为言少钱，径须沽取对君酌。\n五花马，千金裘，\n呼儿将出换美酒，与尔同销万古愁。',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+	(48,'秋登宣城谢眺北楼',NULL,'李白',NULL,'江城如画里，山晓望晴空。\n两水夹明镜，双桥落彩虹。\n人烟寒橘柚，秋色老梧桐。\n谁念北楼上，临风怀谢公。',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),
+	(49,'静女',NULL,'佚名',NULL,'静女其姝，俟我于城隅。\n爱而不见，搔首踟蹰。\n静女其娈，贻我彤管。\n彤管有炜，说怿女美。\n自牧归荑，洵美且异。\n匪女之为美，美人之贻。',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 
 /*!40000 ALTER TABLE `poems` ENABLE KEYS */;
 UNLOCK TABLES;

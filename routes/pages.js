@@ -26,7 +26,8 @@ router.get('/poems',function (req,res,next){
 	// console.log(act);
 	var act_status;
 	if (req.query.id>0) {
-		connection.query('select * from poems where id = '+req.query.id+';',function(error,rows,fields){
+		var query = 'select * from poems where id = '+req.query.id+';';
+		connection.query(query,function(error,rows,fields){
 
 			if(act=='edit'){
 				act_status = 1; //编辑
@@ -44,7 +45,8 @@ router.get('/poems',function (req,res,next){
 			res.render('poems',renderData);
 		})
 	}else{
-		connection.query('select id,title,authorId,authorName from poems;',function(error,rows,fields){
+		var query = 'select id,title,authorId,authorName from poems;';
+		connection.query(query,function(error,rows,fields){
 			if(act=='add'){
 				act_status = 2; //新建 
 				title = '写一首诗';
@@ -64,9 +66,25 @@ router.get('/poems',function (req,res,next){
 			res.render('poems',renderData);
 		})
 	}
-
-
 })
+
+// 我
+router.get('/home', function (req, res, next) {
+  var renderData = {
+    title: "Me"
+  };
+  res.render('home', renderData);
+});
+
+// 登录/注册
+router.get('/login', function (req, res, next) {
+  var renderData = {
+    title: "登录/注册"
+  };
+  res.render('home', renderData);
+});
+
+
 
 
 module.exports = router;

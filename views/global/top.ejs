@@ -1,4 +1,4 @@
-<div class="nav-common nav-top navbar-fixed-top">
+<div class="nav-common nav-top">
 	<ul class="col-sm-12 list-unstyled">
 		<a href="/">
 			<li class="text-left">
@@ -15,7 +15,7 @@
 				</span>
 			</li>
 		</a>
-		<a href="javascript:;">
+		<a href="home">
 			<li class="text-right">			 
 				<span>
 					<i class="icon icon-user"></i>
@@ -26,7 +26,7 @@
 	</ul>
 </div>
 
-<div class="global-search-div" style="display:none;">
+<div id="select_vue_all" class="global-search-div" style="display:none;">
 	<p class="text-center" style="padding:0 0 1rem 0;">
 		<a href="javascript:;" onclick="hideSearchDiv(this)">
 			<span style="font-size:2rem;">
@@ -37,8 +37,8 @@
 	
 	<div class="col-lg-12">
 		<div class="input-group">
-		  <input type="text" class="form-control" placeholder="输入诗的名字搜索">
-		  <span class="input-group-btn">
+		  <input type="text" class="form-control" placeholder="输入诗的名字或作者搜索">
+		  <span class="input-group-btn" onclick="search_by_title(this)">
 		    <button class="btn btn-primary" type="button">搜索</button>
 		  </span>
 		</div><!-- /input-group -->
@@ -46,12 +46,13 @@
 	<div class="col-lg-12" data-toggle="collapse" data-target="#search_more" aria-expanded="true" aria-controls="search_more">
 		<span class="btn btn-link btn-sm">More</span>
 	</div>
-	<br>
+
 	<div id="search_more" class="collapse col-lg-12">
 		<ul class="list-unstyled list-inline col-lg-12">
 			<li>
 				<span>国家:</span>
 				<select name="" id="">
+					<option value="">不选</option>
 					<option value="">中国</option>
 					<option value="">美国</option>
 					<option value="">印度</option>
@@ -61,6 +62,7 @@
 			<li>
 				<span>朝代:</span>
 				<select name="" id="">
+					<option value="">不选</option>
 					<option value="">唐</option>
 					<option value="">宋</option>
 					<option value="">元</option>
@@ -68,11 +70,22 @@
 				</select>
 			</li>
 		</ul>
-		<p class="col-lg-12 text-center">
-			<span class="btn btn-primary">选好了</span>
-		</p>
 	</div>
 	<br>
+	<!-- 列表 -->
+	<div class="col-lg-12 search_result">
+		<h5 v-if="search_poems.length>=0">
+			<span class="search_result_tips"></span>
+		</h5>
+		<h4 v-for="el in search_poems" class="text-left">
+			<a href="poems?id={{el.id}}">{{el.title}}</a>
+			<small>{{el.authorName}}</small>
+		</h4>
+	</div>
+	<br>
+	
+
+
 </div>
 
 <style>
@@ -92,8 +105,9 @@
 		display: inline-block;
 		position: absolute;
 		padding: 0 15px;
+		height: 100%;
 	}
-	.nav-bottom ul li{
+	.nav-bottom ul li.text-center{
 		width: 100%;
 	}
 	
@@ -108,12 +122,11 @@
 	.nav-common ul li.text-right{
 		right:0;
 	}
-
 	.global-search-div {
-	    position: fixed;
+	    position: absolute;
 	    width: 96%;
 	    margin: auto;
-	    top: 6rem;
+	    top: 1rem;
 	    left: 0;
 	    right: 0;
 	    background: #f6f6f1;
