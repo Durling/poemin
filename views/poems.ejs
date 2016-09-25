@@ -9,17 +9,24 @@
 		background: #f6f6f1;
 		padding:1.5rem;
 	}
-	span.resize-full-btn {
+	.resize-full-btn {
 	    position: absolute;
-	    right: 3rem;
+		right: 3rem;
+	}
+	.resize-full-div .resize-full-btn{
+		top: 0rem;
+	    right: 0rem;
+	    background: rgba(0, 0, 0, 0.2);
+	    padding: 2rem 1rem 2rem 1.5rem;
 	}
 	.resize-full-div {
 		display: none;
-	    position: fixed;
+		position: fixed;
 	    top: 0;
 	    left: 0;
 	    right: 0;
-	    margin: auto;
+	    bottom: 0;
+	    margin: 0 auto;
 	    width: 100%;
 	    height: 100%;
 	    background: #ececec;
@@ -29,13 +36,19 @@
 	    padding: 2rem;
 		  /* 增加该属性，可以增加弹性，是滑动更加顺畅 */
 		  -webkit-overflow-scrolling: touch;  
-	    background: url(img/v_bg_01.jpg) no-repeat center;
+	    background-image: url(img/v_bg_00.jpg);
+    	background-repeat: no-repeat;
+    	background-position: center center;
 	    background-size: cover;
 	}
+	.resize-full-div .resize-full-btn span {
+	    font-size: 2rem;
+	}
+
 </style>
 <link rel="stylesheet" href="">
 
-<div class="data-poems-list col-sm-12">
+<div class="data-poems-list col-lg-12">
 
 	<!-- 列表 -->
 	<% if(act_status==-1 && rows.length>0){ 
@@ -52,18 +65,38 @@
 		rows.forEach(function(el){ %>
 		
 		<div class="resize-full-div">
-			<span class="resize-full-btn" onclick="hide_resize_full_div()">
-				<i class="icon icon-resize-small"></i>
+			<span class="resize-full-btn" status="1">
+				<span onclick="hide_resize_full_div()">
+					<i class="icon icon-resize-small"></i>
+				</span>
+				<br>
+				<br>
+				<span onclick="next_resize_full_bg()">
+					<i class="icon icon-picture"></i>
+				</span>
+				<br>
+				<br>
+				<span onclick="next_resize_full_color()">
+					<i class="icon icon-font"></i>
+				</span>
+				<br>
+				<br>
+				<span onclick="hide_resize_full_btn()">
+					<i class="icon icon-chevron-up"></i>
+				</span>
 			</span>
-			<h4 class="text-left">
-				<%=el.title%>
-			</h4>
-			<p>
-				<small><%=el.authorName%></small>
-			</p>
-			<p class="lead">
-				<%-el.content.replace(/\r/ig,'<br/>').replace(/\n/ig,'<br/>')%>
-			</p>
+
+			<div onclick="show_resize_full_btn()">
+				<h4 class="text-left">
+					<%=el.title%>
+				</h4>
+				<p>
+					<small><%=el.authorName%></small>
+				</p>
+				<p class="lead">
+					<%-el.content.replace(/\r/ig,'<br/>').replace(/\n/ig,'<br/>')%>
+				</p>
+			</div>
 		</div>
 
 		<blockquote>
