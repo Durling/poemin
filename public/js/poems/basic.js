@@ -86,3 +86,23 @@ function showSearchDiv(obj){
 function hideSearchDiv(obj){
 	$(obj).closest('.global-search-div').slideToggle();
 }
+
+
+function show_resize_full_div(){
+	$('.resize-full-div').show().addClass('animated zoomIn');
+	$('.resize-full-div').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+		$('.resize-full-div').removeClass('animated zoomIn zoomOut');
+	});
+}
+
+function hide_resize_full_div(obj){
+	$('.resize-full-div').removeClass('zoomIn').addClass('animated zoomOut');
+	$('.resize-full-div').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+		$('.resize-full-div').removeClass('animated zoomIn zoomOut').hide();
+	});
+}
+
+
+
+
+

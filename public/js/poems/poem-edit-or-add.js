@@ -18,7 +18,10 @@ function submit_poem_content(obj) {
 	if (form.title=='') {
 		var placeholder = $a.find('.poem-title').attr('placeholder');
 		// layer.msg('诗的名字不能为空');
-		$(obj).attr('disabled','disabled').text(placeholder+'不能为空');
+		$(obj).attr('disabled','disabled').text(placeholder+'不能为空').addClass('animated tada');
+		$(obj).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+			$(obj).removeClass('animated tada');
+		});
 		setTimeout(function(){
 			$(obj).removeAttr('disabled').text(msg_tips[4]);
 		},2000);
@@ -34,7 +37,10 @@ function submit_poem_content(obj) {
 		console.log(result);
 		if(result.message==msg_status[0]){
 			// layer.msg(msg_tips[1]);
-			$(obj).text(msg_tips[1]);
+			$(obj).text(msg_tips[1]).addClass('animated pulse');
+			$(obj).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+				$(obj).removeClass('animated pulse');
+			});
 			setTimeout(function(){
 				window.location.href='poems?id='+poemId;
 			},1000);
@@ -52,7 +58,10 @@ function submit_poem_content(obj) {
 		console.log(result);
 		if(result.message==msg_status[0]){
 			// layer.msg(msg_tips[2]);
-			$(obj).text(msg_tips[2]);
+			$(obj).text(msg_tips[2]).addClass('animated pulse');
+			$(obj).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+				$(obj).removeClass('animated pulse');
+			});
 			setTimeout(function(){
 				window.location.href='poems?id='+result.resinsert.insertId;
 			},1000);
@@ -64,7 +73,10 @@ function submit_poem_content(obj) {
 		}
 	}else if(act_status==3){ // alert('提交纠错')
 		// layer.msg(msg_tips[3]);
-		$(obj).attr('disabled','disabled').text(msg_tips[3]);
+		$(obj).attr('disabled','disabled').text(msg_tips[3]).addClass('animated tada');
+		$(obj).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+			$(obj).removeClass('animated tada');
+		});
 		setTimeout(function(){
 			$(obj).removeAttr('disabled').text(msg_tips[4]);
 		},2000);

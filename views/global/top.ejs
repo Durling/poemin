@@ -37,18 +37,27 @@
 	
 	<div class="col-lg-12">
 		<div class="input-group">
-		  <input type="text" class="form-control" placeholder="输入诗的名字或作者搜索">
+		  <input type="text" class="form-control" placeholder="输入诗的名字/作者">
 		  <span class="input-group-btn" onclick="search_by_title(this)">
 		    <button class="btn btn-primary" type="button">搜索</button>
 		  </span>
 		</div><!-- /input-group -->
 	</div>
 	<div class="col-lg-12" data-toggle="collapse" data-target="#search_more" aria-expanded="true" aria-controls="search_more">
-		<span class="btn btn-link btn-sm">More</span>
+		<span class="btn btn-link btn-sm" style="padding:0.5rem 0;">More</span>
 	</div>
 
 	<div id="search_more" class="collapse col-lg-12">
-		<ul class="list-unstyled list-inline col-lg-12">
+		<ul class="list-unstyled list-inline">
+			<li>
+				<span>时代:</span>
+				<select name="" id="">
+					<option value="">不选</option>
+					<option value="">古/A</option>
+					<option value="">近/P</option>
+					<option value="">今/L</option>
+				</select>
+			</li>
 			<li>
 				<span>国家:</span>
 				<select name="" id="">
@@ -72,6 +81,7 @@
 		</ul>
 	</div>
 	<br>
+	
 	<!-- 列表 -->
 	<div class="col-lg-12 search_result">
 		<h5 v-if="search_poems.length>=0">
@@ -140,6 +150,9 @@
 	}
 	.global-search-div p input{
 		width: 80%;
+	}
+	#search_more ul li{
+		margin:0.5rem 0;
 	}
 
 </style>
