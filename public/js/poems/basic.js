@@ -80,26 +80,34 @@ function global_ajax(type,url,data){
 }
 
 
+// 比较诗正文的高度判定是否要显示去全屏的按钮
+$(document).on('ready',function(){
+	var height1 = $('.data-poems-list blockquote').height()+100;
+	var height2 = $(window).height();
+	// console.log(height1,height2);
+	if (height1>height2) {
+		$('blockquote .resize-full-btn').hide();
+	}else{
+		$('blockquote .resize-full-btn').show();	
+	}
+})
 
-function showSearchDiv(obj){
-	$('.global-search-div').slideToggle();
+
+
+// 诗全屏 定义背景图片及文字样式
+var randomNumber,baseNumber=0,baseNumArr = [];
+for (var i = 0; i <= 20; i++) {
+	baseNumArr.push(i);
 }
-function hideSearchDiv(obj){
-	$(obj).closest('.global-search-div').slideToggle();
-}
+// console.log(baseNumArr);
+var baseColorArr = ['white','rgba(255, 255, 255, 0.75)','#666666','black'];
+// console.log(baseColorArr);
 
-
-var randomNumber,baseNumber=0;
 // 显示诗全屏页面
 function show_resize_full_div(){
-	var Arr = [];
-	for (var i = 0; i <= 11; i++) {
-		Arr.push(i);
-	}
-	// console.log(Arr);
-	var	i = getRandomNumber(Arr);
+	var	i = getRandomNumber(baseNumArr);
 	if (randomNumber==i) {
-		i = getRandomNumber(Arr);
+		i = getRandomNumber(baseNumArr);
 		return false;
 	}else{
 		randomNumber = i;
@@ -119,24 +127,19 @@ function hide_resize_full_div(){
 		$('.resize-full-div').removeClass('animated zoomIn zoomOut').hide();
 	});
 }
-// 显示工具栏
+// 诗全屏 显示工具栏
 function show_resize_full_btn(){
 	$('.resize-full-btn').slideDown();
 }
-// 隐藏工具栏
+// 诗全屏 隐藏工具栏
 function hide_resize_full_btn(){
 	$('.resize-full-btn').slideUp();
 }
-// i随机换背景 j按顺序换背景
+// 诗全屏 i随机换背景 j按顺序换背景
 function next_resize_full_bg(){
-	var Arr = [];
-	for (var i = 0; i <= 13; i++) {
-		Arr.push(i);
-	}
-	// console.log(Arr);
-	var	i = getRandomNumber(Arr);
+	var	i = getRandomNumber(baseNumArr);
 	if (randomNumber==i) {
-		i = getRandomNumber(Arr);
+		i = getRandomNumber(baseNumArr);
 		return false;
 	}else{
 		randomNumber = i;
@@ -144,20 +147,19 @@ function next_resize_full_bg(){
 	// console.log(i); 
 	// $('.resize-full-div').css('background-image','url(img/v_bg_0'+i+'.jpg)');
 	baseNumber+=1;
-	if (baseNumber>Arr.length-1) {
+	if (baseNumber>baseNumArr.length-1) {
 		baseNumber = 0;
 	}
-	var j = Arr[baseNumber];
+	var j = baseNumArr[baseNumber];
 	// console.log(j);   
 	$('.resize-full-div').css('background-image','url(img/v_bg_0'+j+'.jpg)');
 }
 
-// i随机换字体颜色 j按顺序换字体颜色
+// 诗全屏 i随机换字体颜色 j按顺序换字体颜色
 function next_resize_full_color(){
-	var Arr = ['white','rgba(255, 255, 255, 0.75)','#666666','black'];
-	var	i = getRandomNumber(Arr);
+	var	i = getRandomNumber(baseColorArr);
 	if (randomNumber==i) {
-		i = getRandomNumber(Arr);
+		i = getRandomNumber(baseColorArr);
 		return false;
 	}else{
 		randomNumber = i;
@@ -166,10 +168,10 @@ function next_resize_full_color(){
 	// $('.resize-full-div').css('color',i);
 
 	baseNumber+=1;
-	if (baseNumber>Arr.length-1) {
+	if (baseNumber>baseColorArr.length-1) {
 		baseNumber = 0;
 	}
-	var j = Arr[baseNumber];
+	var j = baseColorArr[baseNumber];
 	// console.log(j); 
 	$('.resize-full-div').css('color',j);
 }
@@ -181,6 +183,7 @@ function getRandomNumber(arr){
 	var i = arr[n];
 	return i;
 }
+
 
 
 

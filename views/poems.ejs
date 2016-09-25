@@ -36,7 +36,7 @@
 	    padding: 2rem;
 		  /* 增加该属性，可以增加弹性，是滑动更加顺畅 */
 		  -webkit-overflow-scrolling: touch;  
-	    background-image: url(img/v_bg_00.jpg);
+	    background-image: url();
     	background-repeat: no-repeat;
     	background-position: center center;
 	    background-size: cover;
@@ -100,9 +100,11 @@
 		</div>
 
 		<blockquote>
-			<span class="resize-full-btn" onclick="show_resize_full_div()">
-				<i class="icon icon-resize-full"></i>
-			</span>
+			<%if (el.content.length>0) {%>
+				<span class="resize-full-btn" onclick="show_resize_full_div()">
+					<i class="icon icon-resize-full"></i>
+				</span>
+			<%}%>
 
 			<h4 class="text-left">
 				<%=el.title%>

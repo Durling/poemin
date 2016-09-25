@@ -11,6 +11,16 @@ var vm_all = new Vue({
 })
 
 
+// 显示搜索模块
+function showSearchDiv(obj){
+	$('.global-search-div').slideToggle();
+}
+// 隐藏搜索模块
+function hideSearchDiv(obj){
+	$(obj).closest('.global-search-div').slideToggle();
+}
+
+// 搜索按标题及作者
 function search_by_title(obj) {
 	var title = $(obj).prev('input').val();
 	if (title=='') {
