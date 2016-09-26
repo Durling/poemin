@@ -13,25 +13,33 @@ $(document).on('ready',function(){
 })
 
 
-// 获取某个目录下的全部图片 含jpg,jpeg,png 
+// 获取某个目录下的全部文件->筛选出图片(含jpg,jpeg,png) 
 function getImgs(){
-	var resultImg;
+	var resultImgs;
 	var type = 'get',
-		url = 'admin/getImgs',
-		data = {};
-	var result = global_ajax(type,url,data);
-	// console.log(result);
+		url = 'admin/getFiles',
+		data = {
+			path:'public/img/v_bg/'
+		};
+	var rs = global_ajax(type,url,data);
+	// console.log(rs);
 	var resultImg = [];
-	$.each(result,function(i,n){
+	$.each(rs.results,function(i,n){
 		if (n.indexOf('.jpg')>0 || n.indexOf('.jpeg')>0 || n.indexOf('.png')>0) {
 			resultImg.push(n);
 		}
 	})
-	return resultImg;
+	var resultImgs = {
+		resultImg:resultImg,
+		path:rs.path
+	}
+	return resultImgs;
 }
 
+console.log(getImgs());
 // 获取某目录图片的个数
-var imgNumber = getImgs().length;
+var imgNumber = getImgs().resultImg.length;
+// console.log('imgNumber:',imgNumber);
 
 // 诗全屏 定义背景图片及文字样式
 var randomNumber,baseNumber=0,baseNumArr = [];
@@ -51,8 +59,9 @@ var baseColorArr = ['white','rgba(255, 255, 255, 0.75)','#666666','black'];
 
 // 显示诗全屏页面
 function show_resize_full_div(){
-	var resultImg = getImgs();
-	// console.log(resultImg);
+	var resultImg = getImgs().resultImg,
+		path = getImgs().path.replace(/public\//g,'');
+	// console.log(resultImg,path);
 	var	i = getRandomNumber(baseNumArr);
 	if (randomNumber==i) {
 		i = getRandomNumber(baseNumArr);
@@ -61,8 +70,8 @@ function show_resize_full_div(){
 		randomNumber = i;
 	}  
 	// console.log(i); 
-	$('.resize-full-div .backupImg').attr('src','img/'+resultImg[i]);
-	$('.resize-full-div').css('background-image','url(img/'+resultImg[i]+')');
+	$('.resize-full-div .backupImg').attr('src',path+resultImg[i]);
+	$('.resize-full-div').css('background-image','url('+path+resultImg[i]+')');
 
 	$('.resize-full-div').show().addClass('animated zoomIn');
 	$('.resize-full-div').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
@@ -90,9 +99,9 @@ function hide_resize_full_btn(){
 
 // 诗全屏 i随机换背景 j按顺序换背景
 function next_resize_full_bg(){
-	var resultImg = getImgs();
-	// console.log(resultImg);
-	
+	var resultImg = getImgs().resultImg,
+		path = getImgs().path.replace(/public\//g,'');
+	// console.log(resultImg,path);
 	var	i = getRandomNumber(baseNumArr);
 	if (randomNumber==i) {
 		i = getRandomNumber(baseNumArr);
@@ -117,8 +126,8 @@ function next_resize_full_bg(){
 	}else{
 		wh100 = 'width';
 	}
-	$('.resize-full-div .backupImg').attr('src','img/'+resultImg[i]).css(wh100,'100%');
-	$('.resize-full-div').css('background-image','url(img/'+resultImg[i]+')');
+	$('.resize-full-div .backupImg').attr('src',path+resultImg[j]).css(wh100,'100%');
+	$('.resize-full-div').css('background-image','url('+path+resultImg[j]+')');
 }
 
 // 诗全屏 i随机换字体颜色 j按顺序换字体颜色
@@ -149,6 +158,7 @@ function getRandomNumber(arr){
 	var i = arr[n];
 	return i;
 }
+
 
 
 // 点击截屏 存在模糊 以及 背景图片不会截取的问题 

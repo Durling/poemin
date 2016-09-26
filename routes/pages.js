@@ -81,7 +81,7 @@ router.get('/login', function (req, res, next) {
   var renderData = {
     title: "登录/注册"
   };
-  res.render('home', renderData);
+  res.render('user/login', renderData);
 });
 
 

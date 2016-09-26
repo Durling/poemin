@@ -1,5 +1,4 @@
-console.log(rows,act_status,999);
-
+// console.log(rows,act_status);
 
 function submit_poem_content(obj) {
 	$(obj).attr('disabled','disabled').text('提交中...');

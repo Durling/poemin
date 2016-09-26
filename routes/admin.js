@@ -96,15 +96,62 @@ router.post('/poems', function (req,res) {
 
 
 
-// 获取某个目录下图片列表
-router.get('/getImgs', function (req,res) {
+
+// 用户注册
+router.post('/login', function (req,res) {
 	// console.log(req.url,req.body);
-	var fileDirectory = "public/img";
+	var n = req.body;
+	var query = 'insert into user(email,phone,userName,password) values("'+n.email+'","'+n.phone+'","'+n.userName+'","'+n.password+'");';
+	// console.log(query);
+	connection.query(query,function(errorinsert,resinsert){
+		if (errorinsert) {
+			// console.log(errorinsert);
+			res.json(errorinsert);
+		}else{	
+			// console.log(resinsert);
+			var data = {
+				message:'success',
+				resinsert:resinsert
+			}
+			res.json(data);
+			// res.jsonp(data);
+		}
+	})
+});
+
+
+// 用户登录
+router.get('/login', function (req,res) {
+	// console.log(req.url,req.body);
+	var query = 'select id,email,phone,userName,password from user where email like "'+req.query.email+'";';
+	// console.log(query);
+	connection.query(query,function(error,rows,fields){
+		if (error) {
+			// console.log(errorupdate);
+			res.json(error);
+		}else{	
+			var data = {
+				message:'success',
+				rows:rows
+			}
+			res.json(data);
+			// res.jsonp(data);
+		}
+	})
+});
+
+
+
+
+// 获取某个目录下文件列表
+router.get('/getFiles', function (req,res) {
+	// console.log(req.url,req.body);
+	var fileDirectory = req.query.path;
 	if(fs.existsSync(fileDirectory)){
 		fs.readdir(fileDirectory, function (err, files) {
 		  if (err) {
 		  	logger_error.error(err);
-		    // console.log(err);
+		    console.log(err);
 		    return;
 		  }
 		  var count = files.length;
@@ -112,12 +159,17 @@ router.get('/getImgs', function (req,res) {
 		  files.forEach(function (filename) {
 		    fs.readFile(filename, function (data) {
 		      // results[filename] = data;
+		      // results.push(data);
 		      results.push(filename);
 		      count--;
 		      if (count <= 0) {
 		        // 对所有文件进行处理
 		        // console.log(results);
-				res.json(results);
+		        var rs = {
+		        	results:results,
+		        	path:fileDirectory
+		        }
+				res.json(rs);
 				// res.jsonp(results);
 		      }
 		    });
@@ -125,7 +177,7 @@ router.get('/getImgs', function (req,res) {
 		});
 	}else{
 	    logger_error.error(fileDirectory + "  Not Found!");
-	    // console.log(fileDirectory + "  Not Found!");
+	    console.log(fileDirectory + "  Not Found!");
 	}	
 });
 
