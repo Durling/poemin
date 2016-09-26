@@ -94,10 +94,47 @@ $(document).on('ready',function(){
 
 
 
+
+// 点击截屏 存在模糊 以及 背景图片不会截取的问题 
+function toCanvasImg(){
+	$('.resize-full-div .backupImg').show();
+	$('.resize-full-btn').hide();
+	alert('保存快照');
+	var width = $(window).width() ; //这是我们准备画的div
+	var height =  $(window).height() ;
+	html2canvas($('.resize-full-div'), {
+	    allowTaint: true,
+	    taintTest: false,
+	    onrendered: function(canvas) {
+	        canvas.id = "mycanvas";
+	        // document.body.appendChild(canvas);
+	        //生成base64图片数据
+	        var dataUrl = canvas.toDataURL();
+	        var newImg = document.createElement("img");
+	        newImg.src =  dataUrl;
+	        document.body.appendChild(newImg);
+			$('.resize-full-div .backupImg').hide();
+			$('.resize-full-btn').show();
+	    }, 
+	    width : width , 
+	    height : height
+	});
+
+}
+
+
+
+
 // 诗全屏 定义背景图片及文字样式
 var randomNumber,baseNumber=0,baseNumArr = [];
-for (var i = 0; i <= 20; i++) {
+for (var i = 0; i <= 33; i++) {
 	baseNumArr.push(i);
+}
+// console.log(baseNumArr);
+baseNumArr = randomArr(baseNumArr);
+/** 随机排列数组里的顺序 */
+function randomArr(arr) {
+    return arr.sort(function(){return Math.random()>.5?1:-1});
 }
 // console.log(baseNumArr);
 var baseColorArr = ['white','rgba(255, 255, 255, 0.75)','#666666','black'];
@@ -113,6 +150,7 @@ function show_resize_full_div(){
 		randomNumber = i;
 	}  
 	// console.log(i); 
+	$('.resize-full-div .backupImg').attr('src','img/v_bg_0'+i+'.jpg');
 	$('.resize-full-div').css('background-image','url(img/v_bg_0'+i+'.jpg)');
 
 	$('.resize-full-div').show().addClass('animated zoomIn');
@@ -152,6 +190,16 @@ function next_resize_full_bg(){
 	}
 	var j = baseNumArr[baseNumber];
 	// console.log(j);   
+	var imgW = $('.resize-full-div .backupImg').width(),
+		imgH = $('.resize-full-div .backupImg').height(),
+		a = imgW/imgH;
+	var wh100;
+	if (a>global_w_h) {
+		wh100 = 'height';
+	}else{
+		wh100 = 'width';
+	}
+	$('.resize-full-div .backupImg').attr('src','img/v_bg_0'+i+'.jpg').css(wh100,'100%');
 	$('.resize-full-div').css('background-image','url(img/v_bg_0'+j+'.jpg)');
 }
 
@@ -175,6 +223,7 @@ function next_resize_full_color(){
 	// console.log(j); 
 	$('.resize-full-div').css('color',j);
 }
+
 
 // 随机在所给数组中选一项
 function getRandomNumber(arr){
@@ -237,9 +286,10 @@ if (!online_status) {
 // console.log($(document).width());//浏览器当前窗口文档对象宽度 
 // console.log($(document.body).width());//浏览器当前窗口文档body的高度 
 // console.log($(document.body).outerWidth(true));//浏览器当前窗口文档body的总宽度 包括border padding margin 
-// var global_my_window_width = $(window).width();
-// var global_my_window_height = $(window).height();
-// console.log('width:'+global_my_window_width,'height:'+global_my_window_height);
+var global_my_window_width = $(window).width();
+var global_my_window_height = $(window).height();
+var global_w_h = global_my_window_width/global_my_window_height;
+console.log('width:'+global_my_window_width,'height:'+global_my_window_height,global_w_h);
 
 
 

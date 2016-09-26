@@ -31,6 +31,7 @@
 	    height: 100%;
 	    background: #ececec;
 	    color: white;
+	    /*text-shadow: black 0px 1px 1px;*/
 	    z-index: 100;
 	    overflow: scroll;
 	    padding: 2rem;
@@ -43,6 +44,19 @@
 	}
 	.resize-full-div .resize-full-btn span {
 	    font-size: 2rem;
+	    color: white!important;
+	}
+	.resize_full_content{
+		position: absolute;
+	}
+
+	.backupImg{
+		display: none;
+	    position: fixed;
+	    left: 0;
+	    right: 0;
+	    top: 0;
+	    z-index: 0;
 	}
 
 </style>
@@ -60,11 +74,14 @@
 		<% })
 	}%>
 
+
+
 	<!-- 详情 -->
 	<% if(act_status==0 && rows.length>0){ 
 		rows.forEach(function(el){ %>
 		
 		<div class="resize-full-div">
+			<img src="" class="backupImg" alt="">
 			<span class="resize-full-btn" status="1">
 				<span onclick="hide_resize_full_div()">
 					<i class="icon icon-resize-small"></i>
@@ -81,12 +98,18 @@
 				</span>
 				<br>
 				<br>
+				<!-- <span onclick="toCanvasImg()">
+					<i class="icon icon-camera"></i>
+				</span>
+				<br>
+				<br> -->
 				<span onclick="hide_resize_full_btn()">
 					<i class="icon icon-chevron-up"></i>
 				</span>
+				<br>
 			</span>
 
-			<div onclick="show_resize_full_btn()">
+			<div class="resize_full_content" onclick="show_resize_full_btn()">
 				<h4 class="text-left">
 					<%=el.title%>
 				</h4>
@@ -98,6 +121,7 @@
 				</p>
 			</div>
 		</div>
+
 
 		<blockquote>
 			<%if (el.content.length>0) {%>
