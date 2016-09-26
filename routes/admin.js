@@ -7,6 +7,7 @@ var http = require('http');
 var request = require('request');
 var mysql = require('mysql');
 var config = require('../config.js');
+var fs=require('fs');
 
 /**
  * 配日志
@@ -91,6 +92,41 @@ router.post('/poems', function (req,res) {
 		}
 	})
 
+});
+
+
+
+// 获取某个目录下图片列表
+router.get('/getImgs', function (req,res) {
+	// console.log(req.url,req.body);
+	var fileDirectory = "public/img";
+	if(fs.existsSync(fileDirectory)){
+		fs.readdir(fileDirectory, function (err, files) {
+		  if (err) {
+		  	logger_error.error(err);
+		    // console.log(err);
+		    return;
+		  }
+		  var count = files.length;
+		  var results = [];
+		  files.forEach(function (filename) {
+		    fs.readFile(filename, function (data) {
+		      // results[filename] = data;
+		      results.push(filename);
+		      count--;
+		      if (count <= 0) {
+		        // 对所有文件进行处理
+		        // console.log(results);
+				res.json(results);
+				// res.jsonp(results);
+		      }
+		    });
+		  });
+		});
+	}else{
+	    logger_error.error(fileDirectory + "  Not Found!");
+	    // console.log(fileDirectory + "  Not Found!");
+	}	
 });
 
 
