@@ -79,7 +79,8 @@ router.get('/home', function (req, res, next) {
 // 登录/注册
 router.get('/login', function (req, res, next) {
   var renderData = {
-    title: "登录/注册"
+    title: "登录/注册",
+    status:req.query.status
   };
   res.render('user/login', renderData);
 });

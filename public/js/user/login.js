@@ -1,6 +1,6 @@
 
 var login_tips = [
-	'账号或密码不能为空', //0
+	'帐号/密码不能为空', //0
 	'重新登录', //1
 	'两次输入确认密码不同', //2
 	'重新提交', //3
@@ -115,14 +115,10 @@ function toLogin(obj) {
 		}
 	}
 
-
 }
 
 
-
-
-
-
+// 切换注册或登录方式
 $('.login-0-div .nav-tabs').on('click','li',function(){
 	$(this).addClass('active').siblings('li').removeClass('active');
 	$(this).closest('.login-div').find('.mul-way').attr({
@@ -137,6 +133,19 @@ $('.login-1-div .nav-tabs').on('click','li',function(){
 		'wayName':$(this).attr('wayName')
 	});
 })
+
+// 其他方式登录
+function login_3f(obj){
+	var loginStyle = $(obj).attr('loginStyle');
+	if (loginStyle==0) {
+		layer.msg('嫑点我！'+$(obj).find('span').text()+'开发中');
+	}else if(loginStyle==1){
+		layer.msg('嫑点我！'+$(obj).find('span').text()+'开发中');
+	}
+}
+
+
+
 
 
 

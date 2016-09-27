@@ -1,0 +1,22 @@
+
+
+span.iconfont{
+	font-size: 1.4rem;
+	padding: 5px 10px;
+	margin: 0 1px;
+	border-radius: 2px;
+}
+span.iconfont img{
+	height: 18px;
+}
+span.iconfont.i-weixin {
+    color: #ecf0f1;
+    border: solid 1px #11cd6e;
+    background: #11cd6e;    
+}
+
+span.iconfont.i-weibo {
+    color: #ecf0f1;
+    border: solid 1px #eb4f38;
+    background: #eb4f38;
+}
