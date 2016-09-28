@@ -1,4 +1,5 @@
 
+var qiniuDoname = 'http://oe71y3abh.bkt.clouddn.com/';
 
 // 比较诗正文的高度判定是否要显示去全屏的按钮
 $(document).on('ready',function(){
@@ -19,7 +20,7 @@ function getImgs(){
 	var type = 'get',
 		url = 'admin/getFiles',
 		data = {
-			path:'public/img/v_bg/'
+			path:'public/img/v_bg/',
 		};
 	var rs = global_ajax(type,url,data);
 	// console.log(rs);
@@ -61,6 +62,7 @@ var baseColorArr = ['white','rgba(255, 255, 255, 0.75)','#666666','black'];
 function show_resize_full_div(){
 	var resultImg = getImgs().resultImg,
 		path = getImgs().path.replace(/public\//g,'');
+		path = qiniuDoname;
 	// console.log(resultImg,path);
 	var	i = getRandomNumber(baseNumArr);
 	if (randomNumber==i) {
@@ -101,6 +103,8 @@ function hide_resize_full_btn(){
 function next_resize_full_bg(){
 	var resultImg = getImgs().resultImg,
 		path = getImgs().path.replace(/public\//g,'');
+		path = qiniuDoname;
+		
 	// console.log(resultImg,path);
 	var	i = getRandomNumber(baseNumArr);
 	if (randomNumber==i) {
