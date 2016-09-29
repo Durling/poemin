@@ -106,6 +106,37 @@ function global_ajax(type,url,data){
 	return list;
 }
 
+function global_ajax2(type,url,data){
+	// console.log(type,url,data);
+	var list;
+	if (type=='get') { //获取列表
+		// 
+	}else if(type=='post'){  //新增
+		$.ajax({
+		  url : url,
+			dataType : 'json',
+			type : type,
+			data : data,
+			dataType: 'JSON', 
+			async: false,
+			cache: false,
+			contentType: false,
+			processData: false,
+			success : function(data) {
+				list = data;
+			},
+			error: function(err){
+				layer.msg(err);
+			}
+		})
+	}else if(type=='put'){ //编辑
+		// 
+	}else if(type=='delete'){  //删除 暂时不做
+		// 
+	}
+	return list;
+}
+
 
 
 // 获取网络状态

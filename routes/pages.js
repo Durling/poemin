@@ -42,7 +42,7 @@ router.get('/poems',function (req,res,next){
 				act_status:act_status
 			};
 			// console.log(renderData);
-			res.render('poems',renderData);
+			res.render('poems/poems',renderData);
 		})
 	}else{
 		var query = 'select id,title,authorId,authorName from poems;';
@@ -63,7 +63,7 @@ router.get('/poems',function (req,res,next){
 				act_status:act_status
 			};
 			// console.log(renderData);
-			res.render('poems',renderData);
+			res.render('poems/poems',renderData);
 		})
 	}
 })
@@ -73,7 +73,7 @@ router.get('/home', function (req, res, next) {
   var renderData = {
     title: "Me"
   };
-  res.render('home', renderData);
+  res.render('home/home', renderData);
 });
 
 // 登录/注册
@@ -85,6 +85,13 @@ router.get('/login', function (req, res, next) {
   res.render('user/login', renderData);
 });
 
+// 诗笔迹
+router.get('/handwriting', function (req, res, next) {
+  var renderData = {
+    title: "Handwriting"
+  };
+  res.render('handwriting/handwriting', renderData);
+});
 
 
 

@@ -35,6 +35,9 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', require('./routes/pages'));
 app.use('/admin', require('./routes/admin'));
+app.use('/qiniu-upload', require('./routes/qiniu-upload'));
+
+
 
 
 module.exports = app;

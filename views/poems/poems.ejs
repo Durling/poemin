@@ -1,6 +1,6 @@
-<%- include global/header.ejs %>
+<%- include ../global/header.ejs %>
 
-<%- include global/top.ejs %>
+<%- include ../global/top.ejs %>
 <style>
 	
 </style>
@@ -161,7 +161,7 @@
 		<a href="poems?id=<%=el.id%>&act=comments">
 			<span>评论</span>
 		</a>
-		<a href="poems?id=<%=el.id%>&act=handwrite">手写稿</a>
+		<a href="handwriting">诗笔迹</a>
 		<a href="poems?id=<%=el.id%>&act=voice">诗知音</a>
 
 		<% })
@@ -263,10 +263,10 @@
 	var act_status = <%-JSON.stringify(act_status)%>;
 </script>
 
-<%- include global/bottom.ejs %>
+<%- include ../global/bottom.ejs %>
 
 <script src="js/poems/poem-edit-or-add.js"></script>
 <script src="js/poems/poem-detail.js"></script>
 <script src="js/poems/search.js"></script>
 
-<%- include global/footer.ejs %>
+<%- include ../global/footer.ejs %>

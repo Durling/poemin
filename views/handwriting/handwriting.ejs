@@ -1,0 +1,55 @@
+<%- include ../global/header.ejs %>
+
+<%- include ../global/top.ejs %>
+
+
+<style>
+
+</style>
+<link rel="stylesheet" href="">
+
+
+
+<div class="col-lg-12">
+
+
+<br>
+<hr>
+<!-- <div class="upload-div">
+	<input type="file" class="newImg">
+	<br>
+	<span class="btn btn-info" onclick="uploadImg(this)">上传图片</span>
+</div>
+ -->
+
+<form id="form1" enctype="multipart/form-data" method="post" action="/session/sendImg?subID=3&subsID=2&ssID=163">
+    <input type="file" name="file" id="file"/>
+    <input type="text" name="name" id="name"/>
+    <input type="button" onclick="sendForm()" value="Upload" />
+</form>
+
+<hr>
+
+	<!-- 全局 -->
+	<p class="bg-info text-center">
+		<a href="poems">列表</a>		
+		<a href="poems?act=add">增加</a>
+		<a href="poems?act=correction">纠错</a>
+	</p>
+	<p class="bg-success text-center">
+		<abbr title="attribute">attr</abbr>
+		<abbr title="HyperText Markup Language" class="initialism">HTML</abbr>
+		<p class="text-center">
+			<abbr>WePoem 微诗 CopyRight</abbr>
+		</p>
+	</p>
+
+	
+</div>
+
+<%- include ../global/bottom.ejs %>
+
+
+<script src="js/basic/qiniu-upload.js"></script>
+
+<%- include ../global/footer.ejs %>
