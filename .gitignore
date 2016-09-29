@@ -34,7 +34,7 @@ local.properties
 node_modules/
 npm-debug.log
 public/img/qiniu-upload
-public/img/
+public/img/v_bg
 
 # BUCK
 buck-out/
