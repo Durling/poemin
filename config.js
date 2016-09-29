@@ -8,7 +8,8 @@ var localhost = {
 		password:'root',
 		database:'poemin',
 		port:3306
-    }
+    },
+    qiniuDoname : 'http://oe71y3abh.bkt.clouddn.com/'
 };
 var dev = {
     mysql: {
@@ -17,7 +18,9 @@ var dev = {
 		password:'root',
 		database:'poemin',
 		port:3306
-    }
+    },
+    qiniuDoname : 'http://oe71y3abh.bkt.clouddn.com/'
+
 };
 var produ = {
     mysql: {
@@ -26,7 +29,9 @@ var produ = {
 		password:'root',
 		database:'poemin',
 		port:3306
-    }
+    },
+    qiniuDoname : 'http://oe71y3abh.bkt.clouddn.com/'
+
 };
 
 

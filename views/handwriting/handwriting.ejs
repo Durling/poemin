@@ -4,33 +4,78 @@
 
 
 <style>
-
+	p{
+		margin: 10px;
+	}
+	.label-default > span {
+	    margin: 0 0.5rem;
+	}
 </style>
 <link rel="stylesheet" href="">
 
 
 
 <div class="col-lg-12">
-
-
-<br>
-<hr>
-<!-- <div class="upload-div">
-	<input type="file" class="newImg">
 	<br>
-	<span class="btn btn-info" onclick="uploadImg(this)">上传图片</span>
-</div>
- -->
+	<!-- 诗详情 -->
+	<% if(rows_poems.length>0){ 
+		rows_poems.forEach(function(el){ %>
+		<h4 class="text-left" fileId="<%=el.id%>">
+			<a href="poems?id=<%=el.id%>">
+				<i class="icon icon-angle-left"></i>
+				<span><%=el.title%></span>
+			</a>
+			<small><%=el.authorName%></small>
+		</h4>
+		<% })
+	}%>
+	<hr>
+	<!-- 诗笔迹列表 -->
+	<% if(rows_files.length>0){ 
+		rows_files.forEach(function(el){ %>
+		<h4 class="text-left" fileId="<%=el.id%>">
+			<img src="<%=qiniuDoname%><%=el.file_name%>?imageMogr2/gravity/Center/crop/300x300" alt="">
 
-<form id="form1" enctype="multipart/form-data" method="post" action="">
-    <input type="file" name="file" id="file"/>
-    <input type="text" name="name" id="name"/>
-    <input type="button" onclick="sendForm()" value="上传"/>
-</form>
+			<h3>
+				<span class="label label-default">
+					
+					<span status="0" onclick="changeLikeStatus(this)">
+						<i class="icon icon-heart-empty"></i>
+						<span class="likeNum">10</span>
+					</span>
+					
+					<span status="0">
+						<i class="icon icon-comment-alt"></i>
+						<span class="commentNum">12</span>
+					</span>
+					
+					<span>
+						<i class="icon icon-upload-alt"></i>
+					</span>
+					
+					<span onclick="delFile(this)">
+						<i class="icon icon-remove"></i>
+					</span>
 
-<img class="img-preview" src="" alt="" style="width:50%;">
+				</span>
 
-<hr>
+			</h3>
+			
+		</h4>
+		<% })
+	}%>
+
+
+
+	<form id="form1" enctype="multipart/form-data" method="post" action="">
+	    <input type="file" name="file" id="file" onchange="startUpload()"/>
+	    <input type="text" name="name" id="name"/>
+	    <input type="button" onclick="sendForm()" value="上传"/>
+	</form>
+
+	<img class="img-preview" src="" alt="" style="width:50%;">
+
+	<hr>
 
 	<!-- 全局 -->
 	<p class="bg-info text-center">
@@ -46,12 +91,21 @@
 		</p>
 	</p>
 
-	
+
 </div>
+
+<script>
+	var qiniuDoname = <%-JSON.stringify(qiniuDoname)%>;
+	var rows_poems = <%-JSON.stringify(rows_poems)%>;
+	var rows_files = <%-JSON.stringify(rows_files)%>;
+	console.log(qiniuDoname,rows_files,rows_poems);
+</script>
+
 
 <%- include ../global/bottom.ejs %>
 
-
+<script src="js/handwriting/handwriting.js"></script>
 <script src="js/basic/qiniu-upload.js"></script>
+<script src="js/poems/search.js"></script>
 
 <%- include ../global/footer.ejs %>

@@ -16,6 +16,19 @@ var express = require('express'),
 // var logger_error = require('../log4js').logger_error;  
 // logger.info("=== this is log from qiniu-upload.js ===");
 
+
+/**
+ * 创建数据库连接
+ */
+var connection = mysql.createConnection({
+	host: config.mysql.host,
+	user: config.mysql.user,
+	password: config.mysql.password,
+	database: config.mysql.database,
+	port: config.mysql.port
+})
+
+
 //需要填写你的 Access Key 和 Secret Key
 qiniu.conf.ACCESS_KEY = 'UtR9-061L8qFst2lvhiBR9Tc9E_u3sprXyOnTbSS';
 qiniu.conf.SECRET_KEY = 'huy_QYClFu6AEjVqc24cwX_98UjtWjKczjIAcjpF';
@@ -31,7 +44,8 @@ function uptoken(bucket, key) {
 // 上传图片文件
 router.post('/file-upload', function (req,res) {
 	// console.log(req.url,req.body);
-	// var n = req.body;
+	var poemId = req.query.poemId;
+	// console.log(poemId);
 	var fileNameList = [];
 	var form = new multiparty.Form();//实例一个multiparty
 	form.uploadDir = "public/img/qiniu-upload/";//设置文件储存路径
@@ -85,7 +99,8 @@ router.post('/file-upload', function (req,res) {
 	        // 上传成功， 处理返回值
 	        // console.log(ret);
 	        // console.log(ret.hash, ret.key, ret.persistentId);   
-			res.json(ret);
+			// res.json(ret);
+			connectMysql(ret);
 	      } else {
 	        // 上传失败， 处理返回代码
 	        // console.log(err);
@@ -93,6 +108,27 @@ router.post('/file-upload', function (req,res) {
 	      }
 	  });
 	}
+
+	function connectMysql(ret){
+		var query = 'insert into handwriting_file(file_name,poemId) values("'+ret.key+'","'+poemId+'");';
+		// console.log(query);
+		connection.query(query,function(errorinsert,resinsert){
+			if (errorinsert) {
+				// console.log(errorinsert);
+				res.json(errorinsert);
+			}else{	
+				// console.log(resinsert);
+				var data = {
+					message:'success',
+					resinsert:resinsert,
+					ret:ret
+				}
+				res.json(data);
+				// res.jsonp(data);
+			}
+		})
+	}
+
 
 });
 

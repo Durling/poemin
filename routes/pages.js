@@ -26,7 +26,7 @@ router.get('/poems',function (req,res,next){
 	// console.log(act);
 	var act_status;
 	if (req.query.id>0) {
-		var query = 'select * from poems where id = '+req.query.id+';';
+		var query = 'select * from poems where id='+req.query.id+';';
 		connection.query(query,function(error,rows,fields){
 
 			if(act=='edit'){
@@ -87,11 +87,31 @@ router.get('/login', function (req, res, next) {
 
 // 诗笔迹
 router.get('/handwriting', function (req, res, next) {
-  var renderData = {
-    title: "Handwriting"
-  };
-  res.render('handwriting/handwriting', renderData);
+	var poemId = req.query.poemId;
+	var rows_files,rows_poems;
+
+	var query = 'select id,file_name,poemId from handwriting_file where poemId="'+poemId+'";';
+	connection.query(query,function(error,rows,fields){
+		rows_files = rows;
+
+		var query2 = 'select id,title,authorName from poems where id="'+poemId+'";';
+		connection.query(query2,function(error2,rows2,fields2){
+			rows_poems = rows2;
+
+			var renderData = {
+				title:"诗笔迹",
+				rows_files:rows_files,
+				rows_poems:rows_poems,
+				qiniuDoname:config.qiniuDoname
+			};
+			res.render('handwriting/handwriting', renderData);
+
+		})
+	})
+
 });
+
+
 
 
 
