@@ -1,6 +1,4 @@
 
-var qiniuDoname = 'http://oe71y3abh.bkt.clouddn.com/';
-
 // 比较诗正文的高度判定是否要显示去全屏的按钮
 $(document).on('ready',function(){
 	var height1 = $('.data-poems-list blockquote').height()+100;

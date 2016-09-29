@@ -16,20 +16,15 @@ function sendForm(){
         return false;
     }
 
-    $.ajax({
-        type:'post',
-        dataType:'text',
-        data:fd,
-        async: false,
-        cache: false,
-        processData: false,  // 告诉JSLite不要去处理发送的数据
-        contentType: false,   // 告诉JSLite不要去设置Content-Type请求头
-        url:'qiniu-upload/file-upload',
-        success:function(data){
-           console.log('success:',data)
-        },
-        error:function(err){
-           console.log('error:',err)
-        }
-    })
+    var type = 'post',
+        url = 'qiniu-upload/file-upload',
+        data = fd;
+    var rs = global_ajax2(type,url,data);
+    rs = JSON.parse(rs);
+    console.log(rs);
+    // $('.img-preview').attr('src',qiniuDoname+rs.key+'?imageView2/2/w/600');
+    $('.img-preview').attr('src',qiniuDoname+rs.key+'?imageMogr2/gravity/Center/crop/600x600');
+    
+
+
 }

@@ -37,6 +37,8 @@ var msg_tips = 	[
 					'error'
 				];
 
+var qiniuDoname = 'http://oe71y3abh.bkt.clouddn.com/';
+
 /**
  * ajax 请求中间层
  */
@@ -113,15 +115,14 @@ function global_ajax2(type,url,data){
 		// 
 	}else if(type=='post'){  //新增
 		$.ajax({
-		  url : url,
-			dataType : 'json',
 			type : type,
-			data : data,
-			dataType: 'JSON', 
-			async: false,
-			cache: false,
-			contentType: false,
-			processData: false,
+		  	url : url,
+			dataType:'text',
+			data: data,
+	        async: false,
+	        cache: false,
+	        processData: false,  // 告诉JSLite不要去处理发送的数据
+	        contentType: false,   // 告诉JSLite不要去设置Content-Type请求头
 			success : function(data) {
 				list = data;
 			},
