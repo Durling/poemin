@@ -28,12 +28,10 @@ function uptoken(bucket, key) {
   return putPolicy.token();
 }
 
-
-// 上传图片
+// 上传图片文件
 router.post('/file-upload', function (req,res) {
 	// console.log(req.url,req.body);
 	// var n = req.body;
-
 	var fileNameList = [];
 	var form = new multiparty.Form();//实例一个multiparty
 	form.uploadDir = "public/img/qiniu-upload/";//设置文件储存路径
@@ -56,14 +54,12 @@ router.post('/file-upload', function (req,res) {
 				var finalname = inputFile.originalFilename;
 				var randomStr = Math.round(Math.random() * nowDateTimeStr);
 				finalname = nowDateTimeStr+'_'+randomOnce+'_'+randomStr;
-
 				//上传到七牛后保存的文件名
 				key = finalname;
 				// console.log(key);
 				//生成上传 Token
 				token = uptoken(bucket, key);
 				// console.log(token);
-
 				var new_name = form.uploadDir+finalname;//获取文件名
 				var old_name = inputFile.path;//获取文件路径
 				// console.log(new_name,old_name);
@@ -71,7 +67,6 @@ router.post('/file-upload', function (req,res) {
 				fileNameList.push(new_name);	
 			}
 		}
-
 		// console.log(fileNameList);
 		for (var i = 0; i < fileNameList.length; i++) {
 			// console.log(fileNameList[i]);
@@ -79,9 +74,7 @@ router.post('/file-upload', function (req,res) {
 			// 调用uploadFile上传
 			uploadFile(token, key, filePath);	
 		};
-
 	})
-
 
 	//构造上传函数
 	function uploadFile(uptoken, key, localFile) {
@@ -101,12 +94,7 @@ router.post('/file-upload', function (req,res) {
 	  });
 	}
 
-
-
-
 });
-
-
 
 
 module.exports = router;
