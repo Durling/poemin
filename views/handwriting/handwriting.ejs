@@ -4,11 +4,15 @@
 
 
 <style>
-	p{
-		margin: 10px;
+	h3,p{
+		margin:5px 0px 15px;
 	}
 	.label-default > span {
 	    margin: 0 0.5rem;
+	}
+	i.icon.icon-heart {
+	    color: #ff7d7d;
+	    text-shadow: #3c3c3c 0px 0px 2px;
 	}
 </style>
 <link rel="stylesheet" href="">
@@ -36,17 +40,20 @@
 		<h4 class="text-left" fileId="<%=el.id%>">
 			<img src="<%=qiniuDoname%><%=el.file_name%>?imageMogr2/gravity/Center/crop/300x300" alt="">
 
-			<h3>
+			<h3 class="text-center">
 				<span class="label label-default">
 					
 					<span status="0" onclick="changeLikeStatus(this)">
 						<i class="icon icon-heart-empty"></i>
-						<span class="likeNum">10</span>
+						<%if (el.like_num==null || el.like_num=='null') {
+							el.like_num = 0;
+						}%>
+						<span class="likeNum lead"><%=el.like_num%></span>
 					</span>
 					
 					<span status="0">
 						<i class="icon icon-comment-alt"></i>
-						<span class="commentNum">12</span>
+						<span class="commentNum lead">12</span>
 					</span>
 					
 					<span>
@@ -68,9 +75,9 @@
 
 
 	<form id="form1" enctype="multipart/form-data" method="post" action="">
-	    <input type="file" name="file" id="file" onchange="startUpload()"/>
+	    <input type="file" name="file" id="file" onchange="startAutoUpload()"/>
 	    <input type="text" name="name" id="name"/>
-	    <input type="button" onclick="sendForm()" value="上传"/>
+	    <input type="button" onclick="uploadMyHaddwriting()" value="上传我的笔迹"/>
 	</form>
 
 	<img class="img-preview" src="" alt="" style="width:50%;">

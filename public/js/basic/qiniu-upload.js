@@ -5,11 +5,11 @@ var uptimestr = nowDateTimeStr+'_'+randomOnce+'_'+randomStr;
 console.log(uptimestr);
 
 
-function startUpload(){
-    sendForm();
+function startAutoUpload(){
+    uploadMyHaddwriting();
 }
 
-function sendForm(){
+function uploadMyHaddwriting(){
     // layer.msg('111');
     var fd = new FormData();
     fd.append("upfiles",$('#file')[0].files[0]);
