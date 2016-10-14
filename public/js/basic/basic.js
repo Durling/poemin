@@ -199,7 +199,7 @@ function get_status(){
 var online_status = get_status();
 console.log('online_status:'+online_status);
 if (!online_status) {
-    alert('网络异常！');
+    console.log('网络异常！');
 };
 
 
@@ -216,6 +216,16 @@ var global_my_window_width = $(window).width();
 var global_my_window_height = $(window).height();
 var global_w_h = global_my_window_width/global_my_window_height;
 // console.log('width:'+global_my_window_width,'height:'+global_my_window_height,global_w_h);
+
+
+$(document).ready(function(){
+	// console.log($(window).height(),$('html').height());
+	if ($(window).height()>$('html').height()) {
+		$('.nav-bottom').addClass('navbar-fixed-bottom');
+	}
+})
+
+
 
 
 

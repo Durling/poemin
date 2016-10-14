@@ -51,11 +51,13 @@ router.post('/file-upload', function (req,res) {
 	form.uploadDir = "public/img/qiniu-upload/";//设置文件储存路径
 	//开始解析前台传过来的文件
 	form.parse(req, function(err, fields, files) {
+		console.log(fields,files);
 		for (var item in fields){
 			console.log(fields[item][0]);
 		}
 		var nowDateTimeStr = fields.nowDateTimeStr;
-		var randomOnce = fields.randomOnce;
+		var index = fields.index;
+		var uploadType = fields.uploadType;
 		// console.log(nowDateTimeStr);
 		var filesTmp = JSON.stringify(files);
 		var pr = JSON.parse(filesTmp);
@@ -67,7 +69,7 @@ router.post('/file-upload', function (req,res) {
 				var inputFile = files.upfiles[i];//获取第一个文件
 				var finalname = inputFile.originalFilename;
 				var randomStr = Math.round(Math.random() * nowDateTimeStr);
-				finalname = nowDateTimeStr+'_'+randomOnce+'_'+randomStr;
+				finalname = nowDateTimeStr+'_'+uploadType+'_'+index+'_'+randomStr;
 				//上传到七牛后保存的文件名
 				key = finalname;
 				// console.log(key);

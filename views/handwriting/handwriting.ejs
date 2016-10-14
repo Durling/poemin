@@ -75,8 +75,13 @@
 
 
 	<form id="form1" enctype="multipart/form-data" method="post" action="">
-	    <input type="file" name="file" id="file" onchange="startAutoUpload()"/>
+	    <select name="" id="uploadType">
+	    	<option value="1">诗笔迹</option>
+	    	<option value="2">背景图</option>
+	    </select>
+	    <input type="file" name="qiniu_upload_file" id="qiniu_upload_file" onchange="startAutoUpload()"/ multiple="multiple">
 	    <input type="text" name="name" id="name"/>
+
 	    <input type="button" onclick="uploadMyHaddwriting()" value="上传我的笔迹"/>
 	</form>
 

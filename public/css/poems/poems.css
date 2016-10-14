@@ -3,7 +3,6 @@
 	font-size: 1.4rem;
 	width: 100%;
 	color: #614e3c;
-	background: #f6f6f1;
 	padding:1.5rem;
 }
 .resize-full-btn {
@@ -25,6 +24,7 @@
     bottom: 0;
     margin: 0 auto;
     width: 100%;
+    max-width: 500px;
     height: 100%;
     background: #ececec;
     color: white;

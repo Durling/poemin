@@ -5,78 +5,80 @@
 </style>
 <link rel="stylesheet" href="css/user/login.css">
 
-<div class="col-lg-12 text-center">
-	<hr>
-	<%if (status==0) {%>
-	<div class="login-div login-0-div">
-		<h4>注册WePoem帐号</h4>
+<div class="container">
+	
+	<div class="col-lg-12 text-center">
 		<hr>
-		<ul class="nav nav-tabs" role="tablist">
-		  <li role="presentation" class="active" wayName="email" wayText="邮箱"><a href="javascript:;">邮箱注册</a></li>
-		  <li role="presentation" wayName="phone" wayText="手机号"><a href="javascript:;">手机号注册</a></li>
-		  <li role="presentation" wayName="userName" wayText="用户名"><a href="javascript:;">用户名注册</a></li>
-		</ul>
-		<br>
-		<p>
-			<input type="text" class="form-control mul-way" placeholder="邮箱" wayName="email">
-		</p>
-		<p>
-			<input type="password" class="form-control" placeholder="密码" wayName="password">
-		</p>
-		<p>
-			<input type="password" class="form-control" placeholder="确认密码" wayName="repassword">
-		</p>
-		<p>
-			<button class="btn btn-info" status="0" onclick="toLogin(this)">提交注册</button>
-		</p>
-		<hr>
-		<p>已经注册过，去<a href="login?status=1">登录</a></p>
-		<hr>
-	</div>
-	<%}%>
+		<%if (status==0) {%>
+		<div class="login-div login-0-div">
+			<h4>注册WePoem帐号</h4>
+			<hr>
+			<ul class="nav nav-tabs" role="tablist">
+			  <li role="presentation" class="active" wayName="email" wayText="邮箱"><a href="javascript:;">邮箱注册</a></li>
+			  <li role="presentation" wayName="phone" wayText="手机号"><a href="javascript:;">手机号注册</a></li>
+			  <li role="presentation" wayName="userName" wayText="用户名"><a href="javascript:;">用户名注册</a></li>
+			</ul>
+			<br>
+			<p>
+				<input type="text" class="form-control mul-way" placeholder="邮箱" wayName="email">
+			</p>
+			<p>
+				<input type="password" class="form-control" placeholder="密码" wayName="password">
+			</p>
+			<p>
+				<input type="password" class="form-control" placeholder="确认密码" wayName="repassword">
+			</p>
+			<p>
+				<button class="btn btn-info" status="0" onclick="toLogin(this)">提交注册</button>
+			</p>
+			<hr>
+			<p>已经注册过，去<a href="login?status=1">登录</a></p>
+			<hr>
+		</div>
+		<%}%>
 
-	<%if (status==1) {%>
-	<div class="login-div login-1-div">
-		<h4>登录WePoem帐号</h4>
+		<%if (status==1) {%>
+		<div class="login-div login-1-div">
+			<h4>登录WePoem帐号</h4>
+			<hr>
+			<ul class="nav nav-tabs" role="tablist">
+			  <li role="presentation" class="active" wayName="email" wayText="邮箱"><a href="javascript:;">邮箱登录</a></li>
+			  <li role="presentation" wayName="phone" wayText="手机号"><a href="javascript:;">手机号登录</a></li>
+			  <li role="presentation" wayName="userName" wayText="用户名"><a href="javascript:;">用户名登录</a></li>
+			</ul>
+			<br>
+			<p>
+				<input type="text" class="form-control mul-way" placeholder="邮箱" wayName="email">
+			</p>
+			<p>
+				<input type="password" class="form-control" placeholder="密码" wayName="password">
+			</p>
+			<p>
+				<button class="btn btn-info" status="1" onclick="toLogin(this)">登录</button>
+			</p>
+			<hr>
+			<p>木有注册过，去<a href="login?status=0">注册</a></p>
+			<hr>
+
+		</div>
+		<%}%>
 		<hr>
-		<ul class="nav nav-tabs" role="tablist">
-		  <li role="presentation" class="active" wayName="email" wayText="邮箱"><a href="javascript:;">邮箱登录</a></li>
-		  <li role="presentation" wayName="phone" wayText="手机号"><a href="javascript:;">手机号登录</a></li>
-		  <li role="presentation" wayName="userName" wayText="用户名"><a href="javascript:;">用户名登录</a></li>
-		</ul>
-		<br>
-		<p>
-			<input type="text" class="form-control mul-way" placeholder="邮箱" wayName="email">
+		<p class="login-3f">
+			<span>其他方式登录:</span>
+			<span class="iconfont i-weixin" loginStyle="0" onclick="login_3f(this)">
+				<img src="img/iconfont/weixin_0.png" alt="">
+				<span>微信登录</span>
+			</span>
+			<span class="iconfont i-weibo" loginStyle="1" onclick="login_3f(this)">
+				<img src="img/iconfont/weibo_0.png" alt="">
+				<span>微博登录</span>
+			</span>
 		</p>
-		<p>
-			<input type="password" class="form-control" placeholder="密码" wayName="password">
-		</p>
-		<p>
-			<button class="btn btn-info" status="1" onclick="toLogin(this)">登录</button>
-		</p>
-		<hr>
-		<p>木有注册过，去<a href="login?status=0">注册</a></p>
 		<hr>
 
 	</div>
-	<%}%>
-	<hr>
-	<p class="login-3f">
-		<span>其他方式登录:</span>
-		<span class="iconfont i-weixin" loginStyle="0" onclick="login_3f(this)">
-			<img src="img/iconfont/weixin_0.png" alt="">
-			<span>微信登录</span>
-		</span>
-		<span class="iconfont i-weibo" loginStyle="1" onclick="login_3f(this)">
-			<img src="img/iconfont/weibo_0.png" alt="">
-			<span>微博登录</span>
-		</span>
-	</p>
-	<hr>
 
 </div>
-
-
 
 
 <%- include ../global/bottom.ejs %>
