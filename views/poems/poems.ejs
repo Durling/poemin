@@ -161,7 +161,11 @@
 				<span>编辑</span>
 			</a>
 			<a href="poems?id=<%=el.id%>&act=comments">
-				<span>评论</span>
+				<span>
+					<%if (el.comments_num>=0) {%>
+						<span>评论<%-el.comments_num%></span>
+					<%}%>
+				</span>
 			</a>
 			<a href="handwriting?poemId=<%=el.id%>">诗笔迹</a>
 			<a href="poems?id=<%=el.id%>&act=voice">诗知音</a>

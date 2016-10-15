@@ -90,7 +90,7 @@ router.get('/handwriting', function (req, res, next) {
 	var poemId = req.query.poemId;
 	var rows_files,rows_poems;
 
-	var query = 'select id,file_name,poemId,like_num from handwriting_file where poemId="'+poemId+'";';
+	var query = 'select * from handwriting_file where poemId="'+poemId+'";';
 	connection.query(query,function(error,rows,fields){
 		rows_files = rows;
 

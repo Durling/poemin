@@ -49,7 +49,7 @@ router.get('/poems', function (req,res) {
 });
 
 
-// 编辑
+// 编辑更新
 router.put('/poems', function (req,res) {
 	// console.log(req.url,req.body);
 	var n = req.body;
@@ -95,6 +95,27 @@ router.post('/poems', function (req,res) {
 });
 
 
+// 全局更新
+router.put('/*', function (req,res) {
+	// console.log(req.url,req.body);
+	var n = req.body;
+	// console.log(n.poemId);
+	var query = 'update '+n.targetTable+' set '+n.targetField+'="'+n.newValue+'" where id='+n.targetId+';';
+	// console.log(query);
+	connection.query(query,function(errorupdate,resupdate){
+		if (errorupdate) {
+			// console.log(errorupdate);
+			res.json(errorupdate);
+		}else{	
+			var data = {
+				message:'success',
+				resinsert:resupdate
+			}
+			res.json(data);
+			// res.jsonp(data);
+		}
+	})
+});
 
 
 // 用户注册

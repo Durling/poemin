@@ -7,6 +7,9 @@ body {
     margin: 0 auto!important;
     font-size: 10px!important;
 }
+img {
+    width: 100%;
+}
 
 .container{
 	min-height: 100%;

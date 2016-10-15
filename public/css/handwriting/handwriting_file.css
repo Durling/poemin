@@ -1,0 +1,29 @@
+
+
+h3,h4,p{
+	margin:5px 0px 15px;
+}
+
+.label-default > span {
+    margin: 0 0.5rem;
+}
+i.icon.icon-heart {
+    color: #ff7d7d;
+    text-shadow: #3c3c3c 0px 0px 2px;
+}
+.img-operation {
+    position: absolute;
+    right: 15px;
+    margin-top: -50px;
+    font-size: 1.6rem;
+}
+.img-operation {
+    background-color: rgba(91, 192, 222, 0.5);
+}
+
+.badge {
+    background-color: rgba(91, 192, 222, 0.5);
+}
+.icon-info-sign{
+	color: rgba(91, 192, 222, 0.5);
+}

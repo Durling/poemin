@@ -4,20 +4,10 @@
 
 
 <style>
-	h3,p{
-		margin:5px 0px 15px;
-	}
-	.label-default > span {
-	    margin: 0 0.5rem;
-	}
-	i.icon.icon-heart {
-	    color: #ff7d7d;
-	    text-shadow: #3c3c3c 0px 0px 2px;
-	}
+
 </style>
-<link rel="stylesheet" href="">
 
-
+<link rel="stylesheet" href="css/handwriting/handwriting_file.css">
 
 <div class="col-lg-12">
 	<br>
@@ -33,16 +23,40 @@
 		</h4>
 		<% })
 	}%>
+	
+</div>
+
+<div class="col-lg-12" style="padding:0;">
 	<hr>
 	<!-- 诗笔迹列表 -->
 	<% if(rows_files.length>0){ 
+		rows_files.sort(function(a,b){
+			return b.like_num - a.like_num;
+		})
 		rows_files.forEach(function(el){ %>
-		<h4 class="text-center" fileId="<%=el.id%>">
-			<img src="<%=qiniuDoname%><%=el.file_name%>?imageMogr2/gravity/Center/crop/300x300" alt="">
-
-			<h3 class="text-center">
-				<span class="label label-default">
-					
+		<h4 class="text-center img-each" fileId="<%=el.id%>">
+			<p class="col-lg-12 small text-right">
+				<span style="float:left;">
+					<%if (el.is_original==1) {%>
+						<span class="badge">原创</span>
+					<%}%>
+					<%if (el.authorName!=''&&el.authorName!=null) {%>
+						<span>by</span>
+						<span><a href=""><%-el.authorName%></a></span>
+					<%}%>
+				</span>
+				<span>
+					<%if(el.created_at!=''&&el.created_at!=null){%>
+						<span><%-new Date(el.created_at).Format("yyyy-MM-dd hh:mm:ss")%></span>
+					<%}%>
+					<a href="">
+						<span><i class="icon icon-info-sign"></i></span>
+					</a>
+				</span>
+			</p>
+			<img src="<%=qiniuDoname%><%=el.file_name%>?imageView2/2/w/500" alt="">
+			<p class="col-lg-12 img-operation-p text-right">
+				<span class="label label-info img-operation">
 					<span status="0" onclick="changeLikeStatus(this)">
 						<i class="icon icon-heart-empty"></i>
 						<%if (el.like_num==null || el.like_num=='null') {
@@ -50,42 +64,30 @@
 						}%>
 						<span class="likeNum lead"><%=el.like_num%></span>
 					</span>
-					
-					<span status="0">
-						<i class="icon icon-comment-alt"></i>
-						<span class="commentNum lead">12</span>
-					</span>
-					
-					<span>
-						<i class="icon icon-upload-alt"></i>
-					</span>
-					
-					<span onclick="delFile(this)">
-						<i class="icon icon-remove"></i>
-					</span>
-
 				</span>
+			</p>
+			<%if (el.description!='') {%>
+				<p class="col-lg-12 small p-description text-left">
+					<span><%-el.description%></span>
+				</p>
+			<%}%>
 
-			</h3>
 			
 		</h4>
+		<hr>
 		<% })
 	}%>
 
 
 
-	<form id="form1" enctype="multipart/form-data" method="post" action="">
-	    <select name="" id="uploadType">
+	<form id="form1" enctype="multipart/form-data" method="post" action="" class="text-center">
+	    <select name="" id="uploadType" class="hide">
 	    	<option value="1">诗笔迹</option>
 	    	<option value="2">背景图</option>
 	    </select>
-	    <input type="file" name="qiniu_upload_file" id="qiniu_upload_file" onchange="startAutoUpload()"/ multiple="multiple">
-	    <input type="text" name="name" id="name"/>
-
-	    <input type="button" onclick="uploadMyHaddwriting()" value="上传我的笔迹"/>
+	    <input type="file" name="qiniu_upload_file" id="qiniu_upload_file" onchange="uploadMyHaddwriting()"/ multiple="multiple" class="hide">
+	    <span class="btn btn-info" onclick="click_prev_input(this)">上传我的笔迹</span>
 	</form>
-
-	<img class="img-preview" src="" alt="" style="width:50%;">
 
 	<hr>
 
