@@ -71,18 +71,22 @@ router.get('/poems',function (req,res,next){
 // 我
 router.get('/home', function (req, res, next) {
   var renderData = {
-    title: "Me"
+    title: "诗友圈"
   };
   res.render('home/home', renderData);
 });
 
 // 登录/注册
 router.get('/login', function (req, res, next) {
-  var renderData = {
-    title: "登录/注册",
-    status:req.query.status
-  };
-  res.render('user/login', renderData);
+	status = req.query.status;
+	if (status==undefined||status==null||status=='') {
+		status = 1;
+	}
+	var renderData = {
+		title: "登录/注册",
+		status:status
+	};
+	res.render('user/login', renderData);
 });
 
 // 诗笔迹

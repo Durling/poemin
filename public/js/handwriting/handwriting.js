@@ -12,6 +12,11 @@ function delFile (obj) {
 
 // 点赞更新数据库
 function changeLikeStatus(obj){
+	// console.log(loginInfo);
+	if (loginInfo==undefined||loginInfo==null||loginInfo=='') {
+		layer.msg('请先登录后再操作');
+		return false;
+	}
 	var targetTable = 'handwriting_file',
 		targetField = 'like_num',
 		newValue = 0,

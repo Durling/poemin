@@ -52,7 +52,8 @@ function global_reqType_list(req,res,type){
 			}else{	
 				var data = {
 					message:'success',
-					rows:rows
+					rows:rows,
+					qiniuDoname:config.qiniuDoname
 				}
 				res.json(data);
 				// res.jsonp(data);
@@ -104,6 +105,13 @@ router.get('/dynasty', function (req,res) {
 });
 // 获取国家列表
 router.get('/country', function (req,res) {
+	var type = 'get';
+	global_reqType_list(req,res,type);
+});
+
+
+// 获取个人详情
+router.get('/user', function (req,res) {
 	var type = 'get';
 	global_reqType_list(req,res,type);
 });

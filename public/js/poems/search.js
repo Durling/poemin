@@ -3,9 +3,11 @@
 var vm_all = new Vue({
   el: '#select_vue_all',
   data: {
+  	qiniuDoname:'',
     search_poems: [],
     search_country: [],
-    search_dynasty: []
+    search_dynasty: [],
+    user_info:[]
   },
   methods: {
 

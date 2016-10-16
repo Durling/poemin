@@ -1,48 +1,122 @@
 <%- include ../global/header.ejs %>
+<%- include ../global/top.ejs %>
 
 
 <style>
-	.data-poems-list{
-		font-size: 1.4rem;
-		width: 100%;
-		color: #614e3c;
-		background: #f6f6f1;
-		padding:6.5rem 1.5rem;
-	}
+.nav-common{
+	display: none;
+}
+.avatar-info {
+    height: 20rem;
+    display: -webkit-box;
+}
+.home-avatar{
+    width: 8rem;
+    height: 8rem;
+    border-radius: 2px;
+    border: solid 2px #f6f6f1;
+    position: absolute;
+    margin-left: -10rem;
+    top: 15rem;
+}
+.home-userName{
+    position: absolute;
+    margin-left: -17rem;
+    font-size: 1.8rem;
+    top: 17rem;
+    color: white;
+    text-shadow: 0 1px 1px black;
+}
+
+.blur {    
+	filter: url(blur.svg#blur); /* FireFox, Chrome, Opera */
+    -webkit-filter: blur(30px); /* Chrome, Opera */
+       -moz-filter: blur(30px);
+         -o-filter: blur(30px);
+        -ms-filter: blur(30px);    
+            filter: blur(30px);  
+			filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false); /* IE6~IE9 */  
+}
+.right-top-camera {
+    position: absolute;
+    top: 2rem;
+    font-size: 2.0rem;
+    margin-left: -4.5rem;
+    color: white;
+    text-shadow: 0px 0px 5px #666666;
+    opacity: .8;
+}
+.left-bottom-friends{
+    position: absolute;
+    top: 16.5rem;
+    font-size: 2.0rem;
+    margin-left: 1.5rem;
+    color: white;
+    text-shadow: 0px 0px 5px #666666;
+    opacity: .8;
+    display: table;
+}
+
 </style>
 <link rel="stylesheet" href="">
 
-<p class="text-center" style="background: #5bc0de;height:5rem;">
-	
-</p>
+<div class="container">
 
-<div class="data-poems-list col-sm-12">
-
-
-
-
-
-	<!-- 全局 -->
-	<p class="bg-info text-center">
-		<a href="poems">列表</a>		
-		<a href="poems?act=add">增加</a>
-		<a href="poems?act=correction">纠错</a>
-	</p>
-	<p class="bg-success text-center">
-		<abbr title="attribute">attr</abbr>
-		<abbr title="HyperText Markup Language" class="initialism">HTML</abbr>
-		<p class="text-center">
-			<abbr>WePoem 微诗 CopyRight</abbr>
+	<template v-for="el in user_info">
+		<div class="col-lg-12 avatar-info" v-bind:style="'padding:0;background-image: url('+qiniuDoname+el.avatar+'?imageView2/2/w/500);background-repeat: no-repeat;background-size: cover;background-position: center;'"></div>
+		<p class="text-right" style="width:100%;">
+			<span class="home-userName">{{el.userName}}</span>
+			<img class="home-avatar" v-bind:src="qiniuDoname+el.avatar+'?imageView2/1/w/100/h/100'" alt="">
 		</p>
-	</p>
+		<p class="text-right">
+			<span class="right-top-camera"><i class="icon icon-camera"></i></span>
+		</p>
+		<p class="text-left">
+			<span class="left-bottom-friends"><i class="icon icon-group"></i></span>
+		</p>
 
-	<p class="text-center" style="background: #5bc0de;">
-		<img src="img/wepoem_400_200.png" style="height:80px;" alt="">
-	</p>
+	</template>
 
+	<div class="user-info" style="width:100%">
 	
+		<hr>
+		<hr>
+		<hr>
+		<hr>
+		<hr>
+		<hr>
+		<hr>
+		<hr>
+		<hr>
+		<hr>
+		<hr>
+		<hr>
+		<hr>
+		<hr>
+		<hr>
+		<hr>
+		<hr>
+
+
+
+
+
+
+
+
+
+
+		
+	</div>
+
 </div>
 
-<script src="js/poems/poem-edit-or-add.js"></script>
+
+<%- include ../global/bottom.ejs %>
+
+<script src="js/user/login.js"></script>
+<script src="js/poems/search.js"></script>
+<script src="js/user/home.js"></script>
+
 
 <%- include ../global/footer.ejs %>

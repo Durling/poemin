@@ -20,9 +20,9 @@
 				</span>
 			</li>
 		</a>
-		<a href="home">
+		<a href="javascript:;">
 			<li class="text-right">			 
-				<span class="login-info">
+				<span class="login-info" onclick="login_or_home(this)">
 					<i class="icon icon-user"></i>
 					<span class="login-info-name"></span>
 				</span>
@@ -31,7 +31,7 @@
 	</ul>
 </div>
 
-<div id="select_vue_all" class="global-search-div" style="display:none;">
+<div class="global-search-div" style="display:none;">
 	<p class="text-center" style="padding:0 0 1rem 0;">
 		<a href="javascript:;" onclick="hideSearchDiv(this)">
 			<span style="font-size:2rem;">
@@ -110,13 +110,13 @@
 		loginInfo = strCookie[0];
 		// console.log(loginInfo);
 		$('.login-info-name').text(loginInfo.userName).attr({
-			id:loginInfo.id,
+			userId:loginInfo.id,
 			email:loginInfo.email,
 			token:loginInfo.token
 		});
 		get_like_file();
 	}else{
-		$('.login-info-name').text('Me')
+		$('.login-info-name').text('登录/注册');
 	}
 
 	function get_like_file () {
@@ -154,9 +154,16 @@
 		    	})
 		    })
 	    })
-
 	}
 
+	function login_or_home(obj){
+		var userId = $(obj).find('.login-info-name').attr('userId');
+		if (userId>0) {
+			window.location.href='home';
+		}else{
+			window.location.href='login';
+		}
+	}
 
 </script>
 

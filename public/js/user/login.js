@@ -91,6 +91,9 @@ function toLogin(obj) {
 				layer.msg(result.message);
 				// console.log(result.rows[0].token);
 				$.cookie('loginInfo',JSON.stringify(result.rows)); 
+				setTimeout(function(){
+					window.location.href='home';
+				},1000)
 			}else{
 				layer.msg(result.tips);
 			}
