@@ -56,6 +56,76 @@
     opacity: .8;
     display: table;
 }
+.rotate{
+    -moz-animation:rotate .5s infinite linear;
+    -webkit-animation:rotate .5s infinite linear;
+    animation:rotate .5s infinite linear;
+}
+  @-moz-keyframes rotate{
+    0%{
+      -moz-transform:rotate(0deg);
+     }
+     100%{
+       -moz-transform:rotate(360deg);
+     }
+  }
+  @-webkit-keyframes rotate{
+    0%{
+      -webkit-transform:rotate(0deg);
+     }
+     100%{
+       -webkit-transform:rotate(360deg);
+     }
+  }
+  @keyframes rotate{
+    0%{
+      transform:rotate(0deg);
+     }
+     100%{
+       transform:rotate(360deg);
+     }
+  }
+
+.new-moments-div {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: #ffffff;
+    top: 0;
+    max-width: 500px;
+    margin: 0 auto;
+}
+.moments-content {
+    border: none;
+    border-bottom: solid 1px #d4d4d4;
+    resize: none;
+    height: 200px;
+    overflow-y: scroll;
+    border-radius: 0;
+    font-size: 1.6rem;
+    padding: 1.5rem;
+}
+.add-img-btn{
+    display: inline-block;
+	width: 6rem;
+    height: 6rem;
+    border: solid 1px #d4d4d4;
+    text-align: center;
+    font-size: 6rem;
+    font-weight: lighter;
+    color: #d4d4d4;
+    vertical-align: middle;
+    line-height: 4.8rem;
+}
+.add-img-p{
+    margin-left: 1.5rem;
+    margin-right: 0.5rem;
+    margin-top: -8rem;
+    z-index: 1;
+    position: absolute;
+    background: white;
+}
+
 
 </style>
 <link rel="stylesheet" href="">
@@ -69,13 +139,28 @@
 			<img class="home-avatar" v-bind:src="qiniuDoname+el.avatar+'?imageView2/1/w/100/h/100'" alt="">
 		</p>
 		<p class="text-right">
-			<span class="right-top-camera"><i class="icon icon-camera"></i></span>
+			<span onclick="show_new_moments()" class="right-top-camera"><i class="icon icon-camera"></i></span>
 		</p>
-		<p class="text-left">
-			<span class="left-bottom-friends"><i class="icon icon-group"></i></span>
+		<p class="text-left hide">
+			<span class="left-bottom-friends"><i class="icon icon-fire"></i></span>
 		</p>
 
 	</template>
+
+	<div class="new-moments-div hide">
+		<textarea class="moments-content" cols="30" rows="10" placeholder="这一刻的诗想..." style="width:100%"></textarea>
+		<p class="add-img-p">
+			<span class="add-img-btn">+</span>
+		</p>
+		<p>
+			<span>所在位置</span>
+		</p>
+		<br><br>
+		<p class="text-center">
+			<span onclick="hide_new_moments()">close</span>
+		</p>
+	</div>
+
 
 	<div class="user-info" style="width:100%">
 	

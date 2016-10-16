@@ -23,3 +23,17 @@ function get_user_detail () {
     vm_all.user_info = rs.rows;
     vm_all.qiniuDoname = rs.qiniuDoname;
 }
+
+
+function show_new_moments(){
+	$('.new-moments-div').removeClass('hide').addClass('animated fadeInUpBig');
+	$('.new-moments-div').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+		$('.new-moments-div').removeClass('animated fadeInUpBig');
+	});
+}
+function hide_new_moments(){
+	$('.new-moments-div').addClass('animated fadeOutDownBig');
+	$('.new-moments-div').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+		$('.new-moments-div').removeClass('animated fadeOutDownBig').addClass('hide');
+	});
+}
