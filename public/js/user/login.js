@@ -57,7 +57,7 @@ function toLogin(obj) {
 			input_err(1);
 			return false;
 		}else{
-			console.log(form);
+			// console.log(form);
 			input_ok(form);
 		}
 	}
@@ -76,22 +76,23 @@ function toLogin(obj) {
 	function input_ok(form){
 		if (status==0) { //注册
 			var type = 'post',
-				url = 'admin/login',
+				url = 'login/login',
 				data = JSON.stringify(form);
 			var result = global_ajax(type,url,data);
 			// console.log(result);
 			login_success(result);
 		}else if(status==1){ //登录
 			var type = 'get',
-				url = 'admin/login',
+				url = 'login/login',
 				data = form;
 			var result = global_ajax(type,url,data);
 			console.log(result);
-			var user = result.rows[0];
-			if (user.password==form.password) {
-				layer.msg('success');
+			if (result.message=='success') {
+				layer.msg(result.message);
+				// console.log(result.rows[0].token);
+				$.cookie('loginInfo',JSON.stringify(result.rows)); 
 			}else{
-				layer.msg('error');
+				layer.msg(result.tips);
 			}
 		}
 	}

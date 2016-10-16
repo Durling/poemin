@@ -2,7 +2,7 @@ var nowDateTimeStr = new Date().format("yyyyMMddhhmmss");
 var randomStr = Math.round(Math.random() * nowDateTimeStr);
 var randomOnce =  Math.random().toString(36).substr(20).toUpperCase();
 var uptimestr = nowDateTimeStr+'_'+randomOnce+'_'+randomStr;
-console.log(uptimestr);
+// console.log(uptimestr);
 
 function click_prev_input(obj){
     $(obj).prev('input').click();
@@ -10,14 +10,13 @@ function click_prev_input(obj){
 
 function uploadMyHaddwriting(){
     var uploadType = $('#uploadType').val();
-    console.log('uploadType:',uploadType);
+    // console.log('uploadType:',uploadType);
 
     var upload_length =  $('#qiniu_upload_file')[0].files.length;
-    console.log('upload_length:',upload_length);
+    // console.log('upload_length:',upload_length);
 
     // return false;
     // 
-
     if(upload_length >5 ){
         layer.msg("上传的文件数量超过5个了！请重新选择！");    
             return false;
@@ -30,7 +29,6 @@ function uploadMyHaddwriting(){
             }
         }
     }
-
 
 
     for (var i = 0; i < upload_length; i++) {

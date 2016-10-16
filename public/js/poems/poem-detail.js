@@ -18,13 +18,13 @@ function getImgs(){
 	var type = 'get',
 		url = 'admin/getFiles',
 		data = {
-			path:'public/img/v_bg/',
+			path:'public/img/qiniu-upload/',
 		};
 	var rs = global_ajax(type,url,data);
 	// console.log(rs);
 	var resultImg = [];
 	$.each(rs.results,function(i,n){
-		if (n.indexOf('.jpg')>0 || n.indexOf('.jpeg')>0 || n.indexOf('.png')>0) {
+		if (n.indexOf('TYPE2')>0) {
 			resultImg.push(n);
 		}
 	})

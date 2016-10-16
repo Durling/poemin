@@ -7,8 +7,10 @@ body {
     margin: 0 auto!important;
     font-size: 10px!important;
 }
-img {
-    width: 100%;
+
+hr{
+	width: 100%;
+	display: table;
 }
 
 .container{

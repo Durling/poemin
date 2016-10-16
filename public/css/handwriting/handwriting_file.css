@@ -4,6 +4,10 @@ h3,h4,p{
 	margin:5px 0px 15px;
 }
 
+.handwriting-div img {
+    width: 100%;
+}
+
 .label-default > span {
     margin: 0 0.5rem;
 }

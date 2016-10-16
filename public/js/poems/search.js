@@ -4,16 +4,41 @@ var vm_all = new Vue({
   el: '#select_vue_all',
   data: {
     search_poems: [],
+    search_country: [],
+    search_dynasty: []
   },
   methods: {
 
   }
 })
-
+var search_table = [[],[]];
 
 // 显示搜索模块
 function showSearchDiv(obj){
 	$('.global-search-div').slideToggle();
+
+	var table_array = ['country','dynasty'];
+	$.each(table_array,function(i,n){
+		var form = {
+			targetTable:n,
+			targetField:'*'
+		}
+		var type = 'get',
+			url = 'admin/'+form.targetTable,
+			data = form;
+		if (search_table[i].length==0) {
+		    var rs = global_ajax(type,url,data);
+		    // console.log(rs); 
+			search_table[i] = rs.rows;
+		}
+	})
+	// console.log(search_table);
+	if (vm_all.search_country.length==0) {
+		vm_all.search_country = search_table[0];
+	}
+	if (vm_all.search_dynasty.length==0) {
+		vm_all.search_dynasty = search_table[1];
+	}
 }
 // 隐藏搜索模块
 function hideSearchDiv(obj){

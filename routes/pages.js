@@ -20,7 +20,7 @@ router.get('/',function (req,res,next){
   res.redirect('poems');
 });
 
-// 
+// 诗列表、详情
 router.get('/poems',function (req,res,next){
 	var act = req.query.act;
 	// console.log(act);
@@ -111,8 +111,19 @@ router.get('/handwriting', function (req, res, next) {
 
 });
 
+// 朝代列表
+router.get('/dynasty',function (req,res,next){
+	var query = 'select * from dynasty;';
+	connection.query(query,function(error,rows,fields){
+		var renderData = {
+			title:'朝代列表',
+			rows:rows
+		};
+		// console.log(renderData);
+		res.render('poems/dynasty',renderData);
+	})
 
-
+})
 
 
 module.exports = router;

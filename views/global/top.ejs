@@ -1,3 +1,8 @@
+<style>
+	#search_more select{
+		width: 60px;
+	}
+</style>
 <div class="nav-common nav-top">
 	<ul class="col-sm-12 list-unstyled">
 		<a href="/">
@@ -17,9 +22,9 @@
 		</a>
 		<a href="home">
 			<li class="text-right">			 
-				<span>
+				<span class="login-info">
 					<i class="icon icon-user"></i>
-					<span>Me</span>
+					<span class="login-info-name"></span>
 				</span>
 			</li>
 		</a>
@@ -53,29 +58,27 @@
 				<span>时代:</span>
 				<select name="" id="">
 					<option value="">不选</option>
-					<option value="">古/A</option>
-					<option value="">近/P</option>
-					<option value="">今/L</option>
+					<option value="">古(A)</option>
+					<option value="">近(P)</option>
+					<option value="">今(L)</option>
 				</select>
 			</li>
 			<li>
 				<span>国家:</span>
 				<select name="" id="">
 					<option value="">不选</option>
-					<option value="">中国</option>
-					<option value="">美国</option>
-					<option value="">印度</option>
-					<option value="">英国</option>
+					<template v-for="el in search_country">
+						<option value="{{el.id}}">{{el.c_name}}({{el.e_name}})</option>
+					</template>
 				</select>
 			</li>
 			<li>
 				<span>朝代:</span>
 				<select name="" id="">
 					<option value="">不选</option>
-					<option value="">唐</option>
-					<option value="">宋</option>
-					<option value="">元</option>
-					<option value="">明</option>
+					<template v-for="el in search_dynasty">
+						<option value="{{el.id}}">{{el.d_name}}({{el.start_y}}-{{el.end_y}})</option>
+					</template>
 				</select>
 			</li>
 		</ul>
@@ -98,9 +101,62 @@
 
 </div>
 
-<style>
+<script>
+	var strCookie=$.cookie('loginInfo'),loginInfo; 
+	// console.log(strCookie);
+	if (strCookie!=undefined&&strCookie!=''&&strCookie!=null) {
+		strCookie = JSON.parse(strCookie);
+		// console.log(strCookie);
+		loginInfo = strCookie[0];
+		// console.log(loginInfo);
+		$('.login-info-name').text(loginInfo.userName).attr({
+			id:loginInfo.id,
+			email:loginInfo.email,
+			token:loginInfo.token
+		});
+		get_like_file();
+	}else{
+		$('.login-info-name').text('Me')
+	}
+
+	function get_like_file () {
+		var form = {
+			targetTable:'hw_like',
+			targetField:'id,hw_fileId,like_userId,is_like',
+			targetMatch:'like_userId',
+			targetExtra:'',
+			targetId:loginInfo.id
+		}
+		// console.log(form);
+		var type = 'get',
+			url = 'admin/'+form.targetTable,
+			data = form;
+	    var rs = global_ajax(type,url,data);
+	    // console.log(rs);
+
+	    $(document).ready(function(){
+		    $('.handwriting-div .img-each').each(function(){
+		    	var fileId = Number($(this).attr('fileId'));
+		    	// console.log(fileId);
+		    	var that = this;
+		    	$.each(rs.rows,function(i,n){
+		    		if (n.hw_fileId==fileId) {
+		    			$(that).find('.img-operation > span').attr({
+		    				status:n.is_like,
+		    				like_id:n.id
+		    			});
+		    			if (n.is_like==1) {
+							$(that).find('.img-operation > span .icon').removeClass('icon-heart-empty').addClass('icon-heart');
+		    			}else{
+							$(that).find('.img-operation > span .icon').removeClass('icon-heart').addClass('icon-heart-empty');
+		    			}
+		    		}
+		    	})
+		    })
+	    })
+
+	}
 
 
-
-</style>
+</script>
 
