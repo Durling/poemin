@@ -10,7 +10,7 @@
     height: 20rem;
     display: -webkit-box;
 }
-.home-avatar{
+.moments-avatar{
     width: 8rem;
     height: 8rem;
     border-radius: 2px;
@@ -19,7 +19,7 @@
     margin-left: -10rem;
     top: 15rem;
 }
-.home-userName{
+.moments-userName{
     position: absolute;
     margin-left: -17rem;
     font-size: 1.8rem;
@@ -91,15 +91,15 @@
     height: 100%;
     position: fixed;
     background: #ffffff;
+    font-size: 1.6rem;
     top: 0;
     max-width: 500px;
     margin: 0 auto;
 }
 .moments-content {
     border: none;
-    border-bottom: solid 1px #d4d4d4;
     resize: none;
-    height: 200px;
+    height: 10rem;
     overflow-y: scroll;
     border-radius: 0;
     font-size: 1.6rem;
@@ -118,12 +118,10 @@
     line-height: 4.8rem;
 }
 .add-img-p{
-    margin-left: 1.5rem;
-    margin-right: 0.5rem;
-    margin-top: -8rem;
-    z-index: 1;
-    position: absolute;
+    padding: 1.5rem;
     background: white;
+    border-radius: 0;
+    border-bottom: solid 1px #d4d4d4;
 }
 
 
@@ -135,8 +133,8 @@
 	<template v-for="el in user_info">
 		<div class="col-lg-12 avatar-info" v-bind:style="'padding:0;background-image: url('+qiniuDoname+el.avatar+'?imageView2/2/w/500);background-repeat: no-repeat;background-size: cover;background-position: center;'"></div>
 		<p class="text-right" style="width:100%;">
-			<span class="home-userName">{{el.userName}}</span>
-			<img class="home-avatar" v-bind:src="qiniuDoname+el.avatar+'?imageView2/1/w/100/h/100'" alt="">
+			<span class="moments-userName">{{el.userName}}</span>
+			<img class="moments-avatar" v-bind:src="qiniuDoname+el.avatar+'?imageView2/1/w/100/h/100'" alt="">
 		</p>
 		<p class="text-right">
 			<span onclick="show_new_moments()" class="right-top-camera"><i class="icon icon-camera"></i></span>
@@ -150,9 +148,10 @@
 	<div class="new-moments-div hide">
 		<textarea class="moments-content" cols="30" rows="10" placeholder="这一刻的诗想..." style="width:100%"></textarea>
 		<p class="add-img-p">
-			<span class="add-img-btn">+</span>
+			<span class="add-img-btn" onclick="add_img(this)">+</span>
+			<input type="file" class="upload-file hide">
 		</p>
-		<p>
+		<p class="col-lg-12">
 			<span>所在位置</span>
 		</p>
 		<br><br>
@@ -201,7 +200,7 @@
 
 <script src="js/user/login.js"></script>
 <script src="js/poems/search.js"></script>
-<script src="js/user/home.js"></script>
+<script src="js/user/moments.js"></script>
 
 
 <%- include ../global/footer.ejs %>

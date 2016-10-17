@@ -68,12 +68,21 @@ router.get('/poems',function (req,res,next){
 	}
 })
 
-// 我
+
+// 个人中心
 router.get('/home', function (req, res, next) {
+  var renderData = {
+    title: "个人中心"
+  };
+  res.render('home/home', renderData);
+});
+
+// 诗友圈
+router.get('/moments', function (req, res, next) {
   var renderData = {
     title: "诗友圈"
   };
-  res.render('home/home', renderData);
+  res.render('home/moments', renderData);
 });
 
 // 登录/注册

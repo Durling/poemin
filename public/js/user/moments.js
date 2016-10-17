@@ -37,3 +37,7 @@ function hide_new_moments(){
 		$('.new-moments-div').removeClass('animated fadeOutDownBig').addClass('hide');
 	});
 }
+
+function add_img(obj){
+	$(obj).parent().find('.upload-file').click();
+}

@@ -20,6 +20,9 @@
 				<span><%=el.title%></span>
 			</a>
 			<small><%=el.authorName%></small>
+			<span style="float:right;">
+				<i class="icon icon-reorder"></i>
+			</span>
 		</h4>
 		<% })
 	}%>
@@ -92,17 +95,18 @@
 	<hr>
 
 	<!-- 全局 -->
-	<p class="bg-info text-center">
+	<p class="bg-info text-center hide">
 		<a href="poems">列表</a>		
 		<a href="poems?act=add">增加</a>
 		<a href="poems?act=correction">纠错</a>
 	</p>
-	<p class="bg-success text-center">
+	<p class="bg-success text-center hide">
 		<abbr title="attribute">attr</abbr>
 		<abbr title="HyperText Markup Language" class="initialism">HTML</abbr>
 		<p class="text-center">
 			<abbr>WePoem 微诗 CopyRight</abbr>
 		</p>
+		<br>
 	</p>
 
 
@@ -113,6 +117,11 @@
 	var rows_poems = <%-JSON.stringify(rows_poems)%>;
 	var rows_files = <%-JSON.stringify(rows_files)%>;
 	// console.log(qiniuDoname,rows_files,rows_poems);
+	// 
+	$(document).ready(function(){
+		$('.nav-common').addClass('hide');
+	})
+	
 </script>
 
 
