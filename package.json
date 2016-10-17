@@ -6,6 +6,6 @@
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
-    "element-ui": "^1.0.0-rc.4",
+
   }
 }

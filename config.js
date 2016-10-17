@@ -9,7 +9,15 @@ var localhost = {
 		database:'poemin',
 		port:3306
     },
-    qiniuDoname : 'http://oe71y3abh.bkt.clouddn.com/'
+    qiniuDoname : 'http://oe71y3abh.bkt.clouddn.com/',
+    // redis数据库配置
+    redis: {
+        port: 6379,
+        ip: '127.0.0.1',
+        pwd: 'lalocal',
+        db: 6,
+        prefix: 'poemin:'
+    }
 };
 var dev = {
     mysql: {
@@ -19,7 +27,15 @@ var dev = {
 		database:'poemin',
 		port:3306
     },
-    qiniuDoname : 'http://oe71y3abh.bkt.clouddn.com/'
+    qiniuDoname : 'http://oe71y3abh.bkt.clouddn.com/',
+    // redis数据库配置
+    redis: {
+        port: 6379,
+        ip: '127.0.0.1',
+        pwd: 'lalocal',
+        db: 6,
+        prefix: 'poemin:'
+    }
 
 };
 var produ = {
@@ -30,7 +46,15 @@ var produ = {
 		database:'poemin',
 		port:3306
     },
-    qiniuDoname : 'http://oe71y3abh.bkt.clouddn.com/'
+    qiniuDoname : 'http://oe71y3abh.bkt.clouddn.com/',
+    // redis数据库配置
+    redis: {
+        port: 6379,
+        ip: '127.0.0.1',
+        pwd: 'lalocal',
+        db: 6,
+        prefix: 'poemin:'
+    }
 
 };
 
