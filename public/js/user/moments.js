@@ -38,6 +38,3 @@ function hide_new_moments(){
 	});
 }
 
-function add_img(obj){
-	$(obj).parent().find('.upload-file').click();
-}

@@ -88,11 +88,16 @@ function toLogin(obj) {
 			var result = global_ajax(type,url,data);
 			console.log(result);
 			if (result.message=='success') {
-				layer.msg(result.message);
+				// layer.msg(result.message);
 				// console.log(result.rows[0].token);
+				//loading带文字
+				layer.open({
+					type: 2
+					,content: '登录中'
+				});
 				$.cookie('loginInfo',JSON.stringify(result.rows)); 
 				setTimeout(function(){
-					window.location.href='home';
+					window.location.href='moments';
 				},1000)
 			}else{
 				layer.msg(result.tips);

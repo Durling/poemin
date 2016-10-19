@@ -57,7 +57,13 @@
 					</a>
 				</span>
 			</p>
-			<img src="<%=qiniuDoname%><%=el.file_name%>?imageView2/2/w/500" alt="">
+
+			<%if(el.file_type==1){ %> 
+				<img src="<%=qiniuDoname%><%=el.file_name%>?imageView2/2/w/500" alt="">
+			<%}else if (el.file_type==2){%>
+				<video src="<%=qiniuDoname%><%=el.file_name%>" alt=""></video>
+			<%}%>
+			
 			<p class="col-lg-12 img-operation-p text-right">
 				<span class="label label-info img-operation">
 					<span status="0" onclick="changeLikeStatus(this)">
@@ -84,11 +90,7 @@
 
 
 	<form id="form1" enctype="multipart/form-data" method="post" action="" class="text-center">
-	    <select name="" id="uploadType" class="hide">
-	    	<option value="1">诗笔迹</option>
-	    	<option value="2">背景图</option>
-	    </select>
-	    <input type="file" name="qiniu_upload_file" id="qiniu_upload_file" onchange="uploadMyHaddwriting()"/ multiple="multiple" class="hide">
+	    <input type="file" name="qiniu_upload_file" id="qiniu_upload_file" onchange="uploadMyHaddwriting()" multiple="multiple" class="hide">
 	    <span class="btn btn-info" onclick="click_prev_input(this)">上传我的笔迹</span>
 	</form>
 

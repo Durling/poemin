@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 
 var localhost = {
+	qiniuDoname : 'http://oe71y3abh.bkt.clouddn.com/',
     mysql: {
 		host:'127.0.0.1',
 		user:'root',
@@ -9,17 +10,16 @@ var localhost = {
 		database:'poemin',
 		port:3306
     },
-    qiniuDoname : 'http://oe71y3abh.bkt.clouddn.com/',
-    // redis数据库配置
     redis: {
+    	ip: '127.0.0.1',
         port: 6379,
-        ip: '127.0.0.1',
-        pwd: 'lalocal',
+        pwd: '12345',
         db: 6,
         prefix: 'poemin:'
     }
 };
 var dev = {
+	qiniuDoname : 'http://oe71y3abh.bkt.clouddn.com/',
     mysql: {
 		host:'127.0.0.1',
 		user:'root',
@@ -27,18 +27,17 @@ var dev = {
 		database:'poemin',
 		port:3306
     },
-    qiniuDoname : 'http://oe71y3abh.bkt.clouddn.com/',
-    // redis数据库配置
     redis: {
+    	ip: '127.0.0.1',
         port: 6379,
-        ip: '127.0.0.1',
-        pwd: 'lalocal',
+        pwd: '12345',
         db: 6,
         prefix: 'poemin:'
     }
 
 };
 var produ = {
+	qiniuDoname : 'http://oe71y3abh.bkt.clouddn.com/',
     mysql: {
 		host:'127.0.0.1',
 		user:'root',
@@ -46,12 +45,10 @@ var produ = {
 		database:'poemin',
 		port:3306
     },
-    qiniuDoname : 'http://oe71y3abh.bkt.clouddn.com/',
-    // redis数据库配置
     redis: {
+    	ip: '127.0.0.1',
         port: 6379,
-        ip: '127.0.0.1',
-        pwd: 'lalocal',
+        pwd: '12345',
         db: 6,
         prefix: 'poemin:'
     }

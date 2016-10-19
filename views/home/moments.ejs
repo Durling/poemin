@@ -148,8 +148,15 @@
 	<div class="new-moments-div hide">
 		<textarea class="moments-content" cols="30" rows="10" placeholder="这一刻的诗想..." style="width:100%"></textarea>
 		<p class="add-img-p">
-			<span class="add-img-btn" onclick="add_img(this)">+</span>
-			<input type="file" class="upload-file hide">
+      <form id="form1" enctype="multipart/form-data" method="post" action="" class="text-center">
+        <select name="" id="uploadType" class="hide">
+          <option value="3">诗友圈</option>
+          <option value="2">背景图</option>
+          <option value="1">诗笔迹</option>
+        </select>
+  			<span class="add-img-btn" onclick="add_img(this)">+</span>
+        <input type="file" name="qiniu_upload_file" id="qiniu_upload_file" onchange="uploadMyHaddwriting()" multiple="multiple" class="upload-file hide">
+      </form>
 		</p>
 		<p class="col-lg-12">
 			<span>所在位置</span>
@@ -200,6 +207,7 @@
 
 <script src="js/user/login.js"></script>
 <script src="js/poems/search.js"></script>
+<script src="js/basic/qiniu-upload.js"></script>
 <script src="js/user/moments.js"></script>
 
 

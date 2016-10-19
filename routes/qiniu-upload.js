@@ -12,9 +12,9 @@ var express = require('express'),
 /**
  * 配日志
  */
-// var logger = require('../log4js').logger;
-// var logger_error = require('../log4js').logger_error;  
-// logger.info("=== this is log from qiniu-upload.js ===");
+var logger = require('../log4js').logger;
+var logger_error = require('../log4js').logger_error;  
+logger.info("=== this is log from qiniu-upload.js ===");
 
 
 /**
@@ -43,33 +43,33 @@ function uptoken(bucket, key) {
 
 // 上传图片文件
 router.post('/file-upload', function (req,res) {
-	// console.log(req.url,req.body);
+	logger.info(req.url,req.body);
 	var poemId = req.query.poemId;
-	// console.log(poemId);
+	console.log(poemId);
 	var fileNameList = [];
 	var form = new multiparty.Form();//实例一个multiparty
 	form.uploadDir = "public/img/qiniu-upload/";//设置文件储存路径
 	//开始解析前台传过来的文件
 	form.parse(req, function(err, fields, files) {
-		console.log(fields,files);
+		logger.info(fields,files);
 		for (var item in fields){
 			console.log(fields[item][0]);
 		}
 		var nowDateTimeStr = fields.nowDateTimeStr;
-		var index = fields.index;
-		var uploadType = fields.uploadType;
+		var file_type = fields.file_type;
+		var file_index = fields.file_index;
 		// console.log(nowDateTimeStr);
 		var filesTmp = JSON.stringify(files);
 		var pr = JSON.parse(filesTmp);
 		// console.log(pr.upfiles.length);
 		if(err){
-			console.log('parse error: ' + err);
+			logger_error.error('parse error: ' + err);
 		}else{
 			for (var i = 0 ; i < pr.upfiles.length ; i++) {
 				var inputFile = files.upfiles[i];//获取第一个文件
 				var finalname = inputFile.originalFilename;
 				var randomStr = Math.round(Math.random() * nowDateTimeStr);
-				finalname = nowDateTimeStr+'_'+uploadType+'_'+index+'_'+randomStr;
+				finalname = nowDateTimeStr+'_'+file_type+'_'+file_index+'_'+randomStr;
 				//上传到七牛后保存的文件名
 				key = finalname;
 				// console.log(key);
@@ -102,7 +102,20 @@ router.post('/file-upload', function (req,res) {
 	        // console.log(ret);
 	        // console.log(ret.hash, ret.key, ret.persistentId);   
 			// res.json(ret);
-			connectMysql(ret);
+
+			//构建bucketmanager对象
+			var client = new qiniu.rs.Client();
+			//获取文件信息
+			client.stat(bucket, key, function(err1, ret1) {
+			  if (!err1) {
+			    console.log(ret,ret1);
+			    connectMysql(ret,ret1);
+			  } else {
+			    console.log(err1);
+			  }
+			});
+
+			
 	      } else {
 	        // 上传失败， 处理返回代码
 	        // console.log(err);
@@ -111,9 +124,15 @@ router.post('/file-upload', function (req,res) {
 	  });
 	}
 
-	function connectMysql(ret){
-		var query = 'insert into handwriting_file(file_name,poemId) values("'+ret.key+'","'+poemId+'");';
-		// console.log(query);
+	function connectMysql(ret,ret1){
+		var file_type = 0;
+		if (ret1.mimeType.indexOf('image')>=0) {
+			file_type = 1;
+		}else if(ret1.mimeType.indexOf('video')>=0){
+			file_type = 2;
+		}
+		var query = 'insert into handwriting_file(file_name,type_name,file_type,poemId) values("'+ret.key+'","'+ret1.mimeType+'",'+file_type+','+poemId+');';
+		console.log(query);
 		connection.query(query,function(errorinsert,resinsert){
 			if (errorinsert) {
 				// console.log(errorinsert);
@@ -130,7 +149,6 @@ router.post('/file-upload', function (req,res) {
 			}
 		})
 	}
-
 
 });
 

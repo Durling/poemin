@@ -14,7 +14,27 @@ function delFile (obj) {
 function changeLikeStatus(obj){
 	// console.log(loginInfo);
 	if (loginInfo==undefined||loginInfo==null||loginInfo=='') {
-		layer.msg('请先登录后再操作');
+		var tips = '需要先登录后才能操作';
+		//询问框
+		// layer.open({
+		// 	content: tips
+		// 	,btn: ['去登录','取消']
+		// 	,yes: function(index){
+		// 		window.location.href='login';
+		// 		layer.close(index);
+		// 	}
+		// });
+
+		//底部对话框
+		layer.open({
+			content: tips
+			,btn: ['去登录', '取消']
+			,skin: 'footer'
+			,yes: function(index){
+				window.location.href='login';
+			}
+		});
+
 		return false;
 	}
 	var targetTable = 'handwriting_file',
