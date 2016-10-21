@@ -34,12 +34,16 @@ var connection = mysql.createConnection({
 function global_reqType_list(req,res,type){
 	// console.log(req.url,req.body);
 	if(type=='get'){
+		var targetExtra='',targetMatch='id';
 		var n = req.query,query;
-		if (n.targetExtra==undefined||n.targetExtra==null) {
-			n.targetExtra = '';
+		if (n.targetMatch!=undefined&&n.targetMatch!=null) {
+			targetMatch = n.targetMatch;
+		}
+		if (n.targetExtra!=undefined&&n.targetExtra!=null) {
+			targetExtra = n.targetExtra;
 		}
 		if (n.targetId>0) {
-			query = 'select '+n.targetField+' from '+n.targetTable+' where '+n.targetMatch+'='+n.targetId+' '+n.targetExtra+';';
+			query = 'select '+n.targetField+' from '+n.targetTable+' where '+targetMatch+'='+n.targetId+' '+targetExtra+';';
 		}else{
 			query = 'select '+n.targetField+' from '+n.targetTable+';';
 		}
@@ -113,6 +117,11 @@ router.get('/country', function (req,res) {
 // 获取个人详情
 router.get('/user', function (req,res) {
 	var type = 'get';
+	global_reqType_list(req,res,type);
+});
+// 修改个人详情
+router.put('/user', function (req,res) {
+	var type = 'put';
 	global_reqType_list(req,res,type);
 });
 
@@ -260,3 +269,8 @@ router.get('/getFiles', function (req,res) {
 
 
 module.exports = router;
+
+
+
+
+

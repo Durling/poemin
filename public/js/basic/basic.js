@@ -80,7 +80,7 @@ function global_ajax(type,url,data){
 		  	list = data;
 		  },
 		  error: function(err){
-		  	layer.msg(err);
+		  	console.log(err);
 		  }
 		})
 	}else if(type=='post'){  //新增
@@ -95,7 +95,7 @@ function global_ajax(type,url,data){
 		  	list = data;
 		  },
 		  error: function(err){
-		  	layer.msg(err);
+		  	console.log(err);
 		  }
 		})
 	}else if(type=='put'){ //编辑
@@ -110,7 +110,7 @@ function global_ajax(type,url,data){
 		  	list = data;
 		  },
 		  error: function(err){
-		  	layer.msg(err);
+		  	console.log(err);
 		  }
 		})
 	}else if(type=='delete'){  //删除 暂时不做
@@ -124,7 +124,7 @@ function global_ajax(type,url,data){
 		//   	list = data;
 		//   },
 		//   error: function(err){
-		//   	layer.msg(err);
+		//   	console.log(err);
 		//   }
 		// })
 	}
@@ -150,7 +150,7 @@ function global_ajax2(type,url,data){
 				list = data;
 			},
 			error: function(err){
-				layer.msg(err);
+				console.log(err);
 			}
 		})
 	}else if(type=='put'){ //编辑

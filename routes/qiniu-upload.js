@@ -65,6 +65,7 @@ router.post('/file-upload', function (req,res) {
 		if(err){
 			logger_error.error('parse error: ' + err);
 		}else{
+
 			for (var i = 0 ; i < pr.upfiles.length ; i++) {
 				var inputFile = files.upfiles[i];//获取第一个文件
 				var finalname = inputFile.originalFilename;
@@ -82,6 +83,7 @@ router.post('/file-upload', function (req,res) {
 				fs.renameSync(old_name,new_name);
 				fileNameList.push(new_name);	
 			}
+
 		}
 		// console.log(fileNameList);
 		for (var i = 0; i < fileNameList.length; i++) {
@@ -109,6 +111,7 @@ router.post('/file-upload', function (req,res) {
 			client.stat(bucket, key, function(err1, ret1) {
 			  if (!err1) {
 			    console.log(ret,ret1);
+			    
 			    connectMysql(ret,ret1);
 			  } else {
 			    console.log(err1);

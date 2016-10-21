@@ -32,7 +32,7 @@ function uploadMyHaddwriting(obj){
     }else{
         for(var i=0;i<upload_length;i++){
             if($('#qiniu_upload_file')[0].files[i].size > 2048*2048){
-                var tips = $('#qiniu_upload_file')[0].files[i].name + "这个文件大于2M！请重新选择！";
+                var tips = $('#qiniu_upload_file')[0].files[i].name + "这个文件大于4M！请重新选择！";
                 //信息框
                 layer.open({
                     content: tips
@@ -78,8 +78,9 @@ function uploadMyHaddwriting(obj){
             data = fd;
         // layer.msg(url);
         var rs = global_ajax2(type,url,data);
+        
         rs = JSON.parse(rs);
-        // console.log(rs);
+        console.log(rs);
         // layer.msg(rs.ret.key);
 
         // $('.img-preview').attr('src',qiniuDoname+rs.key+'?imageView2/2/w/600');

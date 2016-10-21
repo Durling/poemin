@@ -40,6 +40,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', require('./routes/pages'));
 app.use('/admin', require('./routes/admin'));
 app.use('/login', require('./routes/login'));
+app.use('/email', require('./routes/email'));
 app.use('/qiniu-upload', require('./routes/qiniu-upload'));
 
 

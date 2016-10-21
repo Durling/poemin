@@ -1,0 +1,35 @@
+<%- include ../global/header.ejs %>
+<%- include ../global/top.ejs %>
+<style>
+	
+</style>
+<link rel="stylesheet" href="css/user/login.css">
+
+<div class="container">
+	
+	<div class="col-lg-12 text-center">
+		<hr>
+		<p class="p-email">
+			<input type="text" class="my-email" value="878877528@qq.com">
+			<span class="btn btn-info btn-xs" onclick="sendEmailCode(this)">发送验证码</span>
+			<input type="text" id="my-email-code" value="" placeholder="验证码">
+			<span class="btn btn-info btn-xs" onclick="verifyEmailCode(this)">验证</span>
+		</p>
+
+		<hr>
+
+		<hr>
+
+	</div>
+
+</div>
+
+
+<%- include ../global/bottom.ejs %>
+
+<script src="js/global/md5.js"></script>
+<script src="js/poems/search.js"></script>
+<script src="js/home/home.js"></script>
+
+
+<%- include ../global/footer.ejs %>
