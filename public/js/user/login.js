@@ -96,11 +96,18 @@ function toLogin(obj) {
 					,content: '登录中'
 				});
 				$.cookie('loginInfo',JSON.stringify(result.rows)); 
+				var userId =  result.rows[0].id;
 				setTimeout(function(){
-					window.location.href='moments';
+					window.location.href='home?uid='+userId;
 				},1000)
 			}else{
-				layer.msg(result.tips);
+				//提示
+				layer.open({
+					content: result.tips
+					,skin: 'msg'
+					,time: 2 //2秒后自动关闭
+				});
+				// layer.msg(result.tips);
 			}
 		}
 	}

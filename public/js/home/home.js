@@ -105,6 +105,27 @@ function updateEmailStatus () {
 
 
 
+// 修改主要信息
+function show_eidt_user_info(){
+	$('.eidt-user-info-div').removeClass('hide').addClass('animated fadeInRightBig');
+	$('.eidt-user-info-div').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+		$('.eidt-user-info-div').removeClass('animated fadeInRightBig')
+	});
+}
+
+function hide_eidt_user_info (obj) {
+	$('.eidt-user-info-div').addClass('animated fadeOutRightBig');
+	$('.eidt-user-info-div').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+		$('.eidt-user-info-div').addClass('hide').removeClass('animated fadeOutRightBig');
+	});
+}
+
+
+function logout(){
+	$.cookie('loginInfo','');
+	window.location.href='login';
+}
+
 
 
 
