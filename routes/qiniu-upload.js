@@ -79,8 +79,10 @@ router.post('/file-upload', function (req,res) {
 				// console.log(token);
 				var new_name = form.uploadDir+finalname;//获取文件名
 				var old_name = inputFile.path;//获取文件路径
-				// console.log(new_name,old_name);
+				console.log(new_name,old_name);
 				fs.renameSync(old_name,new_name);
+				console.log(new_name,old_name);
+				
 				fileNameList.push(new_name);	
 			}
 

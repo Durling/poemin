@@ -71,11 +71,26 @@ router.get('/poems',function (req,res,next){
 
 // 个人中心
 router.get('/home', function (req, res, next) {
-  var renderData = {
-    title: "个人中心"
-  };
-  res.render('home/home', renderData);
+	var n = req.query;
+	var query = 'select * from user where id='+n.uid+';';
+	connection.query(query,function(error,rows,fields){
+		if (rows.length>0) {
+			var renderData = {
+				title:"个人中心",
+				rs:rows[0],
+				qiniuDoname:config.qiniuDoname
+			};
+			// console.log(renderData);
+			res.render('home/home', renderData);
+		}else{
+			
+		}
+
+	})
+	
 });
+
+
 
 // 诗友圈
 router.get('/moments', function (req, res, next) {

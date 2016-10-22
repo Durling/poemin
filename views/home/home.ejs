@@ -1,13 +1,102 @@
 <%- include ../global/header.ejs %>
 <%- include ../global/top.ejs %>
 <style>
-	
+.home-info-0{
+    width: 100%;
+    margin-top: 1.5rem;
+    background: white;
+    padding: 1rem;
+}	
+.home-info-0 img{
+	width: 66px;
+}
+.home-info-0 ul,
+.home-info-0 p{
+    margin: 0;
+    padding: 0;
+    font-size: 1.6rem;
+}
+.home-info-0 li{
+    height: 100%;
+    line-height: 100%;
+    vertical-align: middle;
+}
+.home-info-0 .user-name p{
+	margin: .5rem 0;
+}
+.home-info-0 .grey {
+    font-size: 1.5rem;
+    color: #909090;
+    font-weight: lighter;
+}
 </style>
 <link rel="stylesheet" href="css/user/login.css">
 
+
+
 <div class="container">
+
+	<div class="home-info home-info-0" style="width:100%">
+		<ul class="list-unstyled list-inline">
+			<li><img src="<%-qiniuDoname%><%-rs.avatar%>?imageView2/2/w/100" alt=""></li>
+			<li class="user-name">
+				<p>
+					<strong><%-rs.userName%></strong>
+				</p>
+				<p class="grey">
+					<span>印象号:</span>
+					<span><%-rs.in_unique_code%></span>
+				</p>
+			</li>
+			<li class="grey" style="float:right;font-size:1.8rem;">
+				<i class="icon icon-cog"></i>
+			</li>
+		</ul>
+		
+	</div>
 	
+	<hr>
+
 	<div class="col-lg-12 text-center">
+
+		<p>
+			<span>email:</span>
+			<span><%-rs.email%></span>
+			<%if(rs.email_status==0){%>
+				<span>未认证</span>
+			<%}else if(rs.email_status==1){%>
+				<span>已认证</span>
+			<%}%>
+			<%if(rs.grade>=3){%>
+				<span>管理员</span>
+			<%}else{%>
+				<span></span>
+			<%}%>
+		</p>
+
+		<p>
+			<span>笔名:</span>
+			<span><%-rs.penName%></span>
+		</p>
+		<hr>
+		<p>
+			<span>性别:</span>
+			<%if(rs.sex==0){%>
+				<span>女</span>
+			<%}else if(rs.sex==1){%>
+				<span>男</span>
+			<%}%>
+		</p>
+		<p>
+			<span>城市:</span>
+			<span><%-rs.city%></span>
+		</p>
+		<p>
+			<span>个性签名:</span>
+			<span><%-rs.signature%></span>
+		</p>
+		
+		
 		<hr>
 		<p class="p-email">
 			<input type="text" class="my-email" value="878877528@qq.com">
@@ -24,6 +113,10 @@
 
 </div>
 
+<script>
+	console.log(<%-JSON.stringify(qiniuDoname)%>);
+	console.log(<%-JSON.stringify(rs)%>);
+</script>
 
 <%- include ../global/bottom.ejs %>
 

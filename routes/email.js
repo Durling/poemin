@@ -29,12 +29,13 @@ var connection = mysql.createConnection({
 
 
 
-var senderEmail = 'wepoem@foxmail.com',
-	pass = 'Myz20120520';
+var senderEmail = 'team@wepoem.com',
+	pass = 'Wp20120520',
+	serderName = '微诗团队';
 
 var transporter = nodemailer.createTransport({
     // service: 'Gmail',
-	host: "smtp.qq.com", // 主机
+	host: "smtp.exmail.qq.com", // 主机
 	port: 465, // SMTP 端口
 	secure: true, // use SSL
     auth: {
@@ -57,7 +58,7 @@ router.post('/send-email', function (req, res) {
 	// console.log(newCode6);
 
 	var mailOptions = {
-	    from: senderEmail, // sender address
+	    from: serderName+' <'+senderEmail+'>', // sender address
 	    to: n.email, // list of receivers
 	    subject: n.type+' ✔', // Subject line
 	    text: 'Hello world ✔', // plaintext body
