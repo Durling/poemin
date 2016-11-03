@@ -131,6 +131,7 @@ function global_ajax(type,url,data){
 	return list;
 }
 
+// 异步请求
 function global_ajax2(type,url,data){
 	// console.log(type,url,data);
 	var list;

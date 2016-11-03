@@ -30,6 +30,11 @@ function sendEmailCode(obj) {
     	// setTimeout(function(){
     	// 	$.cookie('emailCodeTimer',0);
     	// },3000)
+		//提示
+		$(obj).siblings('.some-tips').text('4位数字验证码已发送到你的邮箱，请注意查收，核对以后输入右侧框中，然后点击确认验证');
+		// setTimeout(function(){
+		// 	$(obj).siblings('.some-tips').text('');
+		// },3000)
     }else{
 
     }
@@ -43,16 +48,17 @@ function checkEmailCode(){
 
 // 验证输入的验证码是否正确
 function verifyEmailCode(obj){
-	var myEmailCode = $('#my-email-code').val();
+	var myEmailCode = $(obj).prev('.my-email-code').val();
 	if (myEmailCode==''||myEmailCode==undefined||myEmailCode==null) {
 	  //提示
-	  layer.open({
-	    content: '请输入您邮箱收到的6位验证码'
-	    ,skin: 'msg'
-	    ,time: 2 //2秒后自动关闭
-	  });
+	  $(obj).siblings('.some-tips').text('请输入您邮箱收到的4位数字验证码');
+	  // setTimeout(function(){
+	  // 	$(obj).siblings('.some-tips').text('');
+	  // },3000)
 	  return false;
 	}
+
+	myEmailCode = String(myEmailCode).toUpperCase()
 
 	var userId = Number($('.login-info-name').attr('userId'));
 	var form = {
@@ -68,21 +74,13 @@ function verifyEmailCode(obj){
     console.log(rs);
 
     if (rs.rows[0].email_code==myEmailCode) {
-	  //提示
-	  layer.open({
-	    content: 'success'
-	    ,skin: 'msg'
-	    ,time: 2 //2秒后自动关闭
-	  });
-
 	  updateEmailStatus();
     }else{
 	  //提示
-	  layer.open({
-	    content: 'error'
-	    ,skin: 'msg'
-	    ,time: 2 //2秒后自动关闭
-	  });
+	  $(obj).siblings('.some-tips').text('您输入的验证码不正确，请核对后重新输入');
+	  // setTimeout(function(){
+	  // 	$(obj).siblings('.some-tips').text('');
+	  // },3000)
     }
 }
 
@@ -101,6 +99,16 @@ function updateEmailStatus () {
 	var rs = global_ajax(type,url,data);
     // rs = JSON.parse(rs);
     console.log(rs);
+    if (rs.message=='success') {
+		//提示
+		layer.open({
+			content: '您的邮箱已验证成功'
+			,skin: 'msg'
+			,time: 2 //2秒后自动关闭
+		});
+    	// window.location.reload();
+    	$('.home-email .right-value .badge').addClass('ok').text('已验证');
+    }
 }
 
 
@@ -125,6 +133,33 @@ function logout(){
 	$.cookie('loginInfo','');
 	window.location.href='login';
 }
+
+
+
+
+function edit_info_one(obj){
+	var type = $(obj).attr('edit-type'),height;
+	if (type=='email') {
+		title='编辑邮箱';
+	}
+
+	//自定义标题风格
+	layer.open({
+		title: [
+		  title,
+		  'background-color: #00BCD4; color:#fff;'
+		]
+		,content: $('.info-edit-dev').clone(true).removeClass('hide').html()
+	});
+
+
+}
+
+
+
+
+
+
 
 
 

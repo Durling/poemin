@@ -83,7 +83,7 @@ router.get('/home', function (req, res, next) {
 			// console.log(renderData);
 			res.render('home/home', renderData);
 		}else{
-			
+
 		}
 
 	})

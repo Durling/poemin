@@ -48,7 +48,7 @@ var transporter = nodemailer.createTransport({
 router.post('/send-email', function (req, res) {
 	var n = req.body;
 	// console.log(n);
-	// var code2 = String(Math.floor(Math.random()*9000)+1000).substr(0,2);
+	var code4 = Math.floor(Math.random()*9000)+1000;
 	// console.log(code2);
 	var randomCode = Math.random().toString(36).substr(2).toUpperCase();
 	// console.log(randomCode);
@@ -62,7 +62,7 @@ router.post('/send-email', function (req, res) {
 	    to: n.email, // list of receivers
 	    subject: n.type+' ✔', // Subject line
 	    text: 'Hello world ✔', // plaintext body
-	    html: '<b>'+n.type+'>验证码:【'+newCode6+'】</b><br/><small>--诗印象' // html body
+	    html: '<b>'+n.type+'>验证码:【'+code4+'】</b><br/><small>--诗印象' // html body
 	};
 
 
@@ -75,7 +75,7 @@ router.post('/send-email', function (req, res) {
 	        var ret = {
 	        	message:'success',
 	        	info:info,
-	        	newCode6:newCode6
+	        	newCode6:code4
 	        }
 			updateUserEmailCode(req,res,ret);
 			// res.json(data);

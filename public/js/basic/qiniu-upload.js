@@ -17,10 +17,8 @@ function uploadMyHaddwriting(obj){
         type: 2
         ,content: '上传中'
     });
-    
     var upload_length =  $('#qiniu_upload_file')[0].files.length;
     // console.log('upload_length:',upload_length);
-
     if(upload_length >5 ){
         var tips = '上传的文件数量超过5个了！请重新选择！';
         //信息框
@@ -42,7 +40,6 @@ function uploadMyHaddwriting(obj){
             }
         }
     }
-
 
     var file_type=0,type_name;
     // file_type 0 全部 
