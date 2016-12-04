@@ -36,12 +36,18 @@
 		rows_files.sort(function(a,b){
 			return b.like_num - a.like_num;
 		})
+		var i = 0;
 		rows_files.forEach(function(el){ %>
-		<h4 class="text-center img-each" fileId="<%=el.id%>">
+		<h4 class="text-center img-each" index="<%=i%>" fileId="<%=el.id%>">
 			<p class="col-lg-12 small text-right">
 				<span style="float:left;">
 					<%if (el.is_original==1) {%>
 						<span class="badge">原创</span>
+					<%}%>
+					<%if(el.file_type==1){%>
+						<!-- <span class="badge">图片</span> -->
+					<%}else if (el.file_type==2) {%>
+						<span class="badge">小视频</span>
 					<%}%>
 					<%if (el.authorName!=''&&el.authorName!=null) {%>
 						<span>by</span>
@@ -52,7 +58,7 @@
 					<%if(el.created_at!=''&&el.created_at!=null){%>
 						<span><%-new Date(el.created_at).Format("yyyy-MM-dd hh:mm:ss")%></span>
 					<%}%>
-					<a href="">
+					<a href="javascript:;" thisId="<%=el.id%>" onclick="edit_hw_file(this)">
 						<span><i class="icon icon-info-sign"></i></span>
 					</a>
 				</span>
@@ -84,7 +90,7 @@
 			
 		</h4>
 		<hr>
-		<% })
+		<% i++})
 	}%>
 
 

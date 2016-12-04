@@ -43,7 +43,7 @@ function uptoken(bucket, key) {
 
 // 上传图片文件
 router.post('/file-upload', function (req,res) {
-	logger.info(req.url,req.body);
+	console.log(req.url,req.body);
 	var poemId = req.query.poemId;
 	console.log(poemId);
 	var fileNameList = [];
@@ -51,7 +51,7 @@ router.post('/file-upload', function (req,res) {
 	form.uploadDir = "public/img/qiniu-upload/";//设置文件储存路径
 	//开始解析前台传过来的文件
 	form.parse(req, function(err, fields, files) {
-		logger.info(fields,files);
+		console.log(fields,files);
 		for (var item in fields){
 			console.log(fields[item][0]);
 		}

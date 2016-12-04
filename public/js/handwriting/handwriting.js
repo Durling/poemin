@@ -118,6 +118,15 @@ function like_log(form,likeStatus,like_id,obj){
     	$(obj).attr('like_id',rs.resinsert.insertId);
     }
     
-
 }
+
+
+
+// 修改文件
+function edit_hw_file(obj){
+	var hId = $(obj).attr('thisId');
+	console.log(hId);
+}
+
+
 

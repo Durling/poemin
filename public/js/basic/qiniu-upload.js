@@ -74,6 +74,8 @@ function uploadMyHaddwriting(obj){
             url = 'qiniu-upload/file-upload?poemId='+poemId,
             data = fd;
         // layer.msg(url);
+        // console.log(type,url,data);
+        // return false;
         var rs = global_ajax2(type,url,data);
         
         rs = JSON.parse(rs);
