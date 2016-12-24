@@ -43,67 +43,59 @@ function uptoken(bucket, key) {
 
 // 上传图片文件
 router.post('/file-upload', function (req,res) {
-	console.log(req.url,req.body);
+	// console.log(req.url,req.body);
 	var poemId = req.query.poemId;
-	console.log(poemId);
-	var fileNameList = [];
+	console.log('poemId===>'+poemId);
 	var form = new multiparty.Form();//实例一个multiparty
 	form.uploadDir = "public/img/qiniu-upload/";//设置文件储存路径
 	//开始解析前台传过来的文件
 	form.parse(req, function(err, fields, files) {
 		console.log(fields,files);
-		for (var item in fields){
-			console.log(fields[item][0]);
-		}
-		var nowDateTimeStr = fields.nowDateTimeStr;
-		var file_type = fields.file_type;
-		var file_index = fields.file_index;
-		// console.log(nowDateTimeStr);
-		var filesTmp = JSON.stringify(files);
-		var pr = JSON.parse(filesTmp);
-		// console.log(pr.upfiles.length);
+		// for (var item in fields){
+		// 	console.log(fields[item][0]);
+		// }
+		var file_id_str = fields.file_id_str;
+		console.log('file_id_str===>'+file_id_str);
+		// var files = JSON.stringify(files);
+		// var files = JSON.parse(files);
+		console.log('upload_file.length===>'+files.upload_file.length);
 		if(err){
 			logger_error.error('parse error: ' + err);
 		}else{
 
-			for (var i = 0 ; i < pr.upfiles.length ; i++) {
-				var inputFile = files.upfiles[i];//获取第一个文件
-				var finalname = inputFile.originalFilename;
-				var randomStr = Math.round(Math.random() * nowDateTimeStr);
-				finalname = nowDateTimeStr+'_'+file_type+'_'+file_index+'_'+randomStr;
+			for (var i = 0 ; i < files.upload_file.length ; i++) {
+				var inputFile = files.upload_file[i];//获取第一个文件
+				// var finalname = inputFile.originalFilename;
+				var finalname = ''+file_id_str;
+				var old_name = inputFile.path;//获取文件路径
+				var new_name = form.uploadDir+finalname;//获取文件名
+				fs.renameSync(old_name,new_name);
+				// console.log('new_name===>'+new_name+'old_name===>'+old_name);
 				//上传到七牛后保存的文件名
 				key = finalname;
-				// console.log(key);
 				//生成上传 Token
 				token = uptoken(bucket, key);
-				// console.log(token);
-				var new_name = form.uploadDir+finalname;//获取文件名
-				var old_name = inputFile.path;//获取文件路径
-				console.log(new_name,old_name);
-				fs.renameSync(old_name,new_name);
-				console.log(new_name,old_name);
-				
-				fileNameList.push(new_name);	
+				// console.log('key===>'+key);
+				// console.log('token===>'+token);
+
+				uploadFile(token, key, new_name);		
 			}
 
 		}
-		// console.log(fileNameList);
-		for (var i = 0; i < fileNameList.length; i++) {
-			// console.log(fileNameList[i]);
-			filePath = fileNameList[i];
-			// 调用uploadFile上传
-			uploadFile(token, key, filePath);	
-		};
+
 	})
 
 	//构造上传函数
 	function uploadFile(uptoken, key, localFile) {
-		// console.log(uptoken, key, localFile);
+		// console.log('uptoken===>'+uptoken+' key===>'+key+' localFile===>'+localFile);
 	  	var extra = new qiniu.io.PutExtra();
 	    qiniu.io.putFile(uptoken, key, localFile, extra, function(err, ret) {
 	      if(!err) {
+
+	      	fs.unlinkSync(localFile);
+
 	        // 上传成功， 处理返回值
-	        // console.log(ret);
+	        console.log(ret);
 	        // console.log(ret.hash, ret.key, ret.persistentId);   
 			// res.json(ret);
 
@@ -122,6 +114,8 @@ router.post('/file-upload', function (req,res) {
 
 			
 	      } else {
+	      	fs.unlinkSync(localFile);
+
 	        // 上传失败， 处理返回代码
 	        // console.log(err);
 			res.json(err);

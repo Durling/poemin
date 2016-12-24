@@ -1,8 +1,17 @@
-var nowDateTimeStr = new Date().format("yyyyMMddhhmmss");
-var randomStr = Math.round(Math.random() * nowDateTimeStr);
-var randomOnce =  Math.random().toString(36).substr(20).toUpperCase();
-var uptimestr = nowDateTimeStr+'_'+randomOnce+'_'+randomStr;
-// console.log(uptimestr);
+// var randomOnce =  Math.random().toString(36).substr(20).toUpperCase();
+// var nowDateTimeStr = new Date().format("yyyyMMddhhmmss");
+// var randomStr = Math.round(Math.random() * 100);
+// var file_id = nowDateTimeStr+'R'+randomStr;
+// console.log(file_id);
+
+// 获取文件唯一id
+function get_file_id(index,type){
+    var nowDateTimeStr = new Date().format("yyyyMMddhhmmss");
+    var randomStr = Math.round(Math.random() * 100);
+    var file_id = nowDateTimeStr+'R'+randomStr+'T'+type+'I'+index;
+    // console.log(file_id);
+    return file_id;
+}
 
 function click_prev_input(obj){    
     $(obj).prev('input').click();
@@ -17,7 +26,8 @@ function uploadMyHaddwriting(obj){
         type: 2
         ,content: '上传中'
     });
-    var upload_length =  $('#qiniu_upload_file')[0].files.length;
+    var upload_files = $('#qiniu_upload_file')[0].files;
+    var upload_length =  upload_files.length;
     // console.log('upload_length:',upload_length);
     if(upload_length >5 ){
         var tips = '上传的文件数量超过5个了！请重新选择！';
@@ -42,15 +52,11 @@ function uploadMyHaddwriting(obj){
     }
 
     var file_type=0,type_name;
-    // file_type 0 全部 
-    // file_type 1 图片 
-    // file_type 2 视频 
-    // file_type 3 word 
-    // file_type 4 excel 
-    // file_type 5 pdf
+    // file_type 0全部  1图片 2视频 3文档
     for (var i = 0; i < upload_length; i++) {
+        var upload_file = upload_files[i];
 
-        type_name = String($('#qiniu_upload_file')[0].files[i].type);
+        type_name = String(upload_file.type);
         // console.log(type_name,type_name.indexOf('image'));
         if (type_name.indexOf('image')>=0) {
             file_type=1;
@@ -59,13 +65,14 @@ function uploadMyHaddwriting(obj){
         }
         // return false;
 
+        file_id_str = get_file_id(i,file_type);
+        console.log(file_id_str);
+
         var fd = new FormData();
-        fd.append("upfiles",$('#qiniu_upload_file')[0].files[i]);
-        fd.append("name",$('#name').val());
-        fd.append("type_name",type_name);
-        fd.append("file_type",'TYPE'+file_type);
-        fd.append("file_index",'INDEX'+i);
-        fd.append("nowDateTimeStr",nowDateTimeStr);
+        fd.append("upload_file",upload_file);
+        // fd.append("name",$('#name').val());
+        // fd.append("type_name",type_name);
+        fd.append("file_id_str",file_id_str);
         // if (fd.get('upfiles')==undefined || fd.get('upfiles')=='undefined' || fd.get('upfiles')=='') {
         //     // return false;
         // }
@@ -90,7 +97,7 @@ function uploadMyHaddwriting(obj){
             },1000)
         }else{
             var tips = '上传错误';
-            layer.msg(tips);
+            console.log(tips);
             //信息框
             layer.open({
                 content: tips

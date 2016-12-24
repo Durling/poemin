@@ -1,14 +1,8 @@
 <%- include ../global/header.ejs %>
-
 <%- include ../global/top.ejs %>
-
-
 <style>
-
 </style>
-
 <link rel="stylesheet" href="css/handwriting/handwriting_file.css">
-
 <div class="col-lg-12">
 	<br>
 	<!-- 诗详情 -->
@@ -26,7 +20,6 @@
 		</h4>
 		<% })
 	}%>
-	
 </div>
 
 <div class="col-lg-12 handwriting-div" style="padding:0;">
@@ -64,8 +57,10 @@
 				</span>
 			</p>
 
-			<%if(el.file_type==1){ %> 
-				<img src="<%=qiniuDoname%><%=el.file_name%>?imageView2/2/w/500" alt="">
+			<%if(el.file_type==1){ 
+				photoCut = '?imageView2/1/w/500/h/500';
+			%> 
+				<img src="<%=qiniuDoname%><%=el.file_name%><%=photoCut%>" alt="">
 			<%}else if (el.file_type==2){%>
 				<video src="<%=qiniuDoname%><%=el.file_name%>" alt=""></video>
 			<%}%>
@@ -94,10 +89,16 @@
 	}%>
 
 
-
-	<form id="form1" enctype="multipart/form-data" method="post" action="" class="text-center">
-	    <input type="file" name="qiniu_upload_file" id="qiniu_upload_file" onchange="uploadMyHaddwriting()" multiple="multiple" class="hide">
+	<form id="upload_form" enctype="multipart/form-data" method="post" action="" class="text-center">
+	    <input type="file" name="qiniu_upload_file" id="qiniu_upload_file" onchange="uploadMyHaddwriting()" multiple="multiple" accept="image/*" class="hide">
 	    <span class="btn btn-info" onclick="click_prev_input(this)">上传我的笔迹</span>
+	</form>
+
+	<br>
+
+	<form id="upload_form" enctype="multipart/form-data" method="post" action="" class="text-center hide">
+	    <input type="file" name="qiniu_upload_file" id="qiniu_upload_file" onchange="uploadMyHaddwriting()" multiple="multiple" accept="video/*" class="hide">
+	    <span class="btn btn-info" onclick="click_prev_input(this)">上传我的小视频</span>
 	</form>
 
 	<hr>
@@ -117,7 +118,6 @@
 		<br>
 	</p>
 
-
 </div>
 
 <script>
@@ -128,15 +128,11 @@
 	// 
 	$(document).ready(function(){
 		$('.nav-common').addClass('hide');
-	})
-	
+	})	
 </script>
 
-
 <%- include ../global/bottom.ejs %>
-
 <script src="js/handwriting/handwriting.js"></script>
 <script src="js/basic/qiniu-upload.js"></script>
 <script src="js/poems/search.js"></script>
-
 <%- include ../global/footer.ejs %>

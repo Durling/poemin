@@ -51,7 +51,7 @@
 			</li>
 		</ul>
 	</div>
-	<div class="home-info home-info-1 home-email" edit-type='email' onclick="edit_info_one(this)">
+	<div class="home-info home-info-1 home-email" edit-type="email" onclick="edit_info_one(this)">
 		<ul class="list-unstyled list-inline">
 			<li class="left-title">
 				<span style="color:#000000!important;">邮箱</span>
@@ -66,18 +66,20 @@
 			</li>
 		</ul>
 	</div>
-	<div class="home-info home-info-1" edit-type='email' onclick="edit_info_one(this)">
+	<div class="home-info home-info-1 home-phone" edit-type="phone">
 		<ul class="list-unstyled list-inline">
 			<li class="left-title">
 				<span style="color:#000000!important;">手机号</span>
 			</li>
 			<li class="right-value">
 				<span><%-rs.phone%></span>
-				<%if(rs.phone_status==1){%>
-					<span class="badge ok">已验证</span>
-				<%}else{%>
-					<span class="badge">未验证</span>
-				<%}%>
+				<span class="hide">
+					<%if(rs.phone_status==1){%>
+						<span class="badge ok">已验证</span>
+					<%}else{%>
+						<span class="badge">未验证</span>
+					<%}%>
+				</span>
 			</li>
 		</ul>
 	</div>

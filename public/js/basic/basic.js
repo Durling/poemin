@@ -151,7 +151,8 @@ function global_ajax2(type,url,data){
 				list = data;
 			},
 			error: function(err){
-				console.log(err);
+				// console.log(err);
+				list = err;
 			}
 		})
 	}else if(type=='put'){ //编辑
