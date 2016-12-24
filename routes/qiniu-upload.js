@@ -33,7 +33,7 @@ var connection = mysql.createConnection({
 qiniu.conf.ACCESS_KEY = 'UtR9-061L8qFst2lvhiBR9Tc9E_u3sprXyOnTbSS';
 qiniu.conf.SECRET_KEY = 'huy_QYClFu6AEjVqc24cwX_98UjtWjKczjIAcjpF';
 //要上传的空间
-bucket = 'poemin';
+bucket = 'wepoem-m';
 
 //构建上传策略函数
 function uptoken(bucket, key) {
