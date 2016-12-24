@@ -8,7 +8,7 @@
 function get_file_id(index,type){
     var nowDateTimeStr = new Date().format("yyyyMMddhhmmss");
     var randomStr = Math.round(Math.random() * 100);
-    var file_id = nowDateTimeStr+'R'+randomStr+'T'+type+'I'+index;
+    var file_id = nowDateTimeStr+'R'+randomStr+'T'+type+'N'+index;
     // console.log(file_id);
     return file_id;
 }

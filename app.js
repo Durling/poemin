@@ -51,7 +51,7 @@ app.use(session({
     host: config.redis.ip,
     port: config.redis.port,
     db: config.redis.db,
-    pass: config.redis.pwd,
+    // pass: config.redis.pwd,
     prefix : config.redis.prefix,
     ttl:10800 // 3小时
   }),

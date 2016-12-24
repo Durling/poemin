@@ -22,8 +22,9 @@ router.get('/',function (req,res,next){
 
 // 诗列表、详情
 router.get('/poems',function (req,res,next){
+
 	var act = req.query.act;
-	// console.log(act);
+	console.log(act);
 	var act_status;
 	if (req.query.id>0) {
 		var query = 'select * from poems where id='+req.query.id+';';
