@@ -123,7 +123,7 @@ router.get('/handwriting', function (req, res, next) {
 	connection.query(query,function(error,rows,fields){
 		rows_files = rows;
 
-		var query2 = 'select id,title,authorName from poems where id="'+poemId+'";';
+		var query2 = 'select id,title,content,authorName from poems where id="'+poemId+'";';
 		connection.query(query2,function(error2,rows2,fields2){
 			rows_poems = rows2;
 
