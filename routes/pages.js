@@ -50,7 +50,7 @@ router.get('/poems',function (req,res,next){
 		connection.query(query,function(error,rows,fields){
 			if(act=='add'){
 				act_status = 2; //新建 
-				title = '写一首诗';
+				title = '写个诗';
 			}else if(act=='correction'){
 				act_status = 3;
 				title = '纠错'; //纠错

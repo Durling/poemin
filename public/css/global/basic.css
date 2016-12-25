@@ -8,6 +8,19 @@ body {
     font-size: 10px!important;
 }
 
+*,*:hover,*:active,*:visited,*:link,*:focus{
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent;
+    outline:none;
+    /*background: none;*/
+    text-decoration: none;
+}
+
+/*在IOS下，input 表单默认会有个内阴影，一定程度上影响视觉一致，可通过设置下面代码去掉：*/
+input,textarea{
+    -webkit-appearance: none;
+}
+
 hr{
 	width: 100%;
 	display: table;
@@ -29,7 +42,8 @@ hr{
 }
 .nav-common{
 	height: 5rem;
-	background-color: #5bc0de;
+    background: -webkit-linear-gradient(left,#f4ffe9,#44BFFA);
+    background: linear-gradient(to right,#f4ffe9,#44BFFA);
 }
 .nav-common ul{
 	height: 5rem;
