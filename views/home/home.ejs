@@ -44,10 +44,14 @@
 	<div class="home-info home-info-1">
 		<ul class="list-unstyled list-inline">
 			<li class="left-title">
-				<span style="color:#000000!important;">印象号</span>
+				<span style="color:#000000!important;">微诗号</span>
 			</li>
 			<li class="right-value">
-				<span><%-rs.in_unique_code%></span>
+				<%if(rs.in_unique_code!=null){%>
+						<span><%-rs.in_unique_code%></span>
+				<%}else{%>
+						<span class="">设置</span>
+				<%}%>
 			</li>
 		</ul>
 	</div>
@@ -162,24 +166,40 @@
 
 	<div class="info-edit-dev hide">
 		<div class="p-email text-center">
+			<p>
+				<%if(rs.email_status==1){%>
+					<span class="badge ok">已验证</span>
+				<%}else{%>
+					<span class="badge">未验证</span>
+				<%}%>
+			</p>
+			<p>
+				<input type="text" class="my-email" placeholder="邮箱">
+			</p>
+			
 			<%if(rs.email_status==1){%>
-				<span class="badge ok">已验证</span>
+				<p>
+					<input type="text" placeholder="登录密码">
+				</p>
+				<p>
+					<button>修改邮箱</button>
+				</p>
+				
 			<%}else{%>
-				<span class="badge">未验证</span>
-			<%}%>
-			<hr>
-			<input type="text" class="my-email" value="878877528@qq.com">
-			<hr>
-			<%if(rs.email_status==1){%>
-				<input type="password" class="btn btn-default btn-xs" style="width:100px;" value="" placeholder="登录密码">
-				<span class="btn btn-info btn-xs">修改邮箱</span>
-			<%}else{%>
-				<span class="btn btn-info btn-xs" onclick="sendEmailCode(this)">发送验证码</span>
-				<input class="btn btn-default btn-xs my-email-code" style="width:60px;" maxlength="4" type="tel" value="" placeholder="验证码">
-				<span class="btn btn-info btn-xs" onclick="verifyEmailCode(this)">确认验证</span>
+				<p>
+					<button onclick="sendEmailCode(this)">发送验证码到邮箱</button>
+				</p>
+				<p>
+					<input class="my-email-code" maxlength="4" type="tel" value="" placeholder="验证码">
+				</p>
+				<p>
+					<button onclick="verifyEmailCode(this)">确认验证</button>
+				</p>
 			<%}%>
 			<br>
-			<br>
+			<p>
+				<span class="btn btn-default btn-xs btn-close-m"><i class="icon icon-remove"></i></span>
+			</p>
 			<p class="some-tips"></p>
 			
 
@@ -203,14 +223,16 @@
 					&nbsp;
 					<!-- <small class="grey"><i class="icon icon-pencil"></i></small> -->
 				</p>
-				<p class="grey">
-					<span>印象号:</span>
-					<span><%-rs.in_unique_code%></span>
-				</p>
+				<%if (rs.in_unique_code!=null&&String(rs.in_unique_code).length>0) {%>
+					<p class="grey">
+						<span>微诗号:</span>
+						<span><%-rs.in_unique_code%></span>
+					</p>
+				<%}%>
 			</li>
 			<li class="grey" style="float:right;font-size:1.8rem;padding:2.22rem 1rem;">
 				<p>
-					<span><i class="icon icon-qrcode"></i></span>
+					<span><i class="icon icon-cog"></i></span>
 				</p>
 			</li>
 		</ul>
