@@ -4,7 +4,7 @@ var app = express();
 var localhost = {
 	qiniuDoname : 'http://oio0fd7aa.bkt.clouddn.com/',
     mysql: {
-		host:'127.0.0.1',
+		host:'nuo.nuoluan.com',
 		user:'root',
 		password:'root',
 		database:'wepoem',
@@ -21,7 +21,7 @@ var localhost = {
 var dev = {
 	qiniuDoname : 'http://oio0fd7aa.bkt.clouddn.com/',
     mysql: {
-		host:'127.0.0.1',
+		host:'nuo.nuoluan.com',
 		user:'root',
 		password:'root',
 		database:'wepoem',
@@ -39,7 +39,7 @@ var dev = {
 var produ = {
 	qiniuDoname : 'http://oio0fd7aa.bkt.clouddn.com/',
     mysql: {
-		host:'127.0.0.1',
+		host:'nuo.nuoluan.com',
 		user:'root',
 		password:'root',
 		database:'wepoem',
