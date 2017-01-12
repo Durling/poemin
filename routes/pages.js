@@ -24,7 +24,7 @@ router.get('/',function (req,res,next){
 router.get('/poems',function (req,res,next){
 
 	var act = req.query.act;
-	console.log(act);
+	console.log('act===>'+act);
 	var act_status;
 	if (req.query.id>0) {
 		var query = 'select * from poems where id='+req.query.id+';';
@@ -63,7 +63,7 @@ router.get('/poems',function (req,res,next){
 				rows:rows,
 				act_status:act_status
 			};
-			// console.log(renderData);
+			console.log('renderData===>'+renderData);
 			res.render('poems/poems',renderData);
 		})
 	}
