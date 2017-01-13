@@ -18,7 +18,7 @@ var localhost = {
         prefix: 'session_wepoem_m:'
     }
 };
-var dev = {
+var development = {
 	qiniuDoname : 'http://oio0fd7aa.bkt.clouddn.com/',
     mysql: {
 		host:'nuo.nuoluan.com',
@@ -36,7 +36,7 @@ var dev = {
     }
 
 };
-var produ = {
+var production = {
 	qiniuDoname : 'http://oio0fd7aa.bkt.clouddn.com/',
     mysql: {
 		host:'nuo.nuoluan.com',
@@ -58,9 +58,9 @@ var produ = {
 
 //需要在各自的环境运行 export NODE_ENV=localhost
 if (app.get('env') == 'development') {
-    module.exports = dev;
+    module.exports = development;
 } else if (app.get('env') == 'production') {
-    module.exports = produ;
+    module.exports = production;
 } else if (app.get('env') == 'localhost') {
     module.exports = localhost;
 }else{

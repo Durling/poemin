@@ -24,7 +24,7 @@ function getImgs(){
 	// console.log(rs);
 	var resultImg = [];
 	$.each(rs.results,function(i,n){
-		if (n.indexOf('TYPE2')>0) {
+		if (n.indexOf('T2')>0) {
 			resultImg.push(n);
 		}
 	})
