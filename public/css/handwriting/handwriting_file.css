@@ -49,12 +49,10 @@ i.icon.icon-heart {
 }
 
 .upload-new-hw-div {
-    position: absolute;
-    height: 100%;
+    height: 100px;
     width: 100%;
     background: white;
-    z-index: 11;
-    top: 0;
+    border: solid 1px #eeeeee;
 }
 .new-hw-header {
     height: 44px;
@@ -62,7 +60,6 @@ i.icon.icon-heart {
     font-size: 1.6rem;
     border-bottom: solid 1px rgba(128, 128, 128, 0.25);
     width: 100%;
-    position: fixed;
-    top: 0;
-    z-index: 10;
 }
+
+

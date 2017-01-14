@@ -136,23 +136,11 @@ function edit_hw_file(obj){
 
 
 function show_upload_new_hw_div(obj){
-
-	$('.upload-new-hw-div').removeClass('hide').addClass('animated fadeInUpBig');
-	$('.upload-new-hw-div').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
-		$('.upload-new-hw-div').removeClass('animated fadeInUpBig');
-		$('.main-content').addClass('hide');
-	});
-
+	$('.upload-new-hw-div').removeClass('hide');
 }
 
 function hide_upload_new_hw_div(obj){
-
-	$('.main-content').removeClass('hide');
-	$('.upload-new-hw-div').addClass('animated fadeOutDownBig');
-	$('.upload-new-hw-div').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
-		$('.upload-new-hw-div').removeClass('animated fadeOutDownBig').addClass('hide');
-		
-	});
+	$('.upload-new-hw-div').addClass('hide');
 }
 
 
