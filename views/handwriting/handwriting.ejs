@@ -107,11 +107,11 @@
 			</div>
 		</div>
 
-		<p class="text-center">
-			<span class="btn btn-info" onclick="show_upload_new_hw_div(this)">上传我的笔迹</span>
+		<p class="text-left">
+			<span class="btn btn-link" onclick="show_upload_new_hw_div(this)">+我的笔迹</span>
 		</p>
 
-		<form id="upload_form" enctype="multipart/form-data" method="post" action="" class="text-center">
+		<form id="upload_form" enctype="multipart/form-data" method="post" action="" class="text-center hide">
 		    <input type="file" name="qiniu_upload_file" id="qiniu_upload_file" onchange="uploadMyHaddwriting()" multiple="multiple" accept="image/*" class="hide">
 		    <span class="btn btn-info" onclick="click_prev_input(this)">上传我的笔迹</span>
 		</form>
