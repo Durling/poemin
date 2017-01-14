@@ -68,7 +68,7 @@
 				</p>
 
 				<%if(el.file_type==1){ 
-					photoCut = '?imageView2/1/w/500/h/500';
+					photoCut = '?imageView2/1/w/500';
 				%> 
 					<img src="<%=qiniuDoname%><%=el.file_name%><%=photoCut%>" alt="">
 				<%}else if (el.file_type==2){%>
@@ -99,17 +99,21 @@
 		}%>
 
 
+		<p class="text-left">
+			<span class="btn btn-link" onclick="show_upload_new_hw_div(this)">+我的笔迹</span>
+		</p>
+
 		<div class="upload-new-hw-div hide">
-			<div class="new-hw-header text-center col-lg-12">
+			<div class="new-hw-main">
+				<textarea></textarea>
+			</div>
+			<div class="new-hw-footer text-center col-lg-12">
 				<span class="float-left" onclick="hide_upload_new_hw_div(this)">取消</span>
 				<span>诗笔迹</span>
 				<span class="float-right btn btn-default btn-xs btn-pre-publish">发布</span>
 			</div>
 		</div>
 
-		<p class="text-left">
-			<span class="btn btn-link" onclick="show_upload_new_hw_div(this)">+我的笔迹</span>
-		</p>
 
 		<form id="upload_form" enctype="multipart/form-data" method="post" action="" class="text-center hide">
 		    <input type="file" name="qiniu_upload_file" id="qiniu_upload_file" onchange="uploadMyHaddwriting()" multiple="multiple" accept="image/*" class="hide">

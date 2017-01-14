@@ -48,17 +48,24 @@ i.icon.icon-heart {
     margin: 10px 0;
 }
 
+
 .upload-new-hw-div {
-    height: 100px;
     width: 100%;
     background: white;
     border: solid 1px #eeeeee;
 }
-.new-hw-header {
+.new-hw-main textarea {
+    width: 100%;
+    min-height: 60px;
+    border: none;
+    resize: none;
+    padding: 10px;
+}
+.new-hw-footer {
     height: 44px;
     line-height: 44px;
     font-size: 1.6rem;
-    border-bottom: solid 1px rgba(128, 128, 128, 0.25);
+    border-top: solid 1px rgba(128, 128, 128, 0.15);
     width: 100%;
 }
 
