@@ -2,9 +2,9 @@ var express = require('express');
 var app = express();
 
 var localhost = {
-	qiniuDoname : 'http://oio0fd7aa.bkt.clouddn.com/',
+	qiniuDoname : 'http://medias.wepoem.com/',
     mysql: {
-		host:'nuo.nuoluan.com',
+		host:'127.0.0.1',
 		user:'root',
 		password:'root',
 		database:'wepoem',
@@ -19,9 +19,9 @@ var localhost = {
     }
 };
 var development = {
-	qiniuDoname : 'http://oio0fd7aa.bkt.clouddn.com/',
+	qiniuDoname : 'http://medias.wepoem.com/',
     mysql: {
-		host:'nuo.nuoluan.com',
+		host:'127.0.0.1',
 		user:'root',
 		password:'root',
 		database:'wepoem',
@@ -37,9 +37,9 @@ var development = {
 
 };
 var production = {
-	qiniuDoname : 'http://oio0fd7aa.bkt.clouddn.com/',
+	qiniuDoname : 'http://medias.wepoem.com/',
     mysql: {
-		host:'nuo.nuoluan.com',
+		host:'127.0.0.1',
 		user:'root',
 		password:'root',
 		database:'wepoem',
