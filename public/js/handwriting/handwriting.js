@@ -130,3 +130,26 @@ function edit_hw_file(obj){
 
 
 
+
+
+
+
+
+function show_upload_new_hw_div(obj){
+	$('.upload-new-hw-div').removeClass('hide');
+}
+
+function hide_upload_new_hw_div(obj){
+	$('.upload-new-hw-div').addClass('hide');
+}
+
+
+
+
+
+
+
+
+
+
+

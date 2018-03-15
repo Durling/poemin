@@ -1,13 +1,14 @@
 var express = require('express');
+var fs = require('fs');
 var app = express();
 
 var localhost = {
-	qiniuDoname : 'http://oio0fd7aa.bkt.clouddn.com/',
+	qiniuDoname : 'http://cdn.wepoem.com/',
     mysql: {
-		host:'127.0.0.1',
-		user:'root',
-		password:'root',
-		database:'wepoem',
+		host:'rdsjeviijm36zayo.mysql.rds.aliyuncs.com',
+		user:'fe_admin',
+		password:'FeFeFe20171024Cloudm',
+		database:'fe_db',
 		port:3306
     },
     redis: {
@@ -18,26 +19,8 @@ var localhost = {
         prefix: 'session_wepoem_m:'
     }
 };
-var dev = {
-	qiniuDoname : 'http://oio0fd7aa.bkt.clouddn.com/',
-    mysql: {
-		host:'127.0.0.1',
-		user:'root',
-		password:'root',
-		database:'wepoem',
-		port:3306
-    },
-    redis: {
-    	ip: '127.0.0.1',
-        port: 6379,
-        pwd: '12345',
-        db: 6,
-        prefix: 'session_wepoem_m:'
-    }
-
-};
-var produ = {
-	qiniuDoname : 'http://oio0fd7aa.bkt.clouddn.com/',
+var development = {
+	qiniuDoname : 'http://cdn.wepoem.com/',
     mysql: {
 		host:'127.0.0.1',
 		user:'root',
@@ -54,14 +37,35 @@ var produ = {
     }
 
 };
+var production = {
+	qiniuDoname : 'http://cdn.wepoem.com/',
+    mysql: {
+		host:'127.0.0.1',
+		user:'root',
+		password:'root',
+		database:'wepoem',
+		port:3306
+    },
+    redis: {
+    	ip: '127.0.0.1',
+        port: 6379,
+        pwd: '12345',
+        db: 6,
+        prefix: 'session_wepoem_m:'
+    }
 
+};
+
+var NODE_ENV=fs.readFileSync('../NODE_ENV','utf-8');
+global.NODE_ENV = NODE_ENV||'development';
 
 //需要在各自的环境运行 export NODE_ENV=localhost
-if (app.get('env') == 'development') {
-    module.exports = dev;
-} else if (app.get('env') == 'production') {
-    module.exports = produ;
-} else if (app.get('env') == 'localhost') {
+console.log(global.NODE_ENV)
+if (global.NODE_ENV == 'development') {
+    module.exports = development;
+} else if (global.NODE_ENV == 'production') {
+    module.exports = production;
+} else if (global.NODE_ENV == 'localhost') {
     module.exports = localhost;
 }else{
     module.exports = localhost;

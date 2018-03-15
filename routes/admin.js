@@ -158,7 +158,7 @@ router.put('/handwriting_file', function (req,res) {
 // 获取列表
 router.get('/poems', function (req,res) {
 	// console.log(req.url,req.body);
-	var query = 'select id,title,authorId,authorName from poems where title like "%'+req.query.title+'%" or authorName like "%'+req.query.title+'%";';
+	var query = 'select id,title,authorId,authorName from wp_poems where title like "%'+req.query.title+'%" or authorName like "%'+req.query.title+'%";';
 	// console.log(query);
 	connection.query(query,function(error,rows,fields){
 		if (error) {
@@ -181,7 +181,7 @@ router.put('/poems', function (req,res) {
 	// console.log(req.url,req.body);
 	var n = req.body;
 	// console.log(n.poemId);
-	var query = 'update poems set title="'+n.title+'",authorName="'+n.authorName+'",content="'+n.content+'" where id='+n.poemId+';';
+	var query = 'update wp_poems set title="'+n.title+'",authorName="'+n.authorName+'",content="'+n.content+'" where id='+n.poemId+';';
 	// console.log(query);
 	connection.query(query,function(errorupdate,resupdate){
 		if (errorupdate) {
@@ -202,7 +202,7 @@ router.put('/poems', function (req,res) {
 router.post('/poems', function (req,res) {
 	// console.log(req.url,req.body);
 	var n = req.body;
-	var query = 'insert into poems(title,authorName,content) values("'+n.title+'","'+n.authorName+'","'+n.content+'");';
+	var query = 'insert into wp_poems(title,authorName,content) values("'+n.title+'","'+n.authorName+'","'+n.content+'");';
 	// console.log(query);
 	connection.query(query,function(errorinsert,resinsert){
 		if (errorinsert) {

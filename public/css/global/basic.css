@@ -3,7 +3,7 @@ html,body{
 	height: 100%;
 }
 body {
-    max-width: 500px!important;
+    max-width: 800px!important;
     margin: 0 auto!important;
     font-size: 10px!important;
 }
@@ -14,6 +14,10 @@ body {
     outline:none;
     /*background: none;*/
     text-decoration: none;
+}
+
+.msg-tips{
+	color: #ade0ef;
 }
 
 /*在IOS下，input 表单默认会有个内阴影，一定程度上影响视觉一致，可通过设置下面代码去掉：*/
@@ -29,7 +33,6 @@ hr{
 .container{
 	min-height: 100%;
 	max-width: 100%;
-	background: #f6f6f1;
 	padding: 0;
 }
 
