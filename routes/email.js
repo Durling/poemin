@@ -87,7 +87,7 @@ router.post('/send-email', function (req, res) {
 
 function updateUserEmailCode(req,res,ret){
 	var n = req.body;
-	var query = 'update user set email_code="'+ret.code4+'" where id='+n.targetId+';';
+	var query = 'update wp_user set email_code="'+ret.code4+'" where id='+n.targetId+';';
 	// console.log(query);
 	connection.query(query,function(errorupdate,resupdate){
 		if (errorupdate) {

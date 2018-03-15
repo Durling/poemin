@@ -66,7 +66,7 @@ function randomStr(){
 router.post('/login', function (req,res) {
 	// console.log(req.url,req.body);
 	var n = req.body;
-	var query = 'insert into user(email,phone,userName,password) values("'+n.email+'","'+n.phone+'","'+n.userName+'","'+n.password+'");';
+	var query = 'insert into wp_user(email,phone,userName,password) values("'+n.email+'","'+n.phone+'","'+n.userName+'","'+n.password+'");';
 	// console.log(query);
 	connection.query(query,function(errorinsert,resinsert){
 		if (errorinsert) {
@@ -87,7 +87,7 @@ router.post('/login', function (req,res) {
 // 用户登录
 router.get('/login', function (req,res) {
 	// console.log(req.url,req.body);
-	var query = 'select id,password from user where email="'+req.query.email+'";';
+	var query = 'select id,password from wp_user where email="'+req.query.email+'";';
 	// console.log(query);
 	connection.query(query,function(error,rows,fields){
 		if (error) {
@@ -120,14 +120,14 @@ function update_one_user(req,res,data){
 	// console.log(data,data.rows[0].id);
 	var token = randomStr(),userId = data.rows[0].id;
 	// console.log(token,userId);
-	var update_query = 'update user set token="'+token+'" where id="'+userId+'";'
+	var update_query = 'update wp_user set token="'+token+'" where id="'+userId+'";'
 	connection.query(update_query,function(errorupdate,resupdate){
 		if (errorupdate) {
 			// console.log(errorupdate);
 			res.json(errorupdate);
 		}else{	
 			// 更改token成功 重新获取用户信息
-			var new_user_query = 'select id,email,userName,token from user where id="'+userId+'";'
+			var new_user_query = 'select id,email,userName,token from wp_user where id="'+userId+'";'
 			connection.query(new_user_query,function(error,rows,fields){
 				if (error) {
 					// console.log(errorupdate);

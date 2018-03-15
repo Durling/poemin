@@ -32,8 +32,8 @@ CREATE TABLE `acticity` (
   `address` varchar(60) DEFAULT NULL,
   `content` text,
   `datetime` timestamp NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -427,9 +427,9 @@ CREATE TABLE `handwriting_file` (
   `poemId` int(11) DEFAULT NULL COMMENT '诗id',
   `like_num` int(11) DEFAULT NULL COMMENT '喜欢数',
   `comments_num` int(11) DEFAULT NULL COMMENT '评论数',
-  `created_at` timestamp NULL DEFAULT NULL COMMENT '发布时间',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '发布时间',
   `created_by` int(11) DEFAULT NULL COMMENT '发布者',
-  `updated_at` timestamp NULL DEFAULT NULL COMMENT '更新时间',
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `updated_by` int(11) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -465,8 +465,8 @@ CREATE TABLE `hw_like` (
   `hw_fileId` int(50) DEFAULT NULL,
   `like_userId` int(11) DEFAULT NULL,
   `is_like` int(1) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -500,9 +500,9 @@ CREATE TABLE `img_bg` (
   `comments_num` int(11) DEFAULT NULL COMMENT '评论数',
   `width` int(5) DEFAULT NULL COMMENT '宽',
   `height` int(5) DEFAULT NULL COMMENT '高',
-  `created_at` timestamp NULL DEFAULT NULL COMMENT '发布时间',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '发布时间',
   `created_by` int(11) DEFAULT NULL COMMENT '发布者',
-  `updated_at` datetime DEFAULT NULL COMMENT '更新时间',
+  `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `updated_by` int(11) DEFAULT NULL COMMENT '更新者',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -569,8 +569,8 @@ CREATE TABLE `poems` (
   `translateText` longtext COMMENT '译文',
   `annotation` mediumtext COMMENT '注释',
   `reference` mediumtext COMMENT '参考',
-  `created_at` timestamp NULL DEFAULT NULL COMMENT '创建时间',
-  `updated_at` timestamp NULL DEFAULT NULL COMMENT '更新时间',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -693,8 +693,8 @@ CREATE TABLE `poems1` (
   `translateText` longtext COMMENT '译文',
   `annotation` mediumtext COMMENT '注释',
   `reference` mediumtext COMMENT '参考',
-  `created_at` timestamp NULL DEFAULT NULL COMMENT '创建时间',
-  `updated_at` timestamp NULL DEFAULT NULL COMMENT '更新时间',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -1055,8 +1055,8 @@ CREATE TABLE `poems2` (
   `translateText` longtext COMMENT '译文',
   `annotation` mediumtext COMMENT '注释',
   `reference` mediumtext COMMENT '参考',
-  `created_at` timestamp NULL DEFAULT NULL COMMENT '创建时间',
-  `updated_at` timestamp NULL DEFAULT NULL COMMENT '更新时间',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -1390,8 +1390,8 @@ CREATE TABLE `poems3` (
   `translateText` longtext COMMENT '译文',
   `annotation` mediumtext COMMENT '注释',
   `reference` mediumtext COMMENT '参考',
-  `created_at` timestamp NULL DEFAULT NULL COMMENT '创建时间',
-  `updated_at` timestamp NULL DEFAULT NULL COMMENT '更新时间',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -1682,8 +1682,8 @@ CREATE TABLE `poems4` (
   `translateText` longtext COMMENT '译文',
   `annotation` mediumtext COMMENT '注释',
   `reference` mediumtext COMMENT '参考',
-  `created_at` timestamp NULL DEFAULT NULL COMMENT '创建时间',
-  `updated_at` timestamp NULL DEFAULT NULL COMMENT '更新时间',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -1883,8 +1883,8 @@ CREATE TABLE `user` (
   `status` tinyint(2) DEFAULT NULL COMMENT '状态',
   `vInfo` varchar(20) DEFAULT NULL COMMENT '认证信息',
   `user_brief` text,
-  `created_at` timestamp NULL DEFAULT NULL COMMENT '创建时间',
-  `updated_at` timestamp NULL DEFAULT NULL COMMENT '更新时间',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`),
   KEY `uniName` (`userName`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
