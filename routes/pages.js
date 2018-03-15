@@ -27,7 +27,7 @@ router.get('/poems',function (req,res,next){
 	console.log('act===>'+act);
 	var act_status;
 	if (req.query.id>0) {
-		var query = 'select * from poems where id='+req.query.id+';';
+		var query = 'select * from wp_poems where id='+req.query.id+';';
 		connection.query(query,function(error,rows,fields){
 
 			if(act=='edit'){
@@ -46,7 +46,7 @@ router.get('/poems',function (req,res,next){
 			res.render('poems/poems',renderData);
 		})
 	}else{
-		var query = 'select id,title,authorId,authorName from poems;';
+		var query = 'select id,title,authorId,authorName from wp_poems;';
 		connection.query(query,function(error,rows,fields){
 			if(act=='add'){
 				act_status = 2; //新建 
@@ -73,7 +73,7 @@ router.get('/poems',function (req,res,next){
 // 个人中心
 router.get('/home', function (req, res, next) {
 	var n = req.query;
-	var query = 'select * from user where id='+n.uid+';';
+	var query = 'select * from wp_user where id='+n.uid+';';
 	connection.query(query,function(error,rows,fields){
 		if (rows.length>0) {
 			var renderData = {
@@ -119,11 +119,11 @@ router.get('/handwriting', function (req, res, next) {
 	var poemId = req.query.poemId;
 	var rows_files,rows_poems;
 
-	var query = 'select * from handwriting_file where poemId="'+poemId+'";';
+	var query = 'select * from wp_handwriting_file where poemId="'+poemId+'";';
 	connection.query(query,function(error,rows,fields){
 		rows_files = rows;
 
-		var query2 = 'select id,title,content,authorName from poems where id="'+poemId+'";';
+		var query2 = 'select id,title,content,authorName from wp_poems where id="'+poemId+'";';
 		connection.query(query2,function(error2,rows2,fields2){
 			rows_poems = rows2;
 
@@ -142,7 +142,7 @@ router.get('/handwriting', function (req, res, next) {
 
 // 朝代列表
 router.get('/dynasty',function (req,res,next){
-	var query = 'select * from dynasty;';
+	var query = 'select * from wp_dynasty;';
 	connection.query(query,function(error,rows,fields){
 		var renderData = {
 			title:'朝代列表',

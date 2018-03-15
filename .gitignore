@@ -4,12 +4,12 @@
 
 # node.js
 #
-node_modules/
-npm-debug.log
-public/img/qiniu-upload
-public/img/v_bg
+/node_modules/
+/npm-debug.log
+/public/img/qiniu-upload
+/public/img/v_bg
 
 # BUCK
-buck-out/
+/buck-out/
 \.buckd/
 

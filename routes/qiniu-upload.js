@@ -130,7 +130,7 @@ router.post('/file-upload', function (req,res) {
 		}else if(ret1.mimeType.indexOf('video')>=0){
 			file_type = 2;
 		}
-		var query = 'insert into handwriting_file(file_name,type_name,file_type,poemId) values("'+ret.key+'","'+ret1.mimeType+'",'+file_type+','+poemId+');';
+		var query = 'insert into wp_handwriting_file(file_name,type_name,file_type,poemId) values("'+ret.key+'","'+ret1.mimeType+'",'+file_type+','+poemId+');';
 		console.log(query);
 		connection.query(query,function(errorinsert,resinsert){
 			if (errorinsert) {

@@ -1,13 +1,14 @@
 var express = require('express');
+var fs = require('fs');
 var app = express();
 
 var localhost = {
-	qiniuDoname : 'http://medias.wepoem.com/',
+	qiniuDoname : 'http://cdn.wepoem.com/',
     mysql: {
-		host:'127.0.0.1',
-		user:'root',
-		password:'root',
-		database:'wepoem',
+		host:'rdsjeviijm36zayo.mysql.rds.aliyuncs.com',
+		user:'fe_admin',
+		password:'FeFeFe20171024Cloudm',
+		database:'fe_db',
 		port:3306
     },
     redis: {
@@ -19,7 +20,7 @@ var localhost = {
     }
 };
 var development = {
-	qiniuDoname : 'http://medias.wepoem.com/',
+	qiniuDoname : 'http://cdn.wepoem.com/',
     mysql: {
 		host:'127.0.0.1',
 		user:'root',
@@ -37,7 +38,7 @@ var development = {
 
 };
 var production = {
-	qiniuDoname : 'http://medias.wepoem.com/',
+	qiniuDoname : 'http://cdn.wepoem.com/',
     mysql: {
 		host:'127.0.0.1',
 		user:'root',
@@ -55,13 +56,16 @@ var production = {
 
 };
 
+var NODE_ENV=fs.readFileSync('../NODE_ENV','utf-8');
+global.NODE_ENV = NODE_ENV||'development';
 
 //需要在各自的环境运行 export NODE_ENV=localhost
-if (app.get('env') == 'development') {
+console.log(global.NODE_ENV)
+if (global.NODE_ENV == 'development') {
     module.exports = development;
-} else if (app.get('env') == 'production') {
+} else if (global.NODE_ENV == 'production') {
     module.exports = production;
-} else if (app.get('env') == 'localhost') {
+} else if (global.NODE_ENV == 'localhost') {
     module.exports = localhost;
 }else{
     module.exports = localhost;
