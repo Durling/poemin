@@ -1,9 +1,8 @@
 
-var express = require('express');
-var request = require('request');
-var router = express.Router();
-var mysql = require('mysql');
-var config = require('../config.js');
+var request = require('request'),
+	router = require('express').Router(),
+	mysql = require('mysql'),
+	config = require('../config.js');
 /**
  * 创建数据库连接
  */
@@ -139,6 +138,75 @@ router.get('/handwriting', function (req, res, next) {
 	})
 
 });
+
+var Superagent = require('superagent'),
+	sha1 = require('../public/js/sha1.min.js'),
+	wx = {
+		host:'https://api.weixin.qq.com/cgi-bin',
+		grant_type:'client_credential',
+		appid:'wx487526afe7cbbfdc',
+		secret:'2cab5c70608be99c5b3f6b98566685ad'
+	}
+// 诗音
+router.get('/voice',function (req,res,next){
+	var poemId = req.query.poemId || 1
+
+	var query = 'select * from voice where poemId="'+poemId+'";'
+
+
+	var random = {
+		noncestr:Math.random().toString(36).substring(3,19),
+		timestamp:new Date().getTime(),
+	}
+	// console.log(req.url)
+	Superagent.get(wx.host+'/token?grant_type='+wx.grant_type+'&appid='+wx.appid+'&secret='+wx.secret).then(function(res1) {
+		// console.log(res1.body)
+		return Superagent.get(wx.host+'/ticket/getticket?type=jsapi&access_token='+res1.body.access_token).then(function(res2){
+			return res2.body
+		}).catch(function(err) {
+			return err
+		})
+	}).then(function(res1){
+
+		var location_href = req.query.href ? decodeURIComponent(req.query.href) : 'http://192.168.0.100:6868/voice?poemId=1',
+			location_href = location_href.split('#')[0],
+			signature = 'jsapi_ticket='+res1.ticket+'&noncestr='+random.noncestr+'&timestamp='+random.timestamp+'&url='+location_href,
+			signature = sha1(signature),
+			wxConfig = {
+				appid:wx.appid,
+				signature:signature,
+				noncestr:random.noncestr,
+				timestamp:random.timestamp
+			}
+
+			console.log(location_href)
+
+			return {
+				wxConfig:wxConfig
+			}
+
+	}).then(function(res1){
+		// console.log(res1)
+		// res.send(res1)
+
+		connection.query(query,function (error,rows,fields){
+			var renderData = {
+				title:'诗音',
+				rows:rows,
+				wxConfig: res1.wxConfig
+			};
+			// console.log(renderData);
+			res.render('voice/vlist',renderData);
+			// res.send(renderData)
+		})
+
+	}).catch(function(err) {
+		// console.log(err)
+		res.send(err)
+	})
+
+
+})
 
 // 朝代列表
 router.get('/dynasty',function (req,res,next){
