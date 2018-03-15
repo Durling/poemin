@@ -1,6 +1,4 @@
-var express = require('express');
 var fs = require('fs');
-var app = express();
 
 var localhost = {
 	qiniuDoname : 'http://cdn.wepoem.com/',
@@ -60,7 +58,7 @@ var NODE_ENV=fs.readFileSync('../NODE_ENV','utf-8');
 global.NODE_ENV = NODE_ENV||'development';
 
 //需要在各自的环境运行 export NODE_ENV=localhost
-console.log(global.NODE_ENV)
+console.log('global.NODE_ENV=>',global.NODE_ENV)
 if (global.NODE_ENV == 'development') {
     module.exports = development;
 } else if (global.NODE_ENV == 'production') {
