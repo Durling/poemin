@@ -1,5 +1,6 @@
 *.log
 .DS_Store
+/logs/
 /node_modules/
 /public/img/qiniu-upload/
 /public/img/v_bg/
