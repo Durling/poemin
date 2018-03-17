@@ -1,4 +1,3 @@
-
 var express = require('express');
 var request = require('request');
 var router = express.Router();
@@ -156,3 +155,4 @@ router.get('/dynasty',function (req,res,next){
 
 
 module.exports = router;
+
