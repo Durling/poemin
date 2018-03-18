@@ -43,23 +43,22 @@ app.use('/login', require('./routes/login'));
 app.use('/email', require('./routes/email'));
 app.use('/qiniu-upload', require('./routes/qiniu-upload'));
 
+app.use('/api/v1', require('./routes/api_v1.js'));
 
 
 //设置 Session
-app.use(session({
-  store: new RedisStore({
-    host: config.redis.ip,
-    port: config.redis.port,
-    db: config.redis.db,
-    // pass: config.redis.pwd,
-    prefix : config.redis.prefix,
-    ttl:10800 // 3小时
-  }),
-  secret: '12345',
-  resave: true,
-  saveUninitialized: true
-}))
-
-
+// app.use(session({
+//   store: new RedisStore({
+//     host: config.redis.ip,
+//     port: config.redis.port,
+//     db: config.redis.db,
+//     // pass: config.redis.pwd,
+//     prefix : config.redis.prefix,
+//     ttl:10800 // 3小时
+//   }),
+//   secret: '12345',
+//   resave: true,
+//   saveUninitialized: true
+// }))
 
 module.exports = app;
