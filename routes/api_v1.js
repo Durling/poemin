@@ -28,13 +28,43 @@ var connection = mysql.createConnection({
 })
 
 
-// api v1 获取诗歌分页列表
-router.get('/poemList', function (req,res) {
+// api v1 admin poemList 获取诗分页列表
+router.get('/admin/poemList', function (req,res) {
 	var page = req.query.page || 1,
 		size = req.query.size || 10;
 	// console.log(req.url,req.body);
 	var query1 = 'select count(*) as num from `wp_poems`';
 	var query2 = 'select * from `wp_poems` order by id limit '+(page-1)*size+','+size;
+	// console.log(query);
+	connection.query(query1,function(error,rows,fields){
+		// console.log(JSON.stringify(rows))
+		var total = rows[0].num;
+		connection.query(query2,function(error,rows,fields){
+			if (error) {
+				// console.log(errorupdate);
+				res.json(error);
+			}else{	
+				var data = {
+					code:200,
+					message:'success',
+					total:total,
+					rows:rows
+				}
+				res.json(data);
+				// res.jsonp(data);
+			}
+		})		
+	})
+});
+
+
+// api v1 admin userList 获取用户分页列表
+router.get('/admin/userList', function (req,res) {
+	var page = req.query.page || 1,
+		size = req.query.size || 10;
+	// console.log(req.url,req.body);
+	var query1 = 'select count(*) as num from `wp_user`';
+	var query2 = 'select * from `wp_user` order by id limit '+(page-1)*size+','+size;
 	// console.log(query);
 	connection.query(query1,function(error,rows,fields){
 		// console.log(JSON.stringify(rows))
