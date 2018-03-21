@@ -28,7 +28,7 @@ var connection = mysql.createConnection({
 })
 
 
-// api v1 admin poemList 获取诗分页列表
+// api v1 get admin poemList 获取诗分页列表
 router.get('/admin/poemList', function (req,res) {
 	var page = req.query.page || 1,
 		size = req.query.size || 10;
@@ -56,6 +56,30 @@ router.get('/admin/poemList', function (req,res) {
 		})		
 	})
 });
+
+
+// api v1 put admin poem 更新一首诗的内容
+router.put('/admin/poem', function (req,res) {
+	// console.log(req.url,req.body);
+	var n = req.body;
+	// console.log(n.poemId);
+	var query = 'update wp_poems set title="'+n.title+'",authorName="'+n.authorName+'",content="'+n.content+'" where id='+n.poemId+';';
+	// console.log(query);
+	connection.query(query,function(errorupdate,resupdate){
+		if (errorupdate) {
+			// console.log(errorupdate);
+			res.json(errorupdate);
+		}else{	
+			var data = {
+				message:'success',
+				resinsert:resupdate
+			}
+			res.json(data);
+			// res.jsonp(data);
+		}
+	})
+});
+
 
 
 // api v1 admin userList 获取用户分页列表
@@ -87,28 +111,6 @@ router.get('/admin/userList', function (req,res) {
 	})
 });
 
-
-// 编辑更新
-router.put('/poems', function (req,res) {
-	// console.log(req.url,req.body);
-	var n = req.body;
-	// console.log(n.poemId);
-	var query = 'update wp_poems set title="'+n.title+'",authorName="'+n.authorName+'",content="'+n.content+'" where id='+n.poemId+';';
-	// console.log(query);
-	connection.query(query,function(errorupdate,resupdate){
-		if (errorupdate) {
-			// console.log(errorupdate);
-			res.json(errorupdate);
-		}else{	
-			var data = {
-				message:'success',
-				resinsert:resupdate
-			}
-			res.json(data);
-			// res.jsonp(data);
-		}
-	})
-});
 
 // 新增
 router.post('/poems', function (req,res) {

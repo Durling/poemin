@@ -1,0 +1,20 @@
+[2018-03-21 21:40:51.308] [ERROR] errorLog - === CAUGHT EXCEPTION === TypeError: Cannot read property '0' of undefined
+    at Query._callback (/Users/apple/dev/dev-myz/wepoem_m/routes/api_v1.js:71:19)
+    at Query.Sequence.end (/Users/apple/dev/dev-myz/wepoem_m/node_modules/_mysql@2.15.0@mysql/lib/protocol/sequences/Sequence.js:88:24)
+    at /Users/apple/dev/dev-myz/wepoem_m/node_modules/_mysql@2.15.0@mysql/lib/protocol/Protocol.js:398:18
+    at Array.forEach (native)
+    at /Users/apple/dev/dev-myz/wepoem_m/node_modules/_mysql@2.15.0@mysql/lib/protocol/Protocol.js:397:13
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+[2018-03-21 21:42:54.683] [ERROR] errorLog - === CAUGHT EXCEPTION === TypeError: Cannot read property '0' of undefined
+    at Query._callback (/Users/apple/dev/dev-myz/wepoem_m/routes/api_v1.js:71:19)
+    at Query.Sequence.end (/Users/apple/dev/dev-myz/wepoem_m/node_modules/_mysql@2.15.0@mysql/lib/protocol/sequences/Sequence.js:88:24)
+    at /Users/apple/dev/dev-myz/wepoem_m/node_modules/_mysql@2.15.0@mysql/lib/protocol/Protocol.js:225:14
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+[2018-03-21 21:44:09.445] [ERROR] errorLog - === CAUGHT EXCEPTION === TypeError: Cannot read property '0' of undefined
+    at Query._callback (/Users/apple/dev/dev-myz/wepoem_m/routes/api_v1.js:41:19)
+    at Query.Sequence.end (/Users/apple/dev/dev-myz/wepoem_m/node_modules/_mysql@2.15.0@mysql/lib/protocol/sequences/Sequence.js:88:24)
+    at /Users/apple/dev/dev-myz/wepoem_m/node_modules/_mysql@2.15.0@mysql/lib/protocol/Protocol.js:225:14
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
