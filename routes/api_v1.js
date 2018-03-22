@@ -7,7 +7,8 @@ var http = require('http');
 var request = require('request');
 var mysql = require('mysql');
 var config = require('../config.js');
-var fs=require('fs');
+var fs=require('fs'),
+moment = require('moment');
 
 /**
  * 配日志
@@ -42,7 +43,11 @@ router.get('/admin/poemList', function (req,res) {
 			if (err1) {
 				// console.log(err1);
 				res.json(err1);
-			}else{	
+			}else{
+				// rows2.forEach(function(n){
+				// 	n.created_at = moment(n.created_at).format('YYYY-MM-DD HH:mm:ss')
+				// 	n.updated_at = moment(n.updated_at).format('YYYY-MM-DD HH:mm:ss')
+				// })
 				var data = {
 					code:200,
 					message:'success',
@@ -68,7 +73,7 @@ router.put('/admin/poem', function (req,res) {
 		if (err) {
 			// console.log(err);
 			res.json(err);
-		}else{	
+		}else{
 			var data = {
 				message:'success',
 				resinsert:res
@@ -105,6 +110,10 @@ router.get('/admin/collectionList', function (req,res) {
 		f1:function(callback){
 		    connection.query(query2,function selectCb(err, rows, fields) {
 				if (err) {throw err;}
+				// rows.forEach(function(n){
+				// 	n.created_at = moment(n.created_at||0).format('YYYY-MM-DD HH:mm:ss')
+				// 	n.updated_at = moment(n.updated_at||0).format('YYYY-MM-DD HH:mm:ss')
+				// })
 				data.rows = rows
 				callback()
 			})
