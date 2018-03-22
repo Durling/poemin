@@ -36,19 +36,18 @@ router.get('/admin/poemList', function (req,res) {
 	var query1 = 'select count(*) as num from `wp_poems`';
 	var query2 = 'select * from `wp_poems` order by id limit '+(page-1)*size+','+size;
 	// console.log(query);
-	connection.query(query1,function(error,rows,fields){
-		// console.log(JSON.stringify(rows))
-		var total = rows[0].num;
-		connection.query(query2,function(error,rows,fields){
-			if (error) {
-				// console.log(errorupdate);
-				res.json(error);
+	connection.query(query1,function(err1,rows1,fields1){
+		var total = rows1[0].num;
+		connection.query(query2,function(err1,rows2,fields2){
+			if (err1) {
+				// console.log(err1);
+				res.json(err1);
 			}else{	
 				var data = {
 					code:200,
 					message:'success',
 					total:total,
-					rows:rows
+					rows:rows2
 				}
 				res.json(data);
 				// res.jsonp(data);
@@ -65,14 +64,14 @@ router.put('/admin/poem', function (req,res) {
 	// console.log(n.poemId);
 	var query = 'update wp_poems set title="'+n.title+'",authorName="'+n.authorName+'",content="'+n.content+'" where id='+n.poemId+';';
 	// console.log(query);
-	connection.query(query,function(errorupdate,resupdate){
-		if (errorupdate) {
-			// console.log(errorupdate);
-			res.json(errorupdate);
+	connection.query(query,function(err,res){
+		if (err) {
+			// console.log(err);
+			res.json(err);
 		}else{	
 			var data = {
 				message:'success',
-				resinsert:resupdate
+				resinsert:res
 			}
 			res.json(data);
 			// res.jsonp(data);
