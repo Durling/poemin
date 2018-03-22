@@ -82,6 +82,42 @@ router.put('/admin/poem', function (req,res) {
 
 
 
+// api v1 admin collectionList 获取诗集分页列表
+router.get('/admin/collectionList', function (req,res) {
+	var page = req.query.page || 1,
+		size = req.query.size || 10;
+	// console.log(req.url,req.body);
+	var query1 = 'select count(*) as num from `wp_collections`';
+	var query2 = 'select * from `wp_collections` order by id limit '+(page-1)*size+','+size;
+	var data = {
+		code:200,
+		message:'success',
+		total:0,
+		rows:[]
+	}
+	var fun = {
+		f0:function(callback){
+		    connection.query(query1,function selectCb(err, rows, fields) {
+				if (err) {throw err;}
+				data.total = rows[0].num;
+				callback()
+			})
+		},
+		f1:function(callback){
+		    connection.query(query2,function selectCb(err, rows, fields) {
+				if (err) {throw err;}
+				data.rows = rows
+				callback()
+			})
+		}
+	};
+	global.await(fun,function(){
+		res.jsonp(data);
+	});
+});
+
+
+
 // api v1 admin userList 获取用户分页列表
 router.get('/admin/userList', function (req,res) {
 	var page = req.query.page || 1,
@@ -89,26 +125,31 @@ router.get('/admin/userList', function (req,res) {
 	// console.log(req.url,req.body);
 	var query1 = 'select count(*) as num from `wp_user`';
 	var query2 = 'select * from `wp_user` order by id limit '+(page-1)*size+','+size;
-	// console.log(query);
-	connection.query(query1,function(error,rows,fields){
-		// console.log(JSON.stringify(rows))
-		var total = rows[0].num;
-		connection.query(query2,function(error,rows,fields){
-			if (error) {
-				// console.log(errorupdate);
-				res.json(error);
-			}else{	
-				var data = {
-					code:200,
-					message:'success',
-					total:total,
-					rows:rows
-				}
-				res.json(data);
-				// res.jsonp(data);
-			}
-		})		
-	})
+	var data = {
+		code:200,
+		message:'success',
+		total:0,
+		rows:[]
+	}
+	var fun = {
+		f0:function(callback){
+		    connection.query(query1,function selectCb(err, rows, fields) {
+				if (err) {throw err;}
+				data.total = rows[0].num;
+				callback()
+			})
+		},
+		f1:function(callback){
+		    connection.query(query2,function selectCb(err, rows, fields) {
+				if (err) {throw err;}
+				data.rows = rows
+				callback()
+			})
+		}
+	};
+	global.await(fun,function(){
+		res.jsonp(data);
+	});
 });
 
 

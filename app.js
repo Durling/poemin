@@ -46,6 +46,26 @@ app.use('/qiniu-upload', require('./routes/qiniu-upload'));
 app.use('/api/v1', require('./routes/api_v1.js'));
 
 
+global.await = function(fun,callback){//异步函数 callback 最后回调
+  var promisify = function(func){
+    return function(){
+      return new Promise(function(resolve){
+        func(resolve);
+      });
+    }
+  }
+  var func_arr= [];
+  for (var key in fun){
+    func_arr.push(promisify(fun[key]))
+  }
+  func_arr.reduce(function(cur, next) {
+      return cur.then(next);
+  }, Promise.resolve()).then(function() {
+      typeof(callback) !== 'function' || callback();
+  });
+}
+
+
 //设置 Session
 // app.use(session({
 //   store: new RedisStore({
