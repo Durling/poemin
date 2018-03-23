@@ -20,7 +20,7 @@
     "multiparty": "^4.1.2",
     "mysql": "^2.11.1",
     "node-schedule": "^1.2.0",
-    "nodemailer": "^2.6.4",
+    "nodemailer": "^4.0.1",
     "path": "^0.12.7",
     "qiniu": "^7.0.5",
     "redis": "^2.6.2",
