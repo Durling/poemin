@@ -28,18 +28,21 @@ var connection = mysql.createConnection({
 	port: config.mysql.port
 })
 
-
-//需要填写你的 Access Key 和 Secret Key
-qiniu.conf.ACCESS_KEY = 'UtR9-061L8qFst2lvhiBR9Tc9E_u3sprXyOnTbSS';
-qiniu.conf.SECRET_KEY = 'huy_QYClFu6AEjVqc24cwX_98UjtWjKczjIAcjpF';
-//要上传的空间
-bucket = 'wepoem-m';
-
-//构建上传策略函数
-function uptoken(bucket, key) {
-  var putPolicy = new qiniu.rs.PutPolicy(bucket+":"+key);
-  return putPolicy.token();
+var qn_key={
+  accessKey:'UtR9-061L8qFst2lvhiBR9Tc9E_u3sprXyOnTbSS',
+  secretKey:'huy_QYClFu6AEjVqc24cwX_98UjtWjKczjIAcjpF'
 }
+
+var qn_mac = new qiniu.auth.digest.Mac(qn_key.accessKey,qn_key.secretKey);
+var qn_config = new qiniu.conf.Config();
+// 空间对应的机房
+qn_config.zone = qiniu.zone.Zone_z0;
+
+var web_C={
+  bucket:'wepoem-m',
+  origin:'http://cdn.wepoem.com/'
+}
+
 
 // 上传图片文件
 router.post('/file-upload', function (req,res) {
@@ -150,6 +153,73 @@ router.post('/file-upload', function (req,res) {
 	}
 
 });
+
+
+//同步七牛图片代码 （同步后代码注释掉）弹出 success为止
+router.get('/syncQnImg',function(req,res,next){
+  var saveImgs = [];
+  function getQiniuImagesFn(marker){
+    var marker = marker || '';
+    var prefix='';//为空同步所有图片
+    web_C.options={
+      limit: 1000,
+      prefix: prefix,
+      marker: marker
+    };
+    var bucketManager = new qiniu.rs.BucketManager(qn_mac, qn_config);
+    bucketManager.listPrefix(web_C.bucket, web_C.options, function(err, respBody, respInfo) {
+      if (err) {
+        console.log(err);
+        throw err;
+      }
+      if (respInfo.statusCode == 200) {
+        var nextMarker = respBody.marker;
+        var commonPrefixes = respBody.commonPrefixes;
+        var items = respBody.items;
+        saveImgs = saveImgs.concat(items);
+        nextMarker ? getQiniuImagesFn(nextMarker) : setQiniuImagesFn();
+      }
+    })
+  }
+  function setQiniuImagesFn(){
+    saveImgs.sort(function(a,b){
+      return a.putTime-b.putTime;
+    });
+    var ii=0;
+    insertFn(saveImgs,ii);
+    function insertFn(array,ii){
+      if(array.length==ii){
+        console.log('success')
+        res.end('success');
+      }else{
+        connection.query(
+             "SELECT `key` FROM ?? WHERE ??=?",['wp_qn_img','key',array[ii].key],
+             function selectCb(err, results, fields) {  
+            if (err) {  throw err;  }
+            if(results.length>0){
+              console.log((ii+1)+'/'+array.length,'已有')
+              ii++;
+              insertFn(array,ii)
+            }else{
+              connection.query(
+                   "INSERT INTO ??(??,??,??,??,??) VALUES (?,?,?,?,?)",['wp_qn_img','key','hash','fsize','mimeType','putTime',array[ii].key,array[ii].hash,array[ii].fsize,array[ii].mimeType,array[ii].putTime],
+                   function selectCb(err, results, fields) {  
+                  if (err) {  throw err;  }
+                  console.log((ii+1)+'/'+array.length,'添加')
+                  ii++;
+                  insertFn(array,ii)
+                }  
+              );
+            }
+          } 
+        );
+      }
+    }
+  }
+  getQiniuImagesFn('');
+})
+
+
 
 
 module.exports = router;

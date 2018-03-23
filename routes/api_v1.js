@@ -1,20 +1,17 @@
 /**
  * 此模块为代理模块
  */
-var express = require('express');
-var router = express.Router();
-var http = require('http');
-var request = require('request');
-var mysql = require('mysql');
-var config = require('../config.js');
-var fs=require('fs'),
-moment = require('moment');
+var router = require('express').Router(),
+	mysql = require('mysql'),
+	fs=require('fs'),
+	moment = require('moment'),
+	config = require('../config.js');
 
 /**
  * 配日志
  */
-var logger = require('../log4js').logger;
-var logger_error = require('../log4js').logger_error;  
+var logger = require('../log4js').logger,
+	logger_error = require('../log4js').logger_error;  
 // logger.info("=== this is log from admin.js ===");
 
 /**
@@ -27,7 +24,6 @@ var connection = mysql.createConnection({
 	database: config.mysql.database,
 	port: config.mysql.port
 })
-
 
 // api v1 get admin poemList 获取诗分页列表
 router.get('/admin/poemList', function (req,res) {
@@ -61,7 +57,6 @@ router.get('/admin/poemList', function (req,res) {
 	})
 });
 
-
 // api v1 put admin poem 更新一首诗的内容
 router.put('/admin/poem', function (req,res) {
 	// console.log(req.url,req.body);
@@ -83,8 +78,6 @@ router.put('/admin/poem', function (req,res) {
 		}
 	})
 });
-
-
 
 // api v1 admin collectionList 获取诗集分页列表
 router.get('/admin/collectionList', function (req,res) {
@@ -124,8 +117,6 @@ router.get('/admin/collectionList', function (req,res) {
 	});
 });
 
-
-
 // api v1 admin userList 获取用户分页列表
 router.get('/admin/userList', function (req,res) {
 	var page = req.query.page || 1,
@@ -160,6 +151,39 @@ router.get('/admin/userList', function (req,res) {
 	});
 });
 
+// api v1 admin qnImgList 获取七牛图片分页列表
+router.get('/admin/qnImgList', function (req,res) {
+	var page = req.query.page || 1,
+		size = req.query.size || 10;
+	// console.log(req.url,req.body);
+	var query1 = 'select count(*) as num from `wp_qn_img`';
+	var query2 = 'select * from `wp_qn_img` order by id limit '+(page-1)*size+','+size;
+	var data = {
+		code:200,
+		message:'success',
+		total:0,
+		rows:[]
+	}
+	var fun = {
+		f0:function(callback){
+		    connection.query(query1,function selectCb(err, rows, fields) {
+				if (err) {throw err;}
+				data.total = rows[0].num;
+				callback()
+			})
+		},
+		f1:function(callback){
+		    connection.query(query2,function selectCb(err, rows, fields) {
+				if (err) {throw err;}
+				data.rows = rows
+				callback()
+			})
+		}
+	};
+	global.await(fun,function(){
+		res.jsonp(data);
+	});
+});
 
 // 新增
 router.post('/poems', function (req,res) {
@@ -183,12 +207,6 @@ router.post('/poems', function (req,res) {
 	})
 
 });
-
-
-
-
-
-
 
 // 获取某个目录下文件列表
 router.get('/getFiles', function (req,res) {
@@ -228,12 +246,4 @@ router.get('/getFiles', function (req,res) {
 	}	
 });
 
-
-
-
 module.exports = router;
-
-
-
-
-

@@ -41,7 +41,7 @@ app.use('/', require('./routes/pages'));
 app.use('/admin', require('./routes/admin'));
 app.use('/login', require('./routes/login'));
 app.use('/email', require('./routes/email'));
-app.use('/qiniu-upload', require('./routes/qiniu-upload'));
+app.use('/qnUpload', require('./routes/qnUpload'));
 
 app.use('/api/v1', require('./routes/api_v1.js'));
 
